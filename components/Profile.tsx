@@ -58,8 +58,8 @@ export default function Profile() {
             </Reveal>
 
             {/* dossier grid */}
-            <div className="mt-10 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-              {/* education */}
+            <div className="mt-10 grid gap-10 sm:grid-cols-2">
+              {/* education + contact */}
               <Reveal delay={80}>
                 <h3 className="t-mono mb-5 text-ink/35">EDUCATION</h3>
                 <div className="text-[0.95rem] font-light leading-relaxed text-ink/80">
@@ -93,26 +93,8 @@ export default function Profile() {
                 </ul>
               </Reveal>
 
-              {/* experience */}
-              <Reveal delay={160}>
-                <h3 className="t-mono mb-5 text-ink/35">EXPERIENCE</h3>
-                <ol className="space-y-4">
-                  {profile.experience.map((e) => (
-                    <li key={e.period + e.office} className="hairline-b pb-4 last:border-b-0">
-                      <div className="t-mono mb-1 text-ink/35">{e.period}</div>
-                      <div className="text-[0.95rem] font-light text-ink/85">
-                        {e.role}
-                      </div>
-                      <div className="t-mono mt-0.5 !normal-case !tracking-[0.08em] text-ink/50">
-                        {e.office}
-                      </div>
-                    </li>
-                  ))}
-                </ol>
-              </Reveal>
-
               {/* expertise + works */}
-              <Reveal delay={240} className="sm:col-span-2 lg:col-span-1">
+              <Reveal delay={240}>
                 <h3 className="t-mono mb-5 text-ink/35">EXPERTISE</h3>
                 <ul className="space-y-4">
                   {profile.skills.map((s) => (

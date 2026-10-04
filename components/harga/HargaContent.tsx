@@ -721,7 +721,7 @@ function FinalCta() {
         <Reveal delay={200}>
           <div className="mt-12 flex flex-col gap-4 sm:flex-row">
             <a
-              href={`https://wa.me/6285606345978?text=${msg}`}
+              href={`https://wa.me/6282142424750?text=${msg}`}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-paper t-mono px-12 py-5 !tracking-[0.24em]"

@@ -11,9 +11,9 @@ export const site = {
   location: "Probolinggo, East Java, Indonesia",
   coordinates: "7°45′ S · 113°13′ E",
   email: "yusuffahrezzi.arch@gmail.com",
-  whatsapp: "+62 856-0634-5978",
-  whatsappLink: "https://wa.me/6285606345978",
-  instagram: "@Yusuf_Fahrezzi",
+  whatsapp: "+62 821-4242-4750",
+  whatsappLink: "https://wa.me/6282142424750",
+  instagram: "@yf_arch",
   linkedin: "linkedin.com/in/ahmad-yusuf-fahrezzi-84ab9412a",
   consultation:
     "The first consultation is free — a conversation about your site, your brief and your budget. No obligation.",

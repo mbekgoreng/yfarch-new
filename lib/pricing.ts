@@ -275,5 +275,5 @@ export function buildWaMessage(opts: {
 }
 
 export function waUrl(message: string): string {
-  return `https://wa.me/6285606345978?text=${encodeURIComponent(message)}`;
+  return `https://wa.me/6282142424750?text=${encodeURIComponent(message)}`;
 }

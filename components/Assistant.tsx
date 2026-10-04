@@ -72,9 +72,7 @@ const A = {
     profile.education.school
   } (${profile.education.year}, ${
     profile.education.gpa
-  }).\n\nPengalaman: ${profile.experience
-    .map((e) => `${e.role} di ${e.office}`)
-    .join("; ")}.`,
+  }).`,
   fallback: `Maaf, saya hanya dapat menjawab berdasarkan informasi resmi yang ada di situs YF ARCH, dan saya tidak menemukan jawaban untuk pertanyaan itu.\n\nSaya bisa membantu soal:\n• paket layanan & harga\n• RAB\n• kalkulator estimasi\n• proyek & profil arsitek\n• proses desain\n• konsultasi & kontak\n\nUntuk pertanyaan lain, silakan hubungi ${site.whatsapp} atau ${site.email}.`,
 };
 

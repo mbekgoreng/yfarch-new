@@ -5,6 +5,7 @@ import { projects, projectImages, worksIntro, type Project } from "@/lib/data";
 import Reveal from "./Reveal";
 import FilmStrip from "./FilmStrip";
 import Img from "./Img";
+import DayNight from "./DayNight";
 import { useAspect } from "@/lib/useAspect";
 
 /* ------------------------------------------------------------------ */
@@ -22,6 +23,15 @@ function SignalDot() {
   return (
     <span className="inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-signal" aria-hidden="true" />
   );
+}
+
+/* Auto day/night breathing kicks in only once the portfolio reaches
+   10+ projects (Boss's rule). Below that, heros stay static. Returns
+   props for DayNight — or null when the project has no night render. */
+const DAYNIGHT_GATE = 10;
+function daynightProps(p: Project) {
+  if (projects.length < DAYNIGHT_GATE) return null;
+  return p.daynight ?? null;
 }
 
 /* Compact stacked metadata — area / location / year, then the services. */
@@ -88,14 +98,28 @@ function FeaturedView({
           </Reveal>
         </div>
 
-        {/* film strip — ~70%  (min-w-0 so the max-content strip never
-            forces the grid item — and the page — to overflow) */}
+        {/* visual — 10+ projects: a single breathing day/night hero drives the
+            project (motion is per-project, not per-image). Below the gate it
+            stays the drifting film strip. min-w-0 so the max-content strip
+            never forces the grid item — and the page — to overflow */}
         <div className={`min-w-0 ${portrait ? "mt-4" : "md:col-span-8"}`}>
-          <FilmStrip
-            images={images}
-            alt={`${p.name} — ${p.category}, ${p.location}`}
-            index={p.index}
-          />
+          {daynightProps(p) ? (
+            <div className="img-frame overflow-hidden">
+              <DayNight
+                day={p.daynight!.day}
+                night={p.daynight!.night}
+                alt={`${p.name} — ${p.category}, ${p.location}`}
+                sizes="(min-width: 1024px) 60vw, 90vw"
+                className="h-[46vh] w-full md:h-[58vh]"
+              />
+            </div>
+          ) : (
+            <FilmStrip
+              images={images}
+              alt={`${p.name} — ${p.category}, ${p.location}`}
+              index={p.index}
+            />
+          )}
         </div>
       </div>
 
@@ -152,12 +176,22 @@ function IndexView() {
           >
             <a href="#contact" data-project-cursor className="group block">
               <div className="relative overflow-hidden">
-                <Img
-                  src={p.hero}
-                  alt={`${p.name} — ${p.category}, ${p.location}`}
-                  sizes="(min-width: 768px) 60vw, 100vw"
-                  className={`${l.ratio} w-full object-cover`}
-                />
+                {daynightProps(p) ? (
+                  <DayNight
+                    day={p.daynight!.day}
+                    night={p.daynight!.night}
+                    alt={`${p.name} — ${p.category}, ${p.location}`}
+                    sizes="(min-width: 768px) 60vw, 100vw"
+                    className={`${l.ratio} w-full`}
+                  />
+                ) : (
+                  <Img
+                    src={p.hero}
+                    alt={`${p.name} — ${p.category}, ${p.location}`}
+                    sizes="(min-width: 768px) 60vw, 100vw"
+                    className={`${l.ratio} w-full object-cover`}
+                  />
+                )}
                 <span className="proj-index t-mono pointer-events-none absolute left-4 top-4 text-paper/70">
                   {p.index}
                 </span>
@@ -185,12 +219,22 @@ function FeaturedPlate() {
   return (
     <div className="mt-24 md:mt-40">
       <Reveal variant="mask" className="img-frame relative h-[68vh] w-full md:h-[88vh]">
-        <Img
-          src={p.hero}
-          alt={`${p.name} — ${p.category}, ${p.location}`}
-          sizes="100vw"
-          className="h-full w-full object-cover"
-        />
+        {daynightProps(p) ? (
+          <DayNight
+            day={p.daynight!.day}
+            night={p.daynight!.night}
+            alt={`${p.name} — ${p.category}, ${p.location}`}
+            sizes="100vw"
+            className="h-full w-full"
+          />
+        ) : (
+          <Img
+            src={p.hero}
+            alt={`${p.name} — ${p.category}, ${p.location}`}
+            sizes="100vw"
+            className="h-full w-full object-cover"
+          />
+        )}
         <div
           className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/25 to-ink/10"
           aria-hidden="true"

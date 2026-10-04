@@ -17,11 +17,22 @@ const HOLD_MS = 4200;
 
 type Props = {
   day: string;
-  night: string;
+  night?: string;
   alt: string;
+  /** sizing classes go on the wrapper — width / aspect-ratio / height */
+  className?: string;
+  sizes?: string;
+  eager?: boolean;
 };
 
-export default function DayNight({ day, night, alt }: Props) {
+export default function DayNight({
+  day,
+  night,
+  alt,
+  className = "",
+  sizes = "100vw",
+  eager = false,
+}: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [nightOn, setNightOn] = useState(false);
   const [reduced, setReduced] = useState(false);
@@ -59,19 +70,34 @@ export default function DayNight({ day, night, alt }: Props) {
     <img
       src={`/images/${src}-1920.webp`}
       srcSet={`/images/${src}-960.webp 960w, /images/${src}-1920.webp 1920w`}
-      sizes="100vw"
+      sizes={sizes}
       alt={primary ? alt : ""}
       aria-hidden={!primary}
-      loading="lazy"
+      loading={primary && eager ? "eager" : "lazy"}
       decoding="async"
       className="absolute inset-0 h-full w-full object-cover"
     />
   );
 
+  /* no night render — static frame, no HUD */
+  if (!night) {
+    return (
+      <img
+        src={`/images/${day}-1920.webp`}
+        srcSet={`/images/${day}-960.webp 960w, /images/${day}-1920.webp 1920w`}
+        sizes={sizes}
+        alt={alt}
+        loading={eager ? "eager" : "lazy"}
+        decoding="async"
+        className={className}
+      />
+    );
+  }
+
   return (
     <div
       ref={ref}
-      className="dn-frame relative h-full w-full cursor-pointer overflow-hidden"
+      className={`dn-frame relative overflow-hidden ${className}`}
       onClick={() => setNightOn((v) => !v)}
       role="button"
       tabIndex={0}
@@ -81,7 +107,7 @@ export default function DayNight({ day, night, alt }: Props) {
           setNightOn((v) => !v);
         }
       }}
-      aria-label={`${alt} — siang dan malam, klik untuk berganti`}
+      aria-label={`${alt} — siang dan malam, klik untuk berganti.`}
     >
       {/* day */}
       {layer(day, true)}
@@ -97,7 +123,7 @@ export default function DayNight({ day, night, alt }: Props) {
           willChange: "opacity",
         }}
       >
-        {layer(night, false)}
+        {layer(night!, false)}
       </div>
 
       {/* day / night HUD — top right. Dark pill keeps it readable over both
