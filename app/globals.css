@@ -22,6 +22,7 @@
   --color-sand: var(--sand);
   --color-brass: var(--brass);
   --color-signal: var(--signal);
+  --color-line: var(--line);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
 }

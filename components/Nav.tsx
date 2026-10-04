@@ -6,6 +6,29 @@ import { nav, site, navCta } from "@/lib/data";
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const [time, setTime] = useState("");
+  /* Over the dark hero film the bar is transparent and the mark relies on
+     mix-blend-difference to read as white. Past the film the page is light
+     paper, so the same mark turns dark and collided with headlines for ~half
+     the page (measured: 49% desktop / 65% mobile of all scroll positions).
+     A solid paper bar from that point on gives the chrome its own readable
+     zone. Pages whose top is already light (/harga) are solid from the start. */
+  const [solid, setSolid] = useState(false);
+
+  useEffect(() => {
+    const hero = document.querySelector(".walk-track");
+    if (!hero) {
+      setSolid(true);
+      return;
+    }
+    const onScroll = () => setSolid(hero.getBoundingClientRect().bottom <= 0);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
 
   useEffect(() => {
     document.documentElement.style.overflow = open ? "hidden" : "";
@@ -31,7 +54,13 @@ export default function Nav() {
   return (
     <>
       {/* bar */}
-      <header className="pointer-events-none fixed inset-x-0 top-0 z-50">
+      <header
+        className={`pointer-events-none fixed inset-x-0 top-0 z-50 border-b transition-colors duration-500 ${
+          solid
+            ? "border-line bg-paper/95 backdrop-blur-md"
+            : "border-transparent bg-transparent"
+        }`}
+      >
         <div className="flex items-center justify-between px-6 py-5 md:px-10 md:py-7">
           <a
             href="/"
