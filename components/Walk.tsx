@@ -143,14 +143,16 @@ export default function Walk() {
       current =
         Math.abs(diff) < 0.0003 ? target : current + diff * 0.055;
 
-      /* video scrub */
+      /* video scrub — throttle seeks so a slow network never chokes.
+         Only issue a new seek when it actually moves (more than ~1 frame),
+         and prefer fastSeek (keyframe-accurate, cheap) where supported. */
       if (duration > 0 && video.readyState >= 1) {
         try {
           const t = current * Math.max(0.01, duration - 0.04);
-          if ("fastSeek" in video && video.fastSeek) {
-            if (Math.abs(video.currentTime - t) > 0.02) video.fastSeek(t);
-          } else {
-            video.currentTime = t;
+          const delta = Math.abs(video.currentTime - t);
+          if (delta > 0.02) {
+            if ("fastSeek" in video && video.fastSeek) video.fastSeek(t);
+            else video.currentTime = t;
           }
         } catch {
           /* seek not ready yet */
