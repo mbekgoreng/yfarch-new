@@ -39,7 +39,15 @@ export const profile = {
     "AI ENGINEER",
   ],
   portrait: "/images/profile-portrait.webp",
-  bio: "Arsitek lulusan UPN “Veteran” Jawa Timur yang menggabungkan praktik arsitektur, BIM, dan visualisasi dengan teknologi digital — dari gambar kerja yang presisi hingga pengembangan produk web dan alur kerja berbasis AI. Berkomitmen menghasilkan karya yang estetis, fungsional, dan berdampak — dirancang dengan ketelitian yang sama, dari denah pertama hingga detail terakhir.",
+  /* a short editorial line — the headline above the body copy. Kept
+     separate from the long bio so the layout can break it as a pull
+     quote / italic statement, in monograph fashion. */
+  tagline:
+    "Quiet buildings, clear drawings, transparent pricing.",
+  bio: [
+    "Arsitek lulusan UPN “Veteran” Jawa Timur yang menggabungkan praktik arsitektur, BIM, dan visualisasi dengan teknologi digital — dari gambar kerja yang presisi hingga pengembangan produk web dan alur kerja berbasis AI.",
+    "Berkomitmen menghasilkan karya yang estetis, fungsional, dan berdampak — dirancang dengan ketelitian yang sama, dari denah pertama hingga detail terakhir.",
+  ],
   education: {
     degree: "Bachelor of Architecture (S.Ars)",
     school: "UPN “Veteran” Jawa Timur — Surabaya",
