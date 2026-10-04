@@ -182,6 +182,10 @@ export type Project = {
   year: string;
   category: string;
   area: string;
+  /** services delivered on this project, e.g. ARCHITECTURE / INTERIOR */
+  services?: string[];
+  /** short cinematic line used on the featured plate */
+  tagline?: string;
   status: string;
   elevation: string;
   hero: string;
@@ -200,6 +204,7 @@ export const projects: Project[] = [
     year: "2026",
     category: "Private Residence",
     area: "280 m²",
+    services: ["ARCHITECTURE", "INTERIOR", "CONSTRUCTION"],
     status: "Design & visualization",
     elevation: "+18 M ASL",
     hero: "alex-house-ext-1",
@@ -242,6 +247,7 @@ export const projects: Project[] = [
     year: "2026",
     category: "Private Residence",
     area: "145 m²",
+    services: ["ARCHITECTURE", "INTERIOR"],
     status: "Design & visualization",
     elevation: "+440 M ASL",
     hero: "tasya-house-ext-1",
@@ -269,6 +275,7 @@ export const projects: Project[] = [
     year: "2024",
     category: "Private Residence",
     area: "420 m²",
+    services: ["ARCHITECTURE", "INTERIOR", "CONSTRUCTION"],
     status: "Design study",
     elevation: "+412 M ASL",
     hero: "project-rumah-cahaya",
@@ -303,6 +310,8 @@ export const projects: Project[] = [
     year: "2025",
     category: "Villa · Hospitality",
     area: "680 m²",
+    services: ["ARCHITECTURE", "INTERIOR", "CONSTRUCTION"],
+    tagline: "Architecture between landscape and horizon.",
     status: "Design study",
     elevation: "+38 M ASL",
     hero: "project-villa-samudra",
@@ -337,6 +346,7 @@ export const projects: Project[] = [
     year: "2025",
     category: "Pavilion · Cultural",
     area: "96 m²",
+    services: ["ARCHITECTURE", "CONSTRUCTION"],
     status: "Concept",
     elevation: "+310 M ASL",
     hero: "project-paviliun-teduh",
@@ -358,6 +368,17 @@ export const projects: Project[] = [
     ],
   },
 ];
+
+/* All images for a project in cinematic order — exterior, night, then the
+   detail/interior/context gallery. De-duplicated, order preserved. Used by
+   the horizontal film strip so a project's imagery can drift as one film. */
+export function projectImages(p: Project): string[] {
+  const out: string[] = [];
+  if (p.hero) out.push(p.hero);
+  if (p.daynight?.night) out.push(p.daynight.night);
+  for (const g of p.gallery) if (g.src) out.push(g.src);
+  return Array.from(new Set(out));
+}
 
 /* ------------------------------ process ---------------------------- */
 
@@ -427,12 +448,97 @@ export const studio = {
   ] as [string, string][],
 };
 
+/* ------------------------- services (layanan) ---------------------- */
+/* The four disciplines the studio offers. `image` is a public/images
+   basename (no size suffix), reused from the project photography.       */
+
+export type ServiceOffering = {
+  index: string;
+  name: string;
+  summary: string;
+  image: string;
+  icon: "plan" | "interior" | "structure" | "renovate";
+};
+
+export const serviceOffering: ServiceOffering[] = [
+  {
+    index: "01",
+    name: "ARCHITECTURE",
+    summary: "Concept, schematic design and full technical documentation.",
+    image: "alex-house-ext-1",
+    icon: "plan",
+  },
+  {
+    index: "02",
+    name: "INTERIOR",
+    summary: "Space planning, material and finish selection, detailing.",
+    image: "alex-house-living",
+    icon: "interior",
+  },
+  {
+    index: "03",
+    name: "CONSTRUCTION",
+    summary: "Supervision and build delivery, from structure to handover.",
+    image: "project-villa-samudra",
+    icon: "structure",
+  },
+  {
+    index: "04",
+    name: "RENOVATION",
+    summary: "Reworking existing buildings into clearer, calmer space.",
+    image: "tasya-house-detail",
+    icon: "renovate",
+  },
+];
+
+/* ---------------------------- testimonials ------------------------- */
+/* PLACEHOLDER COPY — replace with real client quotes before launch.   */
+
+export const testimonials = [
+  {
+    quote:
+      "Yusuf read our site better than we did. The house is calm, the light is right, and every detail was drawn before it was promised.",
+    client: "MR. ALEX",
+    location: "PASURUAN, EAST JAVA",
+  },
+  {
+    quote:
+      "A small footprint, a big personality. The brick tower is now the thing the whole street stops to look at.",
+    client: "MS. TASYA",
+    location: "MALANG, EAST JAVA",
+  },
+  {
+    quote:
+      "Clear drawings, honest pricing, and a construction site that never surprised us. That is rarer than it should be.",
+    client: "VILLA SAMUDRA",
+    location: "SOUTH LOMBOK",
+  },
+];
+
+/* ------------------------- studio statistics ----------------------- */
+/* PLACEHOLDER FIGURES — editable. Swap for real numbers when available. */
+
+export const stats = [
+  { value: "40+", label: "PROJECTS DELIVERED" },
+  { value: "03+", label: "YEARS IN PRACTICE" },
+  { value: "100%", label: "CLIENT SATISFACTION" },
+];
+
+/* ------------------------- selected works intro -------------------- */
+
+export const worksIntro = {
+  label: "SELECTED PROJECTS / 2026",
+  headline: ["SPACES", "DESIGNED", "WITH", "INTENTION."],
+  copy: "A curated selection of architectural projects exploring space, material, light and context.",
+};
+
 /* ------------------------------- nav ------------------------------- */
 
 export const nav = [
   { label: "PROJECTS", href: "/#projects" },
-  { label: "HARGA", href: "/harga" },
-  { label: "PROCESS", href: "/#process" },
+  { label: "LAYANAN & HARGA", href: "/harga" },
   { label: "STUDIO", href: "/#studio" },
   { label: "CONTACT", href: "/#contact" },
 ];
+
+export const navCta = { label: "LET'S TALK", href: "/#contact" };

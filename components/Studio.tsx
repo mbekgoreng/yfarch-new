@@ -1,4 +1,4 @@
-import { studio, site } from "@/lib/data";
+import { studio, site, stats } from "@/lib/data";
 import Reveal from "./Reveal";
 
 export default function Studio() {
@@ -35,6 +35,16 @@ export default function Studio() {
               ))}
             </dl>
           </Reveal>
+        </div>
+
+        {/* studio statistics — editable placeholder figures */}
+        <div className="mt-16 grid gap-8 border-t border-ink/10 pt-10 sm:grid-cols-3 md:mt-24">
+          {stats.map((s, i) => (
+            <Reveal key={s.label} delay={i * 90}>
+              <div className="t-display text-[clamp(2.4rem,6vw,4.6rem)]">{s.value}</div>
+              <div className="t-mono mt-3 text-ink/45">{s.label}</div>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

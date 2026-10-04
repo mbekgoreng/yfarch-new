@@ -12,7 +12,7 @@ import Reveal from "./Reveal";
 
 export default function Interlude() {
   return (
-    <section className="relative flex min-h-[52vh] flex-col justify-center overflow-hidden bg-ink text-paper md:min-h-[62vh]">
+    <section className="relative flex min-h-[38vh] flex-col justify-center overflow-hidden bg-ink text-paper md:min-h-[46vh]">
       {/* faint grain for cinematic texture */}
       <div className="walk-grain pointer-events-none absolute inset-0 opacity-[0.05]" aria-hidden="true" />
 

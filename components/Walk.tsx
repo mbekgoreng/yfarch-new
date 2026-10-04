@@ -77,8 +77,11 @@ export default function Walk() {
 
   const [ready, setReady] = useState(false);
   const [trackVh, setTrackVh] = useState(TRACK_VH_DESKTOP);
-  const [videoSrc, setVideoSrc] = useState("/video/walk-desktop.mp4");
-  const [poster, setPoster] = useState("/images/walk-poster-desktop.webp");
+  /* Deliberately null until the responsive effect resolves the source. Seeding
+     these with the desktop paths made every phone start downloading the 8 MB
+     desktop film before React swapped to the mobile one (ERR_ABORTED waste). */
+  const [videoSrc, setVideoSrc] = useState<string | null>(null);
+  const [poster, setPoster] = useState<string | null>(null);
 
   /* responsive: track length + video source + poster */
   useEffect(() => {
@@ -256,8 +259,8 @@ export default function Walk() {
           key={videoSrc}
           className="absolute inset-0 h-full w-full object-cover object-center"
           style={{ filter: "saturate(0.78) contrast(1.04)" }}
-          src={videoSrc}
-          poster={poster}
+          src={videoSrc ?? undefined}
+          poster={poster ?? undefined}
           muted
           playsInline
           preload="auto"
@@ -272,15 +275,12 @@ export default function Walk() {
         {/* header brand — fades as the walk begins */}
         <div
           ref={brandRef}
-          className="absolute inset-x-0 top-0 z-10 flex items-center justify-between px-6 pt-6 md:px-10 md:pt-8"
+          className="absolute inset-x-0 top-0 z-10 flex items-center justify-center px-6 pt-6 md:px-10 md:pt-8"
         >
-          <a href="/#top" className="flex items-center gap-3">
-            <img
-              src="/images/logo.png"
-              alt="YF ARCH"
-              className="h-9 w-auto"
-            />
-          </a>
+          {/* The persistent mark + menu live in the global <Nav>, which renders at
+              these exact coordinates. A second logo here produced a doubled,
+              ghosted mark at the top-left, and the tagline sat underneath the
+              nav's right-hand cluster. Centred, the caption clears both. */}
           <span className="t-mono hidden text-paper/45 md:block">
             {site.tagline.toUpperCase()}
           </span>

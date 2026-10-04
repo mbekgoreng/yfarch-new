@@ -47,15 +47,26 @@ export default function Contact() {
 
       <div className="relative z-10 px-6 md:px-10">
         <Reveal>
-          <h2 className="t-display text-[clamp(3.2rem,12vw,11rem)]">
-            START A<br />
-            PROJECT.
+          <h2 className="t-display text-[clamp(2.4rem,9vw,8rem)]">
+            LET&apos;S BUILD
+            <br />
+            SOMETHING
+            <br />
+            MEANINGFUL.
           </h2>
         </Reveal>
         <Reveal delay={150}>
           <p className="t-statement mt-8 max-w-md text-[1.05rem] text-paper/65">
             {site.consultation}
           </p>
+        </Reveal>
+        <Reveal delay={220}>
+          <a
+            href={`mailto:${site.email}?subject=Project%20Inquiry%20—%20YF%20ARCH&body=Name%3A%0ALocation%20of%20site%3A%0AProgram%20(house%2C%20villa%2C%20interior...)%3A%0AApprox.%20area%20(m²)%3A%0ABudget%20range%3A%0A`}
+            className="btn-paper t-mono mt-10 inline-flex w-fit items-center gap-3 px-9 py-5 !tracking-[0.24em]"
+          >
+            START A PROJECT <span aria-hidden="true">→</span>
+          </a>
         </Reveal>
       </div>
 

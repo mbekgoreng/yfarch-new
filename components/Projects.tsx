@@ -1,323 +1,372 @@
 "use client";
 
-import { projects, type Project } from "@/lib/data";
+import { useEffect, useRef, useState } from "react";
+import { projects, projectImages, worksIntro, type Project } from "@/lib/data";
 import Reveal from "./Reveal";
-import SectionDrawing from "./SectionDrawing";
-import DayNight from "./DayNight";
-import ProjectRail from "./ProjectRail";
-import { useAspect, type AspectClass } from "@/lib/useAspect";
+import FilmStrip from "./FilmStrip";
+import Img from "./Img";
+import { useAspect } from "@/lib/useAspect";
 
 /* ------------------------------------------------------------------ */
-/*  SELECTED PROJECTS — a digital architecture monograph.             */
+/*  SELECTED PROJECTS — the editorial browse system.                   */
 /*                                                                     */
-/*  Every project leads with ONE dominant hero image (~70%) and lets   */
-/*  a small cluster of supporting images (~30%) carry the rest. Each   */
-/*  project is composed asymmetrically and alternates its rhythm, so   */
-/*  scrolling feels like turning the pages of a publication rather     */
-/*  than scanning a card grid.                                         */
+/*  Two modes, one toggle:                                             */
+/*    FEATURED — one project dominates (~70% of the visual area) as a  */
+/*               drifting film strip, with its metadata beside it.     */
+/*    INDEX    — every project as an asymmetric magazine spread.       */
 /*                                                                     */
-/*  Aspect-aware: tall 9:16 screens get a vertical editorial stack;    */
-/*  landscape/squareish screens get the wide asymmetric monograph.     */
+/*  Then a full-bleed cinematic FEATURED PROJECT plate.                */
 /* ------------------------------------------------------------------ */
 
-function Img({
-  src,
-  alt,
-  className = "",
-  sizes = "100vw",
-  eager = false,
-}: {
-  src: string;
-  alt: string;
-  className?: string;
-  sizes?: string;
-  eager?: boolean;
-}) {
+function SignalDot() {
   return (
-    <img
-      src={`/images/${src}-1920.webp`}
-      srcSet={`/images/${src}-960.webp 960w, /images/${src}-1920.webp 1920w`}
-      sizes={sizes}
-      alt={alt}
-      loading={eager ? "eager" : "lazy"}
-      decoding="async"
-      className={className}
-    />
+    <span className="inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-signal" aria-hidden="true" />
   );
 }
 
-/* Project number + identity — shared heading block for every project */
-function ProjectIdentity({ p, flip }: { p: Project; flip: boolean }) {
+/* Compact stacked metadata — area / location / year, then the services. */
+function ProjectMeta({ p }: { p: Project }) {
   return (
-    <div className="relative">
-      {/* subtle sequence number, never louder than the name */}
-      <Reveal>
-        <div className="t-mono flex items-center gap-4 text-ink/35">
-          <span className="block h-px w-10 bg-ink/25" aria-hidden="true" />
-          {p.index} / 05
-        </div>
-      </Reveal>
-
-      <Reveal delay={80}>
-        <h3 className="t-display mt-6 text-[clamp(2.6rem,8.5vw,7.5rem)] md:text-[clamp(3.6rem,9vw,9.5rem)] md:leading-[0.86]">
-          {p.name}
-        </h3>
-      </Reveal>
-
-      <Reveal delay={160}>
-        <div className="t-mono mt-7 flex flex-wrap gap-x-10 gap-y-2">
-          <span className="text-ink/70">{p.category.toUpperCase()}</span>
-          <span className="text-ink/45">{p.location.toUpperCase()}</span>
-          <span className="text-ink/45">{p.year}</span>
-        </div>
-      </Reveal>
-    </div>
-  );
-}
-
-/* Dominant hero image, ~70% width, alternating edge. Composed like the */
-/* opening plate of a chapter. Composition varies per project so the    */
-/* scroll rhythm keeps changing (article 08: left, right, full-bleed,   */
-/* asymmetric, large cinematic).                                        */
-function ProjectHero({ p, flip, portrait, seq }: { p: Project; flip: boolean; portrait: boolean; seq: number }) {
-  /* composition presets — each project reads differently */
-  const COMPOSERS = [
-    { w: "md:w-[78%]", a: "md:mr-auto" },                     // 01 left plate
-    { w: "md:w-[78%]", a: "md:ml-auto" },                     // 02 right plate
-    { w: "md:w-full", a: "md:mx-0" },                         // 03 full-bleed cinematic
-    { w: "md:w-[72%]", a: "md:mx-auto" },                     // 04 centered, composed
-    { w: "md:w-[86%]", a: "md:mr-auto md:ml-[7%]" },          // 05 large cinematic
-  ];
-  const c = COMPOSERS[seq % COMPOSERS.length];
-
-  const heroClass = portrait
-    ? "w-full"
-    : `${c.a} ${c.w}`;
-
-  /* day/night crossfade needs the wrapper to carry the height (it owns h-full);
-     plain heroes size themselves through the image aspect ratio. */
-  const frameH = p.daynight
-    ? portrait
-      ? "h-[58vh]"
-      : "h-[62vh] md:h-[72vh]"
-    : "";
-
-  return (
-    <Reveal
-      variant="mask"
-      className={`img-frame relative mt-12 md:mt-16 ${heroClass} ${frameH}`}
-    >
-      <a href={`#${p.slug}`} aria-label={`${p.name} — view project`} className="group block">
-        {p.daynight ? (
-          <DayNight
-            day={p.daynight.day}
-            night={p.daynight.night}
-            alt={`${p.name} — ${p.category}, ${p.location}`}
-          />
-        ) : (
-          <Img
-            src={p.hero}
-            alt={`${p.name} — ${p.category}, ${p.location}`}
-            className="aspect-[16/10] w-full object-cover md:aspect-[16/9]"
-          />
-        )}
-
-        {/* quiet corner meta on the plate */}
-        <span className="t-mono pointer-events-none absolute bottom-5 left-6 text-paper/80 md:left-8">
-          {p.index} — {p.name}
-        </span>
-        <span className="t-mono pointer-events-none absolute bottom-5 right-6 text-paper/60 md:right-8">
-          {p.elevation}
-        </span>
-
-        {/* VIEW PROJECT — emerges quietly on hover */}
-        <span className="pointer-events-none absolute inset-0 flex items-end justify-end p-6 md:p-8">
-          <span className="t-mono flex translate-y-2 items-center gap-3 border border-paper/45 px-5 py-3 text-paper opacity-0 backdrop-blur-sm transition-all duration-700 hover:border-paper group-hover:translate-y-0 group-hover:opacity-100">
-            VIEW PROJECT
-            <span aria-hidden="true">→</span>
-          </span>
-        </span>
-      </a>
-    </Reveal>
-  );
-}
-
-/* Small supporting images + a one-line reading. Never compete with the hero. */
-function ProjectSupport({ p, portrait }: { p: Project; portrait: boolean }) {
-  const common = p.gallery.filter((g) => g.svg !== "section");
-  const hasDrawing = p.gallery.some((g) => g.svg === "section");
-  const drawing = p.gallery.find((g) => g.svg === "section");
-
-  return (
-    <div className={`grid gap-8 ${portrait ? "" : "md:grid-cols-12 md:gap-10"}`}>
-      {common.slice(0, 2).map((g, gi) => (
-        <Reveal
-          key={gi}
-          variant="mask"
-          as="figure"
-          delay={gi * 90}
-          className={`img-frame group ${
-            portrait
-              ? ""
-              : gi % 2 === 1
-                ? "md:col-span-5 md:mt-20"
-                : "md:col-span-7"
-          }`}
-        >
-          <a href={`#${p.slug}`} className="group block">
-            <div className="proj-media relative overflow-hidden">
-              <Img
-                src={g.src!}
-                alt={`${p.name} — ${g.caption}`}
-                sizes="(min-width: 768px) 45vw, 100vw"
-                className={
-                  g.wide
-                    ? "aspect-[16/9] w-full object-cover"
-                    : "aspect-[4/3] w-full object-cover"
-                }
-              />
-              <span className="proj-index t-mono pointer-events-none absolute left-4 top-4 text-paper/70">
-                {p.index} / {String(gi + 1).padStart(2, "0")}
-              </span>
-            </div>
-            <figcaption className="t-mono mt-3 flex justify-between gap-4 text-ink/45">
-              <span className="transition-colors duration-500 group-hover:text-ink">
-                {g.caption.toUpperCase()}
-              </span>
-              <span className="shrink-0 text-ink/30">{g.kind}</span>
-            </figcaption>
-          </a>
-        </Reveal>
-      ))}
-
-      {hasDrawing && (
-        <Reveal
-          variant="mask"
-          as="figure"
-          delay={140}
-          className={`img-frame group ${
-            portrait ? "" : "md:col-span-8 md:col-start-3"
-          }`}
-        >
-          <div className="zoomable border border-ink/10 bg-paper-dim p-6 md:p-10">
-            <SectionDrawing />
-          </div>
-          <figcaption className="t-mono mt-3 flex justify-between gap-4 text-ink/45">
-            <span>{drawing!.caption.toUpperCase()}</span>
-            <span className="shrink-0 text-ink/30">{drawing!.kind}</span>
-          </figcaption>
-        </Reveal>
+    <div className="t-mono space-y-1.5 text-ink/55">
+      <div className="text-ink/75">{p.area.toUpperCase()}</div>
+      <div>{p.location.toUpperCase()}</div>
+      <div>{p.year}</div>
+      {p.services && (
+        <ul className="mt-6 space-y-1 text-ink/45">
+          {p.services.map((s) => (
+            <li key={s}>{s}</li>
+          ))}
+        </ul>
       )}
     </div>
   );
 }
 
-function ProjectBlock({ p, flip, aspect, seq }: { p: Project; flip: boolean; aspect: AspectClass; seq: number }) {
-  const portrait = aspect === "portrait";
-  const align = portrait ? "" : flip ? "md:text-right md:items-end md:ml-auto" : "md:text-left";
+/* ----------------------------- FEATURED ---------------------------- */
+
+function FeaturedView({
+  index,
+  setIndex,
+  portrait,
+}: {
+  index: number;
+  setIndex: (i: number) => void;
+  portrait: boolean;
+}) {
+  const p = projects[index];
+  const images = projectImages(p);
 
   return (
-    <article
-      id={p.slug}
-      className={`relative border-t border-ink/10 pt-16 md:pt-28`}
-    >
-      <div className={`px-6 md:px-10 ${portrait ? "" : "md:grid md:grid-cols-12 md:gap-6"}`}>
-        {/* identity — full name plate */}
-        <div className={portrait ? "" : flip ? "md:col-span-9 md:col-start-4" : "md:col-span-9"}>
-          <ProjectIdentity p={p} flip={flip} />
+    <div>
+      <div className={`grid gap-8 ${portrait ? "" : "md:grid-cols-12 md:gap-10 md:items-end"}`}>
+        {/* metadata — ~30% */}
+        <div className={portrait ? "" : "md:col-span-4"}>
+          <Reveal>
+            <div className="t-mono flex items-center gap-3 text-ink/45">
+              <SignalDot />
+              {p.index} — FEATURED
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <h3 className="t-display mt-6 text-[clamp(2.4rem,7vw,5.4rem)] md:leading-[0.9]">
+              {p.name}
+            </h3>
+          </Reveal>
+          <Reveal delay={140}>
+            <div className="mt-7">
+              <ProjectMeta p={p} />
+            </div>
+          </Reveal>
+          <Reveal delay={200}>
+            <a
+              href="#contact"
+              data-project-cursor
+              className="t-mono mt-9 inline-flex items-center gap-3 border-b border-ink/25 pb-2 text-ink/70 transition-colors duration-500 hover:border-ink hover:text-ink"
+            >
+              VIEW PROJECT <span aria-hidden="true">→</span>
+            </a>
+          </Reveal>
+        </div>
+
+        {/* film strip — ~70%  (min-w-0 so the max-content strip never
+            forces the grid item — and the page — to overflow) */}
+        <div className={`min-w-0 ${portrait ? "mt-4" : "md:col-span-8"}`}>
+          <FilmStrip
+            images={images}
+            alt={`${p.name} — ${p.category}, ${p.location}`}
+            index={p.index}
+          />
         </div>
       </div>
 
-      {/* dominant hero — asymmetric, ~70% */}
-      <ProjectHero p={p} flip={flip} portrait={portrait} seq={seq} />
-
-      {/* one-line narrative, quiet */}
-      <div className="px-6 md:px-10">
-        <Reveal delay={120}>
-          <p className={`t-statement mt-10 max-w-xl text-[1.02rem] leading-relaxed text-ink/65 md:text-[1.15rem] ${
-            portrait ? "" : flip ? "md:ml-auto md:text-right" : ""
-          }`}>
-            {p.narrative.split(". ")[0]}.
-          </p>
-        </Reveal>
-      </div>
-
-      {/* supporting images — ~30%, asymmetric cluster */}
-      <div className="mt-12 px-6 md:mt-16 md:px-10">
-        <ProjectSupport p={p} portrait={portrait} />
-      </div>
-
-      {/* view project — quiet row */}
-      <div className="px-6 md:px-10">
-        <Reveal delay={160}>
-          <a
-            href="#contact"
-            className={`t-mono mt-14 inline-flex items-center gap-3 text-ink/50 transition-colors duration-500 hover:text-ink md:mt-20 ${
-              portrait ? "" : flip ? "md:ml-auto md:text-right" : ""
+      {/* project selector — a red rule marks the active one */}
+      <div className="mt-10 flex flex-wrap items-center gap-7 md:mt-14 md:gap-9">
+        {projects.map((proj, i) => (
+          <button
+            key={proj.slug}
+            onClick={() => setIndex(i)}
+            aria-current={i === index ? "true" : undefined}
+            aria-label={`Show ${proj.name}`}
+            className={`t-mono relative pb-1.5 transition-colors duration-500 ${
+              i === index ? "text-ink" : "text-ink/35 hover:text-ink/65"
             }`}
           >
-            VIEW PROJECT
-            <span aria-hidden="true" className="transition-transform duration-500 hover:translate-x-1">
-              →
-            </span>
-          </a>
-        </Reveal>
+            {proj.index}
+            <span
+              className={`absolute inset-x-0 bottom-0 h-px origin-left bg-signal transition-transform duration-500 ${
+                i === index ? "scale-x-100" : "scale-x-0"
+              }`}
+              aria-hidden="true"
+            />
+          </button>
+        ))}
       </div>
-    </article>
+    </div>
   );
 }
 
+/* ------------------------------- INDEX ----------------------------- */
+
+/* Asymmetric magazine spread — varied widths, offsets and (mild) ratios.
+   All frames stay landscape so wide renders are never heavily cropped. */
+const INDEX_LAYOUT = [
+  { span: "md:col-span-8", ratio: "aspect-[16/10]", mt: "" },
+  { span: "md:col-span-4", ratio: "aspect-[4/3]", mt: "md:mt-16" },
+  { span: "md:col-span-5", ratio: "aspect-[3/2]", mt: "" },
+  { span: "md:col-span-7", ratio: "aspect-[16/9]", mt: "md:mt-20" },
+  { span: "md:col-span-6 md:col-start-4", ratio: "aspect-[16/10]", mt: "" },
+];
+
+function IndexView() {
+  return (
+    <div className="grid gap-12 md:grid-cols-12 md:gap-8">
+      {projects.map((p, i) => {
+        const l = INDEX_LAYOUT[i % INDEX_LAYOUT.length];
+        return (
+          <Reveal
+            key={p.slug}
+            variant="mask"
+            as="figure"
+            delay={(i % 2) * 90}
+            className={`img-frame group ${l.span} ${l.mt}`}
+          >
+            <a href="#contact" data-project-cursor className="group block">
+              <div className="relative overflow-hidden">
+                <Img
+                  src={p.hero}
+                  alt={`${p.name} — ${p.category}, ${p.location}`}
+                  sizes="(min-width: 768px) 60vw, 100vw"
+                  className={`${l.ratio} w-full object-cover`}
+                />
+                <span className="proj-index t-mono pointer-events-none absolute left-4 top-4 text-paper/70">
+                  {p.index}
+                </span>
+              </div>
+              <figcaption className="mt-4 flex items-baseline justify-between gap-4">
+                <span className="t-display text-[clamp(1.15rem,2.4vw,1.9rem)]">{p.name}</span>
+                <span className="t-mono shrink-0 text-ink/40">{p.year}</span>
+              </figcaption>
+              <div className="t-mono mt-2 text-ink/40">
+                {p.category.toUpperCase()} — {p.location.toUpperCase()}
+              </div>
+            </a>
+          </Reveal>
+        );
+      })}
+    </div>
+  );
+}
+
+/* -------------------------- FEATURED PLATE ------------------------- */
+
+function FeaturedPlate() {
+  const p = projects.find((x) => x.slug === "villa-samudra") ?? projects[0];
+
+  return (
+    <div className="mt-24 md:mt-40">
+      <Reveal variant="mask" className="img-frame relative h-[68vh] w-full md:h-[88vh]">
+        <Img
+          src={p.hero}
+          alt={`${p.name} — ${p.category}, ${p.location}`}
+          sizes="100vw"
+          className="h-full w-full object-cover"
+        />
+        <div
+          className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/25 to-ink/10"
+          aria-hidden="true"
+        />
+
+        <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-12">
+          <Reveal>
+            <div className="t-mono flex items-center gap-3 text-paper/70">
+              <SignalDot />
+              FEATURED PROJECT
+            </div>
+          </Reveal>
+          <Reveal delay={90}>
+            <h3 className="t-display mt-5 text-[clamp(2.6rem,8vw,7rem)] text-paper">
+              {p.name}
+            </h3>
+          </Reveal>
+          <Reveal delay={150}>
+            <p className="t-statement mt-4 max-w-md text-[1.05rem] text-paper/75 md:text-[1.2rem]">
+              {p.tagline}
+            </p>
+          </Reveal>
+          <Reveal delay={210}>
+            <a
+              href="#contact"
+              data-project-cursor
+              className="btn-paper t-mono mt-8 inline-flex w-fit items-center gap-3 px-8 py-4 !tracking-[0.22em]"
+            >
+              VIEW PROJECT <span aria-hidden="true">→</span>
+            </a>
+          </Reveal>
+        </div>
+
+        {/* subtle index navigation */}
+        <div className="absolute bottom-6 right-6 flex items-center gap-3 md:bottom-12 md:right-12">
+          {projects.map((proj, i) => (
+            <span key={proj.slug} className="flex items-center gap-3">
+              {i > 0 && <span className="block h-px w-3 bg-paper/30" aria-hidden="true" />}
+              <span
+                className={`t-mono transition-colors duration-500 ${
+                  proj.slug === p.slug ? "text-paper" : "text-paper/40"
+                }`}
+              >
+                {proj.index}
+              </span>
+            </span>
+          ))}
+        </div>
+      </Reveal>
+    </div>
+  );
+}
+
+/* ------------------------------ SECTION ---------------------------- */
+
 export default function Projects() {
+  const [mode, setMode] = useState<"featured" | "index">("featured");
+  const [index, setIndex] = useState(0);
   const aspect = useAspect();
   const portrait = aspect === "portrait";
-  const rail = projects.map((p) => ({
-    slug: p.slug,
-    index: p.index,
-    name: p.name,
-  }));
+
+  /* restrained cursor label — desktop pointer-fine only */
+  const cursorRef = useRef<HTMLDivElement>(null);
+  const [cursorOn, setCursorOn] = useState(false);
+  useEffect(() => {
+    const el = cursorRef.current;
+    if (!el) return;
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+    let x = 0;
+    let y = 0;
+    let cx = 0;
+    let cy = 0;
+    let raf = 0;
+    const loop = () => {
+      raf = 0;
+      cx += (x - cx) * 0.18;
+      cy += (y - cy) * 0.18;
+      el.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
+      if (Math.abs(x - cx) > 0.4 || Math.abs(y - cy) > 0.4) raf = requestAnimationFrame(loop);
+    };
+    const onMove = (e: MouseEvent) => {
+      x = e.clientX;
+      y = e.clientY;
+      if (!raf) raf = requestAnimationFrame(loop);
+    };
+    const onOver = (e: MouseEvent) => {
+      const t = e.target as HTMLElement | null;
+      setCursorOn(!!t?.closest("[data-project-cursor]"));
+    };
+    window.addEventListener("mousemove", onMove, { passive: true });
+    window.addEventListener("mouseover", onOver, { passive: true });
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseover", onOver);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
 
   return (
     <section id="projects" className="relative bg-paper pb-32 md:pb-48">
-      {/* desktop-only project index, pinned in the right gutter */}
-      <div className={`pointer-events-none absolute inset-y-0 right-0 z-30 ${portrait ? "hidden" : "hidden lg:block"}`}>
-        <div className="sticky top-1/2 flex -translate-y-1/2 justify-end pr-4">
-          <div className="pointer-events-auto">
-            <ProjectRail items={rail} />
+      <div
+        ref={cursorRef}
+        className={`proj-cursor ${cursorOn ? "on" : ""}`}
+        aria-hidden="true"
+      >
+        <span className="proj-cursor-label t-mono">
+          VIEW PROJECT <span aria-hidden="true">→</span>
+        </span>
+      </div>
+
+      <div className="px-6 pt-28 md:px-10 md:pt-44">
+        {/* ---------------- editorial intro ---------------- */}
+        <div className={`grid gap-8 ${portrait ? "" : "md:grid-cols-12 md:gap-10 md:items-end"}`}>
+          <div className={portrait ? "" : "md:col-span-7"}>
+            <Reveal>
+              <div className="t-mono flex items-center gap-3 text-ink/45">
+                <SignalDot />
+                {worksIntro.label}
+              </div>
+            </Reveal>
+            <Reveal delay={80}>
+              <h2 className="t-display mt-8 text-[clamp(2.8rem,9vw,7.6rem)] md:leading-[0.88]">
+                {worksIntro.headline.map((line) => (
+                  <span key={line} className="block">
+                    {line}
+                  </span>
+                ))}
+              </h2>
+            </Reveal>
           </div>
+          <div className={portrait ? "" : "md:col-span-4 md:col-start-9"}>
+            <Reveal delay={140}>
+              <p className="t-statement text-[1.02rem] leading-relaxed text-ink/60 md:text-[1.15rem]">
+                {worksIntro.copy}
+              </p>
+            </Reveal>
+          </div>
+        </div>
+
+        {/* ---------------- mode toggle ---------------- */}
+        <Reveal delay={180}>
+          <div className="mode-toggle t-mono mt-14 flex items-center gap-8 md:mt-20">
+            {(["featured", "index"] as const).map((m) => (
+              <button
+                key={m}
+                onClick={() => setMode(m)}
+                aria-pressed={mode === m}
+                className={`relative pb-1.5 transition-colors duration-500 ${
+                  mode === m ? "text-ink" : "text-ink/35 hover:text-ink/60"
+                }`}
+              >
+                {m.toUpperCase()}
+                <span
+                  className={`absolute inset-x-0 bottom-0 h-px origin-left bg-signal transition-transform duration-500 ${
+                    mode === m ? "scale-x-100" : "scale-x-0"
+                  }`}
+                  aria-hidden="true"
+                />
+              </button>
+            ))}
+          </div>
+        </Reveal>
+
+        {/* ---------------- browse system ---------------- */}
+        <div className="mt-12 md:mt-16">
+          {mode === "featured" ? (
+            <FeaturedView index={index} setIndex={setIndex} portrait={portrait} />
+          ) : (
+            <IndexView />
+          )}
         </div>
       </div>
 
-      {/* ---------------- editorial title page ---------------- */}
-      <div className="px-6 pt-24 md:px-10 md:pt-40">
-        <Reveal>
-          <div className="t-mono flex flex-col gap-2 text-ink/45">
-            <span className="flex items-center gap-4">
-              <span className="block h-px w-10 bg-ink/25" aria-hidden="true" />
-              WORKS
-            </span>
-          </div>
-        </Reveal>
-
-        <Reveal delay={80}>
-          <h2 className="t-display mt-8 text-[clamp(3rem,10vw,9rem)] md:leading-[0.86]">
-            SELECTED
-            <br />
-            PROJECTS
-          </h2>
-        </Reveal>
-
-        <Reveal delay={160}>
-          <div className="t-mono mt-10 flex gap-8 text-ink/45">
-            <span>2022 — 2026</span>
-            <span>0{projects.length} PROJECTS</span>
-          </div>
-        </Reveal>
-      </div>
-      {/* ---------------- end title page ---------------- */}
-
-      {projects.map((p, i) => (
-        <ProjectBlock key={p.slug} p={p} flip={i % 2 === 1} aspect={aspect} seq={i} />
-      ))}
+      {/* ---------------- cinematic featured plate ---------------- */}
+      <FeaturedPlate />
     </section>
   );
 }

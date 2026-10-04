@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { nav, site } from "@/lib/data";
+import { nav, site, navCta } from "@/lib/data";
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
@@ -45,12 +45,21 @@ export default function Nav() {
               className="h-9 w-auto md:h-11 [filter:drop-shadow(0_1px_6px_rgba(0,0,0,0.45))]"
             />
           </a>
-          <button
-            onClick={() => setOpen((v) => !v)}
-            aria-expanded={open}
-            aria-label={open ? "Close menu" : "Open menu"}
-            className="t-mono pointer-events-auto flex items-center gap-3 text-white mix-blend-difference"
-          >
+          <div className="pointer-events-auto flex items-center gap-6 md:gap-8">
+            <a
+              href={navCta.href}
+              onClick={() => setOpen(false)}
+              className="t-mono hidden items-center gap-2 text-white mix-blend-difference transition-opacity duration-300 hover:opacity-60 sm:inline-flex"
+            >
+              {navCta.label}
+              <span aria-hidden="true">→</span>
+            </a>
+            <button
+              onClick={() => setOpen((v) => !v)}
+              aria-expanded={open}
+              aria-label={open ? "Close menu" : "Open menu"}
+              className="t-mono flex items-center gap-3 text-white mix-blend-difference"
+            >
             <span className="hidden sm:inline">
               {open ? "CLOSE" : "MENU"}
             </span>
@@ -66,7 +75,8 @@ export default function Nav() {
                 }`}
               />
             </span>
-          </button>
+            </button>
+          </div>
         </div>
       </header>
 
