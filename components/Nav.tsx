@@ -142,7 +142,7 @@ export default function Nav() {
               alt="YF ARCHITECT"
               className="menu-meta mb-10 h-16 w-auto md:h-20"
             />
-            <div className="menu-meta grid grid-cols-2 gap-6 md:grid-cols-4">
+            <div className="menu-meta grid grid-cols-2 gap-6 [&>*]:min-w-0 md:grid-cols-4">
             <div>
               <div className="t-mono mb-2 text-paper/35">STUDIO</div>
               <div className="t-mono text-paper/75">{site.location.toUpperCase()}</div>
@@ -151,7 +151,7 @@ export default function Nav() {
               <div className="t-mono mb-2 text-paper/35">EMAIL</div>
               <a
                 href={`mailto:${site.email}`}
-                className="t-mono text-paper/75 hover:text-paper"
+                className="t-mono break-words text-paper/75 hover:text-paper"
                 tabIndex={open ? 0 : -1}
               >
                 {site.email.toUpperCase()}
@@ -163,7 +163,7 @@ export default function Nav() {
                 href={site.whatsappLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="t-mono text-paper/75 hover:text-paper"
+                className="t-mono break-words text-paper/75 hover:text-paper"
                 tabIndex={open ? 0 : -1}
               >
                 {site.whatsapp}

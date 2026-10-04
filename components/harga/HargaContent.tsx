@@ -621,7 +621,11 @@ function CompareTable({
   data: { cols: string[]; rows: string[][] };
 }) {
   return (
-    <Reveal>
+    /* min-w-0: as a grid item the automatic minimum size would be the table's
+       480px min-width, so the column grew to fit it and the whole page gained
+       ~114px of horizontal overflow on mobile. Allowing the item to shrink lets
+       .overflow-x-auto do its job instead. */
+    <Reveal className="min-w-0">
       <div className="t-mono mb-5 text-ink/35">{title}</div>
       <div className="overflow-x-auto">
         <table className="w-full min-w-[480px] border-collapse text-left">
