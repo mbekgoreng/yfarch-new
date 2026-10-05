@@ -15,10 +15,9 @@ import {
   activePrice,
   buildWaMessage,
   waUrl,
-  compareA,
-  compareB,
   type Pkg,
 } from "@/lib/pricing";
+import { useI18n } from "@/lib/i18n";
 import { usePromo, fmtCountdown } from "@/lib/usePromo";
 import { site } from "@/lib/data";
 import Reveal from "@/components/Reveal";
@@ -34,6 +33,8 @@ function scrollToCalc() {
 /* ================================ HERO ============================== */
 
 function Hero() {
+  const { t } = useI18n();
+  const pr = t.price;
   return (
     <header className="relative flex min-h-[92vh] flex-col justify-end overflow-hidden bg-paper">
       {/* architectural backdrop */}
@@ -54,25 +55,17 @@ function Hero() {
         <Reveal>
           <div className="t-mono mb-8 flex items-center gap-4 text-ink/45">
             <span className="block h-px w-10 bg-ink/35" />
-            HARGA
+            {pr.heroEyebrow}
           </div>
         </Reveal>
         <Reveal delay={90}>
           <h1 className="t-display max-w-6xl text-[clamp(2.6rem,8.5vw,8rem)]">
-            DESAIN YANG <span className="t-serif italic tracking-normal text-ink/60">jelas</span>.
-            <br />
-            HARGA YANG{" "}
-            <span className="t-serif italic tracking-normal text-brass">
-              transparan
-            </span>
-            .
+            {pr.h1a}
           </h1>
         </Reveal>
         <Reveal delay={180}>
           <p className="t-statement mt-10 max-w-xl text-[1.05rem] text-ink/65 md:text-[1.2rem]">
-            Pilih layanan desain sesuai kebutuhan proyek Anda — mulai dari
-            gambar teknis dasar hingga desain arsitektur, interior, exterior,
-            dan RAB.
+            {pr.intro}
           </p>
         </Reveal>
         <Reveal delay={260}>
@@ -83,7 +76,7 @@ function Hero() {
       </div>
 
       <span className="t-mono absolute right-6 top-28 hidden text-ink/30 md:right-10 md:block">
-        SHEET — HARGA / 01
+        {pr.sheet}
       </span>
     </header>
   );
@@ -92,6 +85,8 @@ function Hero() {
 /* ============================ PROMO BANNER ========================== */
 
 function PromoBanner() {
+  const { t } = useI18n();
+  const pr = t.price;
   const promo = usePromo();
   const [h, m, s] = fmtCountdown(promo.remainMs);
 
@@ -102,43 +97,42 @@ function PromoBanner() {
           <Reveal>
             <div className="t-mono mb-5 flex items-center gap-3 text-brass">
               <span className="pulse-dot block h-1.5 w-1.5 rounded-full bg-brass" />
-              DISKON 30% — HANYA 60 MENIT
+              {pr.promoLabel}
             </div>
           </Reveal>
           <Reveal delay={80}>
             <h2 className="t-display text-[clamp(1.8rem,4.5vw,3.6rem)]">
               {promo.mounted && !promo.active ? (
-                <>HARGA NORMAL BERLAKU</>
+                <>{pr.normalApplies}</>
               ) : (
                 <>
-                  DISKON{" "}
-                  <span className="t-serif italic tracking-normal text-sand">30%</span>
+                  {pr.promoHeadline.split("\n")[0]}
                   <br />
-                  SELURUH PAKET
+                  <span className="t-serif italic tracking-normal text-sand">
+                    {pr.promoHeadline.split("\n")[1] ?? pr.promoHeadline}
+                  </span>
                 </>
               )}
             </h2>
           </Reveal>
           <Reveal delay={150}>
             <p className="t-statement mt-5 max-w-md text-[1rem] text-paper/55">
-              {promo.mounted && !promo.active
-                ? "Periode promo 60 menit telah berakhir. Seluruh paket kini menggunakan harga normal."
-                : "Diskon 30% dari harga normal, hanya berlaku 60 menit ke depan. Kesempatan terbatas."}
+              {promo.mounted && !promo.active ? pr.promoEnded : pr.promoDesc}
             </p>
           </Reveal>
         </div>
 
         <Reveal delay={120} className="md:justify-self-end">
           {!promo.mounted ? (
-            <div className="t-mono text-paper/40">MEMUAT PENAWARAN…</div>
+            <div className="t-mono text-paper/40">{pr.promoLoading}</div>
           ) : promo.active ? (
             <div>
-              <div className="t-mono mb-4 text-paper/40">PROMO BERAKHIR DALAM</div>
+              <div className="t-mono mb-4 text-paper/40">{pr.promoEndsIn}</div>
               <div
                 className="flex items-baseline gap-3 font-light tabular-nums"
                 role="timer"
                 aria-live="polite"
-                aria-label={`Promo berakhir dalam ${h} jam ${m} menit ${s} detik`}
+                aria-label={`${pr.promoEndsIn} ${h} ${pr.hour} ${m} ${pr.minute} ${s} ${pr.second}`}
               >
                 {[h, m, s].map((v, i) => (
                   <span key={i} className="flex items-baseline gap-3">
@@ -150,15 +144,15 @@ function PromoBanner() {
                 ))}
               </div>
               <div className="t-mono mt-4 flex justify-between text-paper/30">
-                <span>JAM</span>
-                <span>MENIT</span>
-                <span>DETIK</span>
+                <span>{pr.hour}</span>
+                <span>{pr.minute}</span>
+                <span>{pr.second}</span>
               </div>
             </div>
           ) : (
             <div className="border border-paper/15 px-10 py-8 text-center">
               <div className="t-display text-[clamp(1.6rem,3.5vw,2.6rem)] text-paper/80">
-                PROMO BERAKHIR
+                {pr.promoEnded}
               </div>
               <div className="t-mono mt-3 text-paper/40">00 : 00 : 00</div>
             </div>
@@ -180,17 +174,19 @@ function PriceTag({
   showPromo: boolean;
   dark?: boolean;
 }) {
+  const { t } = useI18n();
+  const pr = t.price;
   return (
     <div>
       <div className="flex flex-wrap items-baseline gap-x-3">
         <span className="text-[2.6rem] font-light tracking-tight md:text-[3.2rem]">
           {rp(showPromo ? pkg.promo : pkg.normal)}
         </span>
-        <span className={`t-mono ${dark ? "text-paper/40" : "text-ink/40"}`}>/ m²</span>
+        <span className={`t-mono ${dark ? "text-paper/40" : "text-ink/40"}`}>{pr.perM2}</span>
       </div>
       {showPromo && (
         <div className={`t-mono mt-1.5 ${dark ? "text-paper/35" : "text-ink/35"}`}>
-          HARGA NORMAL{" "}
+          {pr.normal}{" "}
           <span className="line-through">{rp(pkg.normal)} / m²</span>
         </div>
       )}
@@ -199,24 +195,28 @@ function PriceTag({
 }
 
 function Cards({ onPick }: { onPick: (id: string) => void }) {
+  const { t } = useI18n();
+  const pr = t.price;
   const promo = usePromo();
   const showPromo = promo.mounted && promo.active;
 
   return (
     <section className="bg-paper px-6 py-24 md:px-10 md:py-36">
       <div className="t-mono flex items-baseline justify-between text-ink/40">
-        <span>01 — PAKET DESAIN</span>
-        <span className="hidden sm:inline">6 PAKET · HARGA PER M²</span>
+        <span>{pr.cardsEyebrow}</span>
+        <span className="hidden sm:inline">6 PAKET · {pr.perM2}</span>
       </div>
       <Reveal>
         <h2 className="t-display mt-6 max-w-4xl text-[clamp(2.2rem,6.5vw,5.5rem)]">
-          PILIH PAKET<br />
-          <span className="t-serif italic tracking-normal text-ink/55">sesuai kebutuhan.</span>
+          {pr.cardsTitleA}
+          <br />
+          <span className="t-serif italic tracking-normal text-ink/55">{pr.cardsTitleB}</span>
         </h2>
       </Reveal>
 
       <div className="mt-16 grid grid-cols-1 gap-6 md:mt-24 lg:grid-cols-3">
         {packages.map((p, i) => {
+          const pt = pr.packages[i] ?? pr.packages[0];
           const focal = p.emphasis === "focal";
           const popular = p.emphasis === "popular";
           return (
@@ -236,7 +236,7 @@ function Cards({ onPick }: { onPick: (id: string) => void }) {
               >
                 {/* badge — discount badges (DISKON 30%) only show while the
                     promotion is active; identity ribbons always show */}
-                {p.badge && (showPromo || !p.badge.startsWith("DISKON")) && (
+                {pt.badge && (showPromo || !pt.promoBadge) && (
                   <span
                     className={`t-mono absolute -top-3 left-8 px-3 py-1.5 ${
                       focal
@@ -246,18 +246,18 @@ function Cards({ onPick }: { onPick: (id: string) => void }) {
                           : "border border-ink/20 bg-paper text-ink/60"
                     }`}
                   >
-                    {p.badge}
+                    {pt.badge}
                   </span>
                 )}
 
                 <div className="flex items-baseline justify-between">
-                  <h3 className="t-display text-[2rem] md:text-[2.2rem]">{p.name}</h3>
+                  <h3 className="t-display text-[2rem] md:text-[2.2rem]">{pt.name}</h3>
                   <span className={`t-mono ${focal ? "text-paper/30" : "text-ink/30"}`}>
                     0{i + 1}
                   </span>
                 </div>
                 <p className={`t-mono mt-2 ${focal ? "text-paper/50" : "text-ink/50"}`}>
-                  {p.title}
+                  {pt.title}
                 </p>
 
                 <div className={`my-8 h-px w-full ${focal ? "bg-paper/15" : "bg-ink/10"}`} />
@@ -269,7 +269,7 @@ function Cards({ onPick }: { onPick: (id: string) => void }) {
                     focal ? "text-paper/75" : "text-ink/70"
                   }`}
                 >
-                  {p.features.map((f) => (
+                  {pt.features.map((f) => (
                     <li key={f} className="flex gap-3">
                       <span className={focal ? "text-brass" : "text-ink/30"}>—</span>
                       {f}
@@ -277,13 +277,13 @@ function Cards({ onPick }: { onPick: (id: string) => void }) {
                   ))}
                   <li className="flex gap-3 pt-1 font-normal">
                     <span className={focal ? "text-brass" : "text-ink/30"}>—</span>
-                    <strong className="font-medium">{p.render}</strong>
+                    <strong className="font-medium">{pt.render}</strong>
                   </li>
                 </ul>
 
-                {p.note && (
+                {pt.note && (
                   <p className={`t-mono mt-5 !normal-case !tracking-[0.06em] ${focal ? "text-paper/40" : "text-ink/40"}`}>
-                    {p.note}
+                    {pt.note}
                   </p>
                 )}
 
@@ -293,7 +293,7 @@ function Cards({ onPick }: { onPick: (id: string) => void }) {
                     focal ? "btn-paper" : popular ? "btn-ink" : "btn-ghost"
                   }`}
                 >
-                  PILIH {p.name}
+                  {t.price.calcPick} {pt.name}
                 </button>
               </article>
             </Reveal>
@@ -313,31 +313,33 @@ function Cards({ onPick }: { onPick: (id: string) => void }) {
 /* ================================ RAB =============================== */
 
 function RabSection({ onAddRab }: { onAddRab: () => void }) {
+  const { t } = useI18n();
+  const pr = t.price;
   return (
     <section className="hairline-t bg-paper-dim/70 px-6 py-24 md:px-10 md:py-32">
       <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
         <div>
-          <div className="t-mono text-ink/40">02 — LAYANAN TERPISAH</div>
+          <div className="t-mono text-ink/40">{pr.rabEyebrow}</div>
           <Reveal>
             <h2 className="t-display mt-6 text-[clamp(2rem,5.5vw,4.5rem)]">
-              RAB
+              {pr.rabTitle}
               <span className="t-serif block italic tracking-normal text-ink/50">
-                rencana anggaran biaya
+                {pr.rabSubtitle}
               </span>
             </h2>
           </Reveal>
           <Reveal delay={100}>
             <p className="t-statement mt-8 max-w-md text-[1.05rem] text-ink/65">
-              Butuh estimasi biaya pembangunan berdasarkan desain Anda?
+              {pr.rabCopy}
             </p>
           </Reveal>
           <Reveal delay={160}>
             <div className="mt-10 flex items-baseline gap-3">
               <span className="text-[3.2rem] font-light tracking-tight md:text-[3.8rem]">{rp(rab.price)}</span>
-              <span className="t-mono text-ink/40">/ m²</span>
+              <span className="t-mono text-ink/40">{pr.perM2}</span>
             </div>
             <div className="t-mono mt-3 text-ink/50">
-              OUTPUT — <span className="text-ink">{rab.output.toUpperCase()}</span>
+              {pr.rabOutput} — <span className="text-ink">{rab.output.toUpperCase()}</span>
             </div>
           </Reveal>
           <Reveal delay={220}>
@@ -345,16 +347,16 @@ function RabSection({ onAddRab }: { onAddRab: () => void }) {
               onClick={onAddRab}
               className="btn-ink t-mono mt-10 px-10 py-5 !tracking-[0.24em]"
             >
-              TAMBAHKAN RAB
+              {pr.rabAdd}
             </button>
           </Reveal>
         </div>
 
         <Reveal delay={140}>
           <div className="border border-ink/12 bg-paper p-8 md:p-10">
-            <div className="t-mono mb-6 text-ink/35">CAKUPAN DOKUMEN</div>
+            <div className="t-mono mb-6 text-ink/35">{pr.rabScope}</div>
             <ul className="grid grid-cols-1 gap-x-10 gap-y-2.5 text-[0.85rem] font-light text-ink/70 sm:grid-cols-2">
-              {rab.features.map((f) => (
+              {pr.rabFeatures.map((f) => (
                 <li key={f} className="flex gap-3 border-b border-ink/5 pb-2.5">
                   <span className="text-ink/30">—</span>
                   {f}
@@ -388,8 +390,11 @@ function Calculator({
   const promo = usePromo();
   const showPromo = promo.mounted && promo.active;
   const [custom, setCustom] = useState(false);
+  const { t } = useI18n();
+  const pr = t.price;
 
   const pkg = packages.find((p) => p.id === pkgId)!;
+  const pt = pr.packages[packages.findIndex((p) => p.id === pkgId)] ?? pr.packages[0];
   const unit = activePrice(pkg, showPromo);
   const design = area * unit;
   const rabCost = rabOn ? area * rab.price : 0;
@@ -414,19 +419,19 @@ function Calculator({
   return (
     <section id="kalkulator" className="scroll-mt-24 bg-ink px-6 py-24 text-paper md:px-10 md:py-36">
       <div className="t-mono flex items-baseline justify-between text-paper/35">
-        <span>03 — KALKULATOR</span>
-        <span className="hidden sm:inline">ESTIMASI REAL-TIME</span>
+        <span>{pr.calcEyebrow}</span>
+        <span className="hidden sm:inline">{pr.calcRealTime}</span>
       </div>
       <Reveal>
         <h2 className="t-display mt-6 text-[clamp(2.2rem,6.5vw,5.5rem)]">
-          HITUNG ESTIMASI
+          {pr.calcTitle}
           <br />
-          <span className="t-serif italic tracking-normal text-sand">harga.</span>
+          <span className="t-serif italic tracking-normal text-sand">{pr.calcSubtitle}</span>
         </h2>
       </Reveal>
       <Reveal delay={100}>
         <p className="t-statement mt-8 max-w-lg text-[1.05rem] text-paper/55">
-          Masukkan luas bangunan dan pilih layanan yang Anda butuhkan.
+          {pr.calcIntro}
         </p>
       </Reveal>
 
@@ -435,7 +440,7 @@ function Calculator({
         <div className="space-y-12 lg:col-span-3">
           {/* 01 luas */}
           <Reveal>
-            <div className="t-mono mb-5 text-paper/40">INPUT 01 — LUAS BANGUNAN</div>
+            <div className="t-mono mb-5 text-paper/40">{pr.calcInput1}</div>
             <div className="flex items-baseline gap-4 border-b border-paper/20 pb-4">
               <input
                 type="number"
@@ -446,7 +451,7 @@ function Calculator({
                   setCustom(true);
                   setArea(Math.max(0, Math.min(10000, Number(e.target.value))));
                 }}
-                aria-label="Luas bangunan dalam meter persegi"
+                aria-label={pr.calcInput1}
                 className="w-40 bg-transparent text-[3rem] font-light tracking-tight text-paper focus:outline-none md:text-[4rem]"
               />
               <span className="t-mono text-paper/40">M²</span>
@@ -476,16 +481,16 @@ function Calculator({
                     : "border-paper/20 text-paper/60 hover:border-paper/60 hover:text-paper"
                 }`}
               >
-                CUSTOM
+                {pr.calcCustom}
               </button>
             </div>
           </Reveal>
 
           {/* 02 layanan */}
           <Reveal delay={80}>
-            <div className="t-mono mb-5 text-paper/40">INPUT 02 — PILIH LAYANAN</div>
+            <div className="t-mono mb-5 text-paper/40">{pr.calcInput2}</div>
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-              {packages.map((p) => (
+              {packages.map((p, i) => (
                 <button
                   key={p.id}
                   onClick={() => setPkgId(p.id)}
@@ -496,7 +501,7 @@ function Calculator({
                       : "border-paper/20 text-paper/70 hover:border-paper/60"
                   }`}
                 >
-                  <div className="t-mono">{p.name}</div>
+                  <div className="t-mono">{pr.packages[i]?.name ?? p.name}</div>
                   <div
                     className={`t-mono mt-2 text-[0.75rem] !tracking-[0.1em] ${
                       pkgId === p.id ? "text-ink/55" : "text-paper/40"
@@ -511,7 +516,7 @@ function Calculator({
 
           {/* 03 RAB */}
           <Reveal delay={140}>
-            <div className="t-mono mb-5 text-paper/40">INPUT 03 — TAMBAHKAN RAB</div>
+            <div className="t-mono mb-5 text-paper/40">{pr.calcInput3}</div>
             <button
               onClick={() => setRabOn(!rabOn)}
               role="switch"
@@ -530,9 +535,9 @@ function Calculator({
                 />
               </span>
               <span className="t-mono text-paper/70">
-                {rabOn ? "ON" : "OFF"}
+                {rabOn ? pr.calcRabOn : pr.calcRabOff}
                 {rabOn && (
-                  <span className="ml-4 text-brass">+ {rp(rab.price)}/m²</span>
+                  <span className="ml-4 text-brass">{pr.calcRabAdd} {rp(rab.price)}/m²</span>
                 )}
               </span>
             </button>
@@ -543,22 +548,22 @@ function Calculator({
         <Reveal delay={120} className="lg:col-span-2">
           <div className="border border-paper/20 bg-paper p-8 text-ink md:p-10">
             <div className="t-mono flex justify-between text-ink/40">
-              <span>ESTIMASI PROYEK</span>
-              <span>{showPromo ? "HARGA DISKON 30%" : "HARGA NORMAL"}</span>
+              <span>{pr.estLabel}</span>
+              <span>{showPromo ? pr.promoTag : pr.normalTag}</span>
             </div>
 
             <dl className="mt-8 space-y-0">
               <div className="flex items-baseline justify-between border-b border-ink/10 py-4">
-                <dt className="t-mono text-ink/45">LUAS</dt>
+                <dt className="t-mono text-ink/45">{pr.rows.luas}</dt>
                 <dd className="text-[1.5rem] font-light">{area || 0} m²</dd>
               </div>
               <div className="flex items-baseline justify-between border-b border-ink/10 py-4">
-                <dt className="t-mono text-ink/45">PAKET</dt>
-                <dd className="t-display text-[1.5rem]">{pkg.name}</dd>
+                <dt className="t-mono text-ink/45">{pr.rows.pkg}</dt>
+                <dd className="t-display text-[1.5rem]">{pt.name}</dd>
               </div>
               <div className="flex items-baseline justify-between border-b border-ink/10 py-4">
                 <dt>
-                  <div className="t-mono text-ink/45">DESAIN</div>
+                  <div className="t-mono text-ink/45">{pr.rows.desain}</div>
                   <div className="t-mono mt-1 !tracking-[0.1em] text-ink/30">
                     {area || 0} × {rp(unit)}
                   </div>
@@ -568,7 +573,7 @@ function Calculator({
               {rabOn && (
                 <div className="flex items-baseline justify-between border-b border-ink/10 py-4">
                   <dt>
-                    <div className="t-mono text-ink/45">RAB</div>
+                    <div className="t-mono text-ink/45">{pr.rows.rab}</div>
                     <div className="t-mono mt-1 !tracking-[0.1em] text-ink/30">
                       {area || 0} × {rp(rab.price)}
                     </div>
@@ -577,7 +582,7 @@ function Calculator({
                 </div>
               )}
               <div className="flex items-baseline justify-between py-6">
-                <dt className="t-mono text-ink/60">TOTAL ESTIMASI</dt>
+                <dt className="t-mono text-ink/60">{pr.rows.total}</dt>
                 <dd className="text-[2.6rem] font-normal tracking-tight md:text-[3rem]">
                   {rp(total)}
                 </dd>
@@ -585,9 +590,7 @@ function Calculator({
             </dl>
 
             <p className="t-mono !normal-case !tracking-[0.06em] text-ink/40">
-              Harga merupakan estimasi berdasarkan luas dan layanan yang
-              dipilih. Detail akhir pekerjaan dapat disesuaikan berdasarkan
-              kebutuhan proyek.
+              {pr.disclaim}
             </p>
 
             <a
@@ -596,13 +599,13 @@ function Calculator({
               rel="noopener noreferrer"
               className="btn-ink t-mono mt-8 w-full px-6 py-5 !tracking-[0.24em]"
             >
-              KONSULTASI PROYEK
+              {pr.ctaConsult}
             </a>
             <button
               onClick={reset}
               className="btn-ghost t-mono mt-3 w-full px-6 py-4 !tracking-[0.24em]"
             >
-              UBAH PILIHAN
+              {pr.changePick}
             </button>
           </div>
         </Reveal>
@@ -663,23 +666,25 @@ function CompareTable({
 }
 
 function Comparison() {
+  const { t } = useI18n();
+  const pr = t.price;
   return (
     <section className="bg-paper px-6 py-24 md:px-10 md:py-36">
       <div className="t-mono flex items-baseline justify-between text-ink/40">
-        <span>04 — PERBANDINGAN</span>
-        <span className="hidden sm:inline">RINGKASAN CAKUPAN PAKET</span>
+        <span>{pr.conEyebrow}</span>
+        <span className="hidden sm:inline">{pr.calcRealTime}</span>
       </div>
       <Reveal>
         <h2 className="t-display mt-6 max-w-4xl text-[clamp(2.2rem,6.5vw,5.5rem)]">
-          PILIH SESUAI
+          {pr.conTitle}
           <br />
-          <span className="t-serif italic tracking-normal text-ink/55">kebutuhan Anda.</span>
+          <span className="t-serif italic tracking-normal text-ink/55">{pr.conSub}</span>
         </h2>
       </Reveal>
 
       <div className="mt-16 grid gap-16 md:mt-24 lg:grid-cols-2 lg:gap-12">
-        <CompareTable title="TABEL 01 — PAKET GAMBAR" data={compareA} />
-        <CompareTable title="TABEL 02 — PAKET DESAIN" data={compareB} />
+        <CompareTable title={pr.compareTitleA} data={pr.compareA} />
+        <CompareTable title={pr.compareTitleB} data={pr.compareB} />
       </div>
     </section>
   );
@@ -688,6 +693,8 @@ function Comparison() {
 /* ============================== FINAL CTA =========================== */
 
 function FinalCta() {
+  const { t } = useI18n();
+  const pr = t.price;
   const msg = encodeURIComponent(
     "Halo, saya punya proyek dan ingin dibantu menentukan paket yang paling sesuai."
   );
@@ -707,15 +714,15 @@ function FinalCta() {
       <div className="relative z-10 flex min-h-[80vh] flex-col items-start justify-center px-6 py-28 md:px-10">
         <Reveal>
           <h2 className="t-display text-[clamp(3rem,10vw,9rem)]">
-            PUNYA
+            {pr.conHeading[0]}
             <br />
-            PROYEK<span className="text-brass">?</span>
+            {pr.conHeading[1]}
+            <span className="text-brass">?</span>
           </h2>
         </Reveal>
         <Reveal delay={120}>
           <p className="t-statement mt-8 max-w-md text-[1.05rem] text-paper/65">
-            Ceritakan kebutuhan Anda. Kami akan membantu menentukan paket yang
-            paling sesuai dengan proyek Anda.
+            {pr.conCopy}
           </p>
         </Reveal>
         <Reveal delay={200}>
@@ -726,13 +733,13 @@ function FinalCta() {
               rel="noopener noreferrer"
               className="btn-paper t-mono px-12 py-5 !tracking-[0.24em]"
             >
-              KONSULTASI SEKARANG
+              {pr.conCta}
             </a>
             <Link
               href="/#projects"
               className="t-mono inline-flex items-center justify-center gap-3 border border-paper/30 px-12 py-5 !tracking-[0.24em] text-paper transition-colors hover:border-paper"
             >
-              LIHAT PROJECT
+              {t.projects?.viewProject ?? "VIEW PROJECTS"}
             </Link>
           </div>
         </Reveal>

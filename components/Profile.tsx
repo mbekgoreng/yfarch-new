@@ -1,4 +1,7 @@
+"use client";
+
 import { profile, site } from "@/lib/data";
+import { useI18n } from "@/lib/i18n";
 import Reveal from "./Reveal";
 
 /* ------------------------------------------------------------------ */
@@ -17,6 +20,8 @@ function SignalDot() {
 }
 
 export default function Profile() {
+  const { t } = useI18n();
+  const pf = t.profile;
   return (
     <section id="profile" className="hairline-t bg-paper-dim/60 py-28 md:py-44">
       <div className="px-6 md:px-10">
@@ -24,10 +29,10 @@ export default function Profile() {
         <div className="t-mono flex items-baseline justify-between text-ink/40">
           <span className="flex items-center gap-3">
             <SignalDot />
-            06 — PRINCIPAL
+            {pf.eyebrow}
           </span>
           <span className="hidden sm:inline">
-            {profile.degree} · UPN &ldquo;VETERAN&rdquo; JAWA TIMUR
+            {pf.edu.degree} · {pf.edu.school.toUpperCase()}
           </span>
         </div>
 
@@ -46,7 +51,7 @@ export default function Profile() {
             <Reveal delay={150}>
               <div className="t-mono mt-4 flex items-baseline justify-between text-ink/45">
                 <span>{profile.title}</span>
-                <span className="text-ink/30">FIG. 01</span>
+                <span className="text-ink/30">{pf.fig01}</span>
               </div>
             </Reveal>
           </div>
@@ -55,11 +60,11 @@ export default function Profile() {
           <div className="md:col-span-8 lg:col-span-9">
             <Reveal>
               <h2 className="t-display text-[clamp(2.2rem,6vw,5.4rem)] md:leading-[0.92]">
-                AHMAD YUSUF
+                {pf.nameA}
                 <br />
-                FAHREZZI
+                {pf.nameB}
                 <span className="t-serif italic tracking-normal text-ink/50">
-                  {" "}, S.Ars
+                  {pf.degreeSuffix}
                 </span>
               </h2>
             </Reveal>
@@ -81,14 +86,14 @@ export default function Profile() {
             {/* tagline — pulled-italic statement */}
             <Reveal delay={160}>
               <p className="t-serif mt-10 max-w-2xl text-[clamp(1.4rem,3vw,2.1rem)] italic leading-[1.25] text-ink/70 md:mt-12">
-                &ldquo;{profile.tagline}&rdquo;
+                &ldquo;{pf.tagline}&rdquo;
               </p>
             </Reveal>
 
             {/* bio — two short paragraphs */}
             <Reveal delay={220}>
               <div className="mt-8 max-w-2xl space-y-5 text-[1.02rem] font-light leading-[1.65] text-ink/70 md:mt-10 md:text-[1.12rem]">
-                {profile.bio.map((p, i) => (
+                {pf.bio.map((p, i) => (
                   <p key={i}>{p}</p>
                 ))}
               </div>
@@ -103,20 +108,20 @@ export default function Profile() {
               {/* left — education + contact */}
               <div className="space-y-12">
                 <Reveal>
-                  <h3 className="t-mono mb-6 text-ink/35">EDUCATION</h3>
+                  <h3 className="t-mono mb-6 text-ink/35">{pf.edu.heading}</h3>
                   <div className="text-[0.98rem] font-light leading-relaxed text-ink/85">
-                    {profile.education.degree}
+                    {pf.edu.degree}
                   </div>
                   <div className="t-mono mt-2 !normal-case !tracking-[0.08em] text-ink/55">
-                    {profile.education.school}
+                    {pf.edu.school}
                   </div>
                   <div className="t-mono mt-1.5 text-ink/40">
-                    {profile.education.year} · {profile.education.gpa}
+                    {pf.edu.year} · {pf.edu.gpa}
                   </div>
                 </Reveal>
 
                 <Reveal>
-                  <h3 className="t-mono mb-6 text-ink/35">CONTACT</h3>
+                  <h3 className="t-mono mb-6 text-ink/35">{pf.contact.heading}</h3>
                   <ul className="t-mono space-y-3 !normal-case !tracking-[0.08em] text-ink/65">
                     <li className="hairline-b pb-3">
                       <a
@@ -154,7 +159,7 @@ export default function Profile() {
               {/* right — expertise + selected works */}
               <div className="space-y-12">
                 <Reveal delay={120}>
-                  <h3 className="t-mono mb-6 text-ink/35">EXPERTISE</h3>
+                  <h3 className="t-mono mb-6 text-ink/35">{pf.expertise.heading}</h3>
                   <ul className="space-y-5">
                     {profile.skills.map((s) => (
                       <li key={s.group} className="hairline-b pb-4 last:border-b-0">
@@ -168,7 +173,7 @@ export default function Profile() {
                 </Reveal>
 
                 <Reveal delay={200}>
-                  <h3 className="t-mono mb-6 text-ink/35">SELECTED WORKS</h3>
+                  <h3 className="t-mono mb-6 text-ink/35">{pf.works.heading}</h3>
                   <ul className="t-mono space-y-3 !normal-case !tracking-[0.08em] text-ink/60">
                     {profile.works.map((w) => (
                       <li key={w} className="flex gap-3 hairline-b pb-3 last:border-b-0">

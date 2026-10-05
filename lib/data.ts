@@ -527,7 +527,7 @@ export const testimonials = [
 /* PLACEHOLDER FIGURES — editable. Swap for real numbers when available. */
 
 export const stats = [
-  { value: "40+", label: "PROJECTS DELIVERED" },
+  { value: "10+", label: "PROJECTS DELIVERED" },
   { value: "03+", label: "YEARS IN PRACTICE" },
   { value: "100%", label: "CLIENT SATISFACTION" },
 ];

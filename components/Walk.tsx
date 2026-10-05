@@ -13,51 +13,19 @@
 /* ------------------------------------------------------------------ */
 
 import { useEffect, useRef, useState } from "react";
-import { site } from "@/lib/data";
+import { useI18n } from "@/lib/i18n";
 
 const TRACK_VH_DESKTOP = 1000;
 const TRACK_VH_MOBILE = 600;
 
-/* chapters: start/end are fractions of the video progress */
-const CHAPTERS = [
-  {
-    eyebrow: "01 / YF ARCHITECT",
-    title: "Ruang yang tenang. Detail yang berarti.",
-    body: "Kami merancang hunian yang menyatukan karakter, fungsi, dan ketepatan konstruksi.",
-    start: 0,
-    end: 0.19,
-    cue: true,
-  },
-  {
-    eyebrow: "02 / FASAD",
-    title: "Tegas dari luar, hangat saat didekati.",
-    body: "Massa, bukaan, dan material membentuk identitas yang bersih tanpa kehilangan rasa.",
-    start: 0.19,
-    end: 0.38,
-    align: "right",
-  },
-  {
-    eyebrow: "03 / AMBANG",
-    title: "Transisi yang terasa alami.",
-    body: "Kamera bergerak melalui pintu dan sirkulasi nyata — mengikuti cara ruang benar-benar dialami.",
-    start: 0.38,
-    end: 0.6,
-  },
-  {
-    eyebrow: "04 / RUANG TAMU",
-    title: "Cahaya, proporsi, dan material dalam satu ritme.",
-    body: "Ruang bersama dibuat lapang, tenang, dan tetap hangat untuk keseharian.",
-    start: 0.6,
-    end: 0.81,
-    align: "right",
-  },
-  {
-    eyebrow: "05 / DAPUR",
-    title: "Detail presisi untuk hidup sehari-hari.",
-    body: "Fungsi yang efisien dibingkai material alami dan pencahayaan yang lembut.",
-    start: 0.81,
-    end: 1.01,
-  },
+/* chapters: start/end are fractions of the video progress.
+   Timing/layout are static; the words come from t.walk.chapters. */
+const CHAPTER_SCHEMA = [
+  { start: 0, end: 0.19, cue: true },
+  { start: 0.19, end: 0.38, align: "right" },
+  { start: 0.38, end: 0.6 },
+  { start: 0.6, end: 0.81, align: "right" },
+  { start: 0.81, end: 1.01 },
 ];
 
 function clamp01(v: number) {
@@ -65,6 +33,11 @@ function clamp01(v: number) {
 }
 
 export default function Walk() {
+  const { t } = useI18n();
+  const CHAPTERS = t.walk.chapters.map((c, i) => ({
+    ...c,
+    ...CHAPTER_SCHEMA[i],
+  }));
   const trackRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const chapterRefs = useRef<(HTMLElement | null)[]>([]);
@@ -165,7 +138,7 @@ export default function Walk() {
       /* chapters — active class only (opacity handled by CSS transition) */
       chapterRefs.current.forEach((el, i) => {
         if (!el) return;
-        const c = CHAPTERS[i];
+        const c = CHAPTER_SCHEMA[i];
         const on = current >= c.start && current < c.end;
         if (on !== el.classList.contains("active"))
           el.classList.toggle("active", on);
@@ -175,7 +148,7 @@ export default function Walk() {
       const pct = (current * 100).toFixed(2) + "%";
       if (railFillRef.current) railFillRef.current.style.height = pct;
       dotsRef.current.forEach((d, i) => {
-        const c = CHAPTERS[i];
+        const c = CHAPTER_SCHEMA[i];
         const on = current >= c.start && current < c.end;
         if (d && on !== d.classList.contains("on"))
           d.classList.toggle("on", on);
@@ -282,7 +255,7 @@ export default function Walk() {
               ghosted mark at the top-left, and the tagline sat underneath the
               nav's right-hand cluster. Centred, the caption clears both. */}
           <span className="t-mono hidden text-paper/45 md:block">
-            {site.tagline.toUpperCase()}
+            {t.walk.tagline.toUpperCase()}
           </span>
         </div>
 
@@ -290,7 +263,7 @@ export default function Walk() {
         <div className="absolute inset-0" aria-live="polite">
           {CHAPTERS.map((c, i) => (
             <article
-              key={c.eyebrow}
+              key={i}
               ref={(el) => {
                 chapterRefs.current[i] = el;
               }}
@@ -311,7 +284,7 @@ export default function Walk() {
                     <span className="walk-wheel block h-7 w-[18px] rounded-full border border-paper/50">
                       <span className="walk-wheel-dot block" />
                     </span>
-                    Gulir untuk memasuki ruang
+                    {t.walk.scrollCue}
                   </div>
                 </>
               ) : (
@@ -356,7 +329,7 @@ export default function Walk() {
             />
           </span>
           <span className="ml-auto tracking-[0.08em]">
-            WALKTHROUGH · EXTERIOR — INTERIOR
+            {t.walk.walkthrough}
           </span>
         </div>
 
@@ -364,7 +337,7 @@ export default function Walk() {
         {!ready && (
           <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-ink">
             <img src="/images/logo.png" alt="" className="h-32 w-auto md:h-48" />
-            <span className="t-mono mt-12 text-paper/30">LOADING FILM…</span>
+            <span className="t-mono mt-12 text-paper/30">{t.walk.loading}</span>
           </div>
         )}
       </div>

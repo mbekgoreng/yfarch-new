@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { projects, projectImages, worksIntro, type Project } from "@/lib/data";
+import { projects, projectImages, type Project } from "@/lib/data";
+import { useI18n } from "@/lib/i18n";
 import Reveal from "./Reveal";
 import FilmStrip from "./FilmStrip";
 import Img from "./Img";
@@ -63,6 +64,7 @@ function FeaturedView({
   setIndex: (i: number) => void;
   portrait: boolean;
 }) {
+  const { t } = useI18n();
   const p = projects[index];
   const images = projectImages(p);
 
@@ -74,7 +76,7 @@ function FeaturedView({
           <Reveal>
             <div className="t-mono flex items-center gap-3 text-ink/45">
               <SignalDot />
-              {p.index} — FEATURED
+              {p.index} — {t.projects.featuredPlate}
             </div>
           </Reveal>
           <Reveal delay={80}>
@@ -93,7 +95,7 @@ function FeaturedView({
               data-project-cursor
               className="t-mono mt-9 inline-flex items-center gap-3 border-b border-ink/25 pb-2 text-ink/70 transition-colors duration-500 hover:border-ink hover:text-ink"
             >
-              VIEW PROJECT <span aria-hidden="true">→</span>
+              {t.projects.viewProject} <span aria-hidden="true">→</span>
             </a>
           </Reveal>
         </div>
@@ -214,6 +216,7 @@ function IndexView() {
 /* -------------------------- FEATURED PLATE ------------------------- */
 
 function FeaturedPlate() {
+  const { t } = useI18n();
   const p = projects.find((x) => x.slug === "villa-samudra") ?? projects[0];
 
   return (
@@ -244,7 +247,7 @@ function FeaturedPlate() {
           <Reveal>
             <div className="t-mono flex items-center gap-3 text-paper/70">
               <SignalDot />
-              FEATURED PROJECT
+              {t.projects.featuredPlate}
             </div>
           </Reveal>
           <Reveal delay={90}>
@@ -263,7 +266,7 @@ function FeaturedPlate() {
               data-project-cursor
               className="btn-paper t-mono mt-8 inline-flex w-fit items-center gap-3 px-8 py-4 !tracking-[0.22em]"
             >
-              VIEW PROJECT <span aria-hidden="true">→</span>
+              {t.projects.viewProject} <span aria-hidden="true">→</span>
             </a>
           </Reveal>
         </div>
@@ -291,6 +294,7 @@ function FeaturedPlate() {
 /* ------------------------------ SECTION ---------------------------- */
 
 export default function Projects() {
+  const { t } = useI18n();
   const [mode, setMode] = useState<"featured" | "index">("featured");
   const [index, setIndex] = useState(0);
   const aspect = useAspect();
@@ -342,7 +346,7 @@ export default function Projects() {
         aria-hidden="true"
       >
         <span className="proj-cursor-label t-mono">
-          VIEW PROJECT <span aria-hidden="true">→</span>
+          {t.projects.viewProject} <span aria-hidden="true">→</span>
         </span>
       </div>
 
@@ -353,12 +357,12 @@ export default function Projects() {
             <Reveal>
               <div className="t-mono flex items-center gap-3 text-ink/45">
                 <SignalDot />
-                {worksIntro.label}
+                {t.projects.eyebrow}
               </div>
             </Reveal>
             <Reveal delay={80}>
               <h2 className="t-display mt-8 text-[clamp(2.8rem,9vw,7.6rem)] md:leading-[0.88]">
-                {worksIntro.headline.map((line) => (
+                {t.projects.headline.map((line) => (
                   <span key={line} className="block">
                     {line}
                   </span>
@@ -369,7 +373,7 @@ export default function Projects() {
           <div className={portrait ? "" : "md:col-span-4 md:col-start-9"}>
             <Reveal delay={140}>
               <p className="t-statement text-[1.02rem] leading-relaxed text-ink/60 md:text-[1.15rem]">
-                {worksIntro.copy}
+                {t.projects.copy}
               </p>
             </Reveal>
           </div>
@@ -387,7 +391,7 @@ export default function Projects() {
                   mode === m ? "text-ink" : "text-ink/35 hover:text-ink/60"
                 }`}
               >
-                {m.toUpperCase()}
+                {t.projects.toggle[m]}
                 <span
                   className={`absolute inset-x-0 bottom-0 h-px origin-left bg-signal transition-transform duration-500 ${
                     mode === m ? "scale-x-100" : "scale-x-0"

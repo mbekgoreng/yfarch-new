@@ -1,9 +1,18 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { nav, site, navCta } from "@/lib/data";
+import { site } from "@/lib/data";
+import { useI18n } from "@/lib/i18n";
+import type { Lang } from "@/lib/i18n-strings";
+
+const LANGS: { code: Lang; label: string }[] = [
+  { code: "en", label: "EN" },
+  { code: "id", label: "ID" },
+  { code: "zh", label: "中" },
+];
 
 export default function Nav() {
+  const { lang, setLang, t } = useI18n();
   const [open, setOpen] = useState(false);
   const [time, setTime] = useState("");
   /* Over the dark hero film the bar is transparent and the mark relies on
@@ -76,13 +85,27 @@ export default function Nav() {
           </a>
           <div className="pointer-events-auto flex items-center gap-6 md:gap-8">
             <a
-              href={navCta.href}
+              href="/#contact"
               onClick={() => setOpen(false)}
               className="t-mono hidden items-center gap-2 text-white mix-blend-difference transition-opacity duration-300 hover:opacity-60 sm:inline-flex"
             >
-              {navCta.label}
+              {t.navCta}
               <span aria-hidden="true">→</span>
             </a>
+            <div className="hidden items-center gap-2 text-white mix-blend-difference sm:flex">
+              {LANGS.map((l) => (
+                <button
+                  key={l.code}
+                  onClick={() => setLang(l.code)}
+                  aria-pressed={lang === l.code}
+                  className={`t-mono px-1.5 py-1 text-[11px] transition-opacity duration-300 hover:opacity-70 ${
+                    lang === l.code ? "underline underline-offset-4" : "opacity-45"
+                  }`}
+                >
+                  {l.label}
+                </button>
+              ))}
+            </div>
             <button
               onClick={() => setOpen((v) => !v)}
               aria-expanded={open}
@@ -90,7 +113,7 @@ export default function Nav() {
               className="t-mono flex items-center gap-3 text-white mix-blend-difference"
             >
             <span className="hidden sm:inline">
-              {open ? "CLOSE" : "MENU"}
+              {open ? t.menu.close : t.menu.open}
             </span>
             <span className="relative block h-3 w-6">
               <span
@@ -116,7 +139,7 @@ export default function Nav() {
       >
         <div className="flex h-full flex-col justify-between px-6 pb-10 pt-28 md:px-10 md:pt-36">
           <ul>
-            {nav.map((item, i) => (
+            {t.nav.map((item, i) => (
               <li
                 key={item.href}
                 className="menu-link-wrap border-b border-paper/10"
@@ -144,11 +167,11 @@ export default function Nav() {
             />
             <div className="menu-meta grid grid-cols-2 gap-6 [&>*]:min-w-0 md:grid-cols-4">
             <div>
-              <div className="t-mono mb-2 text-paper/35">STUDIO</div>
+              <div className="t-mono mb-2 text-paper/35">{t.menu.studio}</div>
               <div className="t-mono text-paper/75">{site.location.toUpperCase()}</div>
             </div>
             <div>
-              <div className="t-mono mb-2 text-paper/35">EMAIL</div>
+              <div className="t-mono mb-2 text-paper/35">{t.menu.email}</div>
               <a
                 href={`mailto:${site.email}`}
                 className="t-mono break-words text-paper/75 hover:text-paper"
@@ -158,7 +181,7 @@ export default function Nav() {
               </a>
             </div>
             <div>
-              <div className="t-mono mb-2 text-paper/35">WHATSAPP</div>
+              <div className="t-mono mb-2 text-paper/35">{t.menu.whatsapp}</div>
               <a
                 href={site.whatsappLink}
                 target="_blank"
@@ -170,7 +193,7 @@ export default function Nav() {
               </a>
             </div>
             <div className="text-left md:text-right">
-              <div className="t-mono mb-2 text-paper/35">LOCAL TIME</div>
+              <div className="t-mono mb-2 text-paper/35">{t.menu.localTime}</div>
               <div className="t-mono text-paper/75">{time} WIB</div>
             </div>
             </div>

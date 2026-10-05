@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter_Tight, IBM_Plex_Mono, Instrument_Serif } from "next/font/google";
+import I18nProvider from "@/components/I18nProvider";
 import "./globals.css";
 
 const sans = Inter_Tight({
@@ -39,9 +40,9 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="id">
       <body className={`${sans.variable} ${mono.variable} ${serif.variable} antialiased`}>
-        {children}
+        <I18nProvider>{children}</I18nProvider>
       </body>
     </html>
   );

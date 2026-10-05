@@ -2,9 +2,11 @@
 
 import { useEffect, useRef } from "react";
 import { process } from "@/lib/data";
+import { useI18n } from "@/lib/i18n";
 import Reveal from "./Reveal";
 
 export default function Process() {
+  const { t } = useI18n();
   const sectionRef = useRef<HTMLElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
 
@@ -48,11 +50,11 @@ export default function Process() {
     <section ref={sectionRef} id="process" className="bg-paper py-28 md:py-40">
       <div className="px-6 md:px-10">
         <div className="t-mono flex items-baseline justify-between text-ink/40">
-          <span>04 — METHOD</span>
-          <span className="hidden sm:inline">SIX MOVEMENTS · FIRST SKETCH → HANDOVER</span>
+          <span>{t.process.eyebrow}</span>
+          <span className="hidden sm:inline">{t.process.sixMovements}</span>
         </div>
         <Reveal>
-          <h2 className="t-display mt-6 text-[clamp(2.6rem,8vw,7.5rem)]">PROCESS</h2>
+          <h2 className="t-display mt-6 text-[clamp(2.6rem,8vw,7.5rem)]">{t.process.heading}</h2>
         </Reveal>
 
         <div className="relative mt-16 md:mt-24">

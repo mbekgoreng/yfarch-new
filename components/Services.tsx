@@ -8,11 +8,13 @@ import { useState } from "react";
 import Link from "next/link";
 import { serviceOffering } from "@/lib/data";
 import { packages, rab, rp } from "@/lib/pricing";
+import { useI18n } from "@/lib/i18n";
 import { usePromo } from "@/lib/usePromo";
 import Reveal from "./Reveal";
 import Img from "./Img";
 
 export default function Services() {
+  const { t } = useI18n();
   const [active, setActive] = useState(0);
   const promo = usePromo();
   const showPromo = promo.mounted && promo.active;
@@ -22,7 +24,7 @@ export default function Services() {
     <section id="services" className="bg-ink pb-28 pt-24 text-paper md:pb-40 md:pt-36">
       <div className="px-6 md:px-10">
         <div className="t-mono flex items-baseline justify-between text-paper/35">
-          <span>03 — LAYANAN</span>
+          <span>{t.services.eyebrow}</span>
           <span className="hidden sm:inline">ARCHITECTURE · INTERIOR · CONSTRUCTION</span>
         </div>
 
@@ -30,24 +32,20 @@ export default function Services() {
           <div className="md:col-span-7">
             <Reveal>
               <h2 className="t-display text-[clamp(2.4rem,7.5vw,6.6rem)] md:leading-[0.9]">
-                FROM CONCEPT
+                {t.services.headingA}
                 <br />
-                TO{" "}
-                <span className="t-serif italic tracking-normal text-sand">
-                  construction
-                </span>
+                {t.services.headingB}
               </h2>
             </Reveal>
           </div>
           <div className="md:col-span-4 md:col-start-9">
             <Reveal delay={120}>
               <p className="t-statement text-[1.02rem] leading-relaxed text-paper/60 md:text-[1.12rem]">
-                Four disciplines, one drawing set — from the first sketch to the
-                last detail on site.
+                {t.services.copy}
                 {showPromo && (
                   <span className="text-sand">
                     {" "}
-                    Diskon 30% berlaku untuk seluruh paket selama 60 menit.
+                    {t.services.promoNote}
                   </span>
                 )}
               </p>
@@ -121,8 +119,8 @@ export default function Services() {
         {/* ---------------- pricing strip ---------------- */}
         <div className="mt-20 md:mt-28">
           <div className="t-mono mb-6 flex items-baseline justify-between text-paper/35">
-            <span>HARGA PER M²</span>
-            <span className="hidden sm:inline">TRANSPARAN · TANPA BIAYA TERSEMBUNYI</span>
+            <span>{t.services.pricePerM2}</span>
+            <span className="hidden sm:inline">{t.services.transparent}</span>
           </div>
 
           {packages.map((p, i) => (
@@ -162,7 +160,8 @@ export default function Services() {
           <Reveal delay={80}>
             <div className="mt-6 border-t border-paper/12 pt-6">
               <span className="t-mono text-paper/45">
-                + RAB / RENCANA ANGGARAN BIAYA — {rp(rab.price)} / m² · OUTPUT {rab.output.toUpperCase()}
+                {t.services.rabLine.trim()}{" "}
+                {rp(rab.price)} / m² · OUTPUT {rab.output.toUpperCase()}
               </span>
             </div>
           </Reveal>
@@ -170,13 +169,13 @@ export default function Services() {
           <Reveal delay={140}>
             <div className="mt-12 flex flex-col gap-4 sm:flex-row">
               <Link href="/harga" className="btn-paper t-mono px-10 py-5 !tracking-[0.24em]">
-                LIHAT HALAMAN HARGA
+                {t.services.cta.title}
               </Link>
               <Link
                 href="/harga#kalkulator"
                 className="t-mono inline-flex items-center justify-center gap-3 border border-paper/25 px-10 py-5 !tracking-[0.24em] text-paper transition-colors hover:border-paper/70"
               >
-                HITUNG ESTIMASI →
+                {t.services.cta.calc}
               </Link>
             </div>
           </Reveal>
