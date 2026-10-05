@@ -49,6 +49,7 @@ export default function Walk() {
   const cueRef = useRef<HTMLDivElement>(null);
 
   const [ready, setReady] = useState(false);
+  const [videoFailed, setVideoFailed] = useState(false);
   const [trackVh, setTrackVh] = useState(TRACK_VH_DESKTOP);
   /* Deliberately null until the responsive effect resolves the source. Seeding
      these with the desktop paths made every phone start downloading the 8 MB
@@ -68,6 +69,16 @@ export default function Walk() {
     window.addEventListener("resize", set);
     return () => window.removeEventListener("resize", set);
   }, []);
+
+  /* veil safety net — mobile browsers (esp. iOS Safari) may never fire
+     loadedmetadata for a scrubbed video (preload deferred until interaction).
+     Never trap the visitor behind the loading veil: lift it after 7s no
+     matter what; the poster shows underneath until frames arrive. */
+  useEffect(() => {
+    if (ready) return;
+    const id = setTimeout(() => setReady(true), 7000);
+    return () => clearTimeout(id);
+  }, [ready]);
 
   /* --------------------- the scrub engine ------------------------- */
   useEffect(() => {
@@ -230,7 +241,7 @@ export default function Walk() {
         <video
           ref={videoRef}
           key={videoSrc}
-          className="absolute inset-0 h-full w-full object-cover object-center"
+          className={`absolute inset-0 h-full w-full object-cover object-center ${videoFailed ? "hidden" : ""}`}
           style={{ filter: "saturate(0.78) contrast(1.04)" }}
           src={videoSrc ?? undefined}
           poster={poster ?? undefined}
@@ -238,8 +249,28 @@ export default function Walk() {
           playsInline
           preload="auto"
           disablePictureInPicture
+          onLoadedMetadata={(e) => {
+            const v = e.currentTarget;
+            if (isFinite(v.duration) && v.duration > 1) setReady(true);
+          }}
+          onError={() => {
+            /* video failed (codec/network) — lift the veil and let the
+               poster carry the section instead of a black hole */
+            setVideoFailed(true);
+            setReady(true);
+          }}
           aria-label="Perjalanan visual dari fasad, melewati pintu masuk, menuju ruang tamu dan dapur"
         />
+
+        {videoFailed && poster && (
+          <img
+            src={poster}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 h-full w-full object-cover object-center"
+            style={{ filter: "saturate(0.78) contrast(1.04)" }}
+          />
+        )}
 
         {/* veil + grain (dari villa.css) */}
         <div className="walk-veil pointer-events-none absolute inset-0" aria-hidden="true" />
