@@ -62,7 +62,7 @@ export default function Walk() {
     const set = () => {
       const small = window.innerWidth < 900;
       setTrackVh(small ? TRACK_VH_MOBILE : TRACK_VH_DESKTOP);
-      setVideoSrc(small ? "/video/walk-mobile.mp4" : "/video/walk-desktop.mp4");
+      setVideoSrc(small ? "/video/walk-mobile.mp4?v=2" : "/video/walk-desktop.mp4");
       setPoster(small ? "/images/walk-poster-mobile.webp" : "/images/walk-poster-desktop.webp");
     };
     set();
@@ -191,10 +191,37 @@ export default function Walk() {
 
     const onMeta = () => {
       duration = isFinite(video.duration) && video.duration > 1 ? video.duration : 21;
+      /* iOS Safari may decode no frames for a video that has never played:
+         seeking such a video then leaves a black frame (poster gone) and the
+         hero looks dark even though the file loads fine. Force the browser to
+         load real data with a muted inline play(), then pause immediately —
+         invisible behind the veil. */
       try {
-        video.currentTime = 0.001;
+        const pr = video.play() as Promise<void> | undefined;
+        if (pr && typeof pr.then === "function") {
+          pr.then(() => {
+            try {
+              video.pause();
+              video.currentTime = 0.001;
+            } catch {
+              /* noop */
+            }
+          }).catch(() => {
+            try {
+              video.currentTime = 0.001;
+            } catch {
+              /* noop */
+            }
+          });
+        } else {
+          video.currentTime = 0.001;
+        }
       } catch {
-        /* noop */
+        try {
+          video.currentTime = 0.001;
+        } catch {
+          /* noop */
+        }
       }
       setReady(true);
       kick();
