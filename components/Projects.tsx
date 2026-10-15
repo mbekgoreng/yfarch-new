@@ -91,7 +91,7 @@ function FeaturedView({
           </Reveal>
           <Reveal delay={200}>
             <a
-              href="#contact"
+              href={`/proyek/${p.slug}`}
               data-project-cursor
               className="t-mono mt-9 inline-flex items-center gap-3 border-b border-ink/25 pb-2 text-ink/70 transition-colors duration-500 hover:border-ink hover:text-ink"
             >
@@ -176,7 +176,7 @@ function IndexView() {
             delay={(i % 2) * 90}
             className={`img-frame group ${l.span} ${l.mt}`}
           >
-            <a href="#contact" data-project-cursor className="group block">
+            <a href={`/proyek/${p.slug}`} data-project-cursor className="group block">
               <div className="relative overflow-hidden">
                 {daynightProps(p) ? (
                   <DayNight
@@ -262,7 +262,7 @@ function FeaturedPlate() {
           </Reveal>
           <Reveal delay={210}>
             <a
-              href="#contact"
+              href={`/proyek/${p.slug}`}
               data-project-cursor
               className="btn-paper t-mono mt-8 inline-flex w-fit items-center gap-3 px-8 py-4 !tracking-[0.22em]"
             >

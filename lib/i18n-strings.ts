@@ -43,6 +43,28 @@ export type Dict = {
     meta: { area: string; location: string; year: string };
   };
 
+  projectPage: {
+    eyebrow: string;
+    backToProjects: string;
+    meta: {
+      area: string;
+      location: string;
+      year: string;
+      category: string;
+      status: string;
+      elevation: string;
+      services: string;
+    };
+    narrativeHeading: string;
+    galleryHeading: string;
+    drawingsHeading: string;
+    drawingsNote: string;
+    nextProject: string;
+    startProject: string;
+    startProjectSub: string;
+    startProjectCta: string;
+  };
+
   services: {
     eyebrow: string;
     headingA: string;
@@ -229,6 +251,28 @@ const en: Dict = {
     headline: ["SPACES", "DESIGNED", "WITH", "INTENTION."],
     copy: "A curated selection of architectural projects exploring space, material, light and context.",
     meta: { area: "AREA", location: "LOCATION", year: "YEAR" },
+  },
+  projectPage: {
+    eyebrow: "PROJECT STUDY",
+    backToProjects: "← ALL PROJECTS",
+    meta: {
+      area: "AREA",
+      location: "LOCATION",
+      year: "YEAR",
+      category: "TYPE",
+      status: "STATUS",
+      elevation: "ELEVATION",
+      services: "SCOPE",
+    },
+    narrativeHeading: "THE IDEA",
+    galleryHeading: "IN FRAMES",
+    drawingsHeading: "DRAWINGS",
+    drawingsNote:
+      "Technical drawings for this project are being prepared — plans, sections and details will appear here.",
+    nextProject: "NEXT PROJECT",
+    startProject: "Have a site in mind?",
+    startProjectSub: "Tell us about your project — we reply within 24 hours.",
+    startProjectCta: "START A PROJECT →",
   },
 
   services: {
@@ -700,6 +744,28 @@ const id: Dict = {
     copy: "Kurasi proyek arsitektur yang mengeksplorasi ruang, material, cahaya dan konteks.",
     meta: { area: "LUAS", location: "LOKASI", year: "TAHUN" },
   },
+  projectPage: {
+    eyebrow: "KAJIAN PROYEK",
+    backToProjects: "← SEMUA PROYEK",
+    meta: {
+      area: "LUAS",
+      location: "LOKASI",
+      year: "TAHUN",
+      category: "JENIS",
+      status: "STATUS",
+      elevation: "ELEVASI",
+      services: "LINGKUP",
+    },
+    narrativeHeading: "IDENYA",
+    galleryHeading: "DALAM BINGKAI",
+    drawingsHeading: "GAMBAR TEKNIK",
+    drawingsNote:
+      "Gambar teknik proyek ini sedang disiapkan — denah, potongan, dan detail akan tampil di sini.",
+    nextProject: "PROYEK BERIKUTNYA",
+    startProject: "Punya lahan impian?",
+    startProjectSub: "Ceritakan proyek Anda — kami merespons dalam 24 jam.",
+    startProjectCta: "MULAI PROYEK →",
+  },
   services: {
     eyebrow: "03 — LAYANAN",
     headingA: "DARI KONSEP",
@@ -1154,6 +1220,27 @@ const zh: Dict = {
     headline: ["空间", "以", "意图", "设计。"],
     copy: "精选建筑项目，探索空间、材料、光线与文脉。",
     meta: { area: "面积", location: "地点", year: "年份" },
+  },
+  projectPage: {
+    eyebrow: "项目研究",
+    backToProjects: "← 全部项目",
+    meta: {
+      area: "面积",
+      location: "地点",
+      year: "年份",
+      category: "类型",
+      status: "状态",
+      elevation: "海拔",
+      services: "范围",
+    },
+    narrativeHeading: "设计理念",
+    galleryHeading: "影像",
+    drawingsHeading: "图纸",
+    drawingsNote: "该项目的技术图纸正在准备中——平面图、剖面图与细部将显示于此。",
+    nextProject: "下一个项目",
+    startProject: "有心仪的地块吗？",
+    startProjectSub: "告诉我们您的项目——我们将在24小时内回复。",
+    startProjectCta: "开始项目 →",
   },
   services: {
     eyebrow: "03 — 服务",

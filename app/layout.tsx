@@ -25,6 +25,7 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.yfarch.my.id"),
   title: "YF ARCH — Architecture · Design · Construction",
   description:
     "YF ARCH is an architecture studio in East Java, Indonesia, designing quiet, light-filled tropical buildings. Architecture, interior, exterior, visualization, construction, design & build.",
