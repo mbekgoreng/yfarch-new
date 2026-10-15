@@ -231,7 +231,7 @@ export default function ProjectDetail({ project: p }: { project: Project }) {
         className="group relative block h-[62vh] min-h-[420px] w-full overflow-hidden bg-ink"
         aria-label={`${pp.nextProject}: ${next.name}`}
       >
-        <div className="absolute inset-0 transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]">
+        <div className="ease-lux absolute inset-0 transition-transform duration-[1200ms] group-hover:scale-[1.04]">
           <Img
             src={next.hero}
             alt=""

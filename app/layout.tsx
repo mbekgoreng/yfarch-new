@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter_Tight, IBM_Plex_Mono, Instrument_Serif } from "next/font/google";
 import I18nProvider from "@/components/I18nProvider";
+import SmoothScroll from "@/components/SmoothScroll";
 import "./globals.css";
 
 const sans = Inter_Tight({
@@ -43,7 +44,10 @@ export default function RootLayout({
   return (
     <html lang="id">
       <body className={`${sans.variable} ${mono.variable} ${serif.variable} antialiased`}>
-        <I18nProvider>{children}</I18nProvider>
+        <I18nProvider>
+          <SmoothScroll />
+          {children}
+        </I18nProvider>
       </body>
     </html>
   );
