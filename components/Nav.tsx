@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { site } from "@/lib/data";
 import { useI18n } from "@/lib/i18n";
 import type { Lang } from "@/lib/i18n-strings";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const LANGS: { code: Lang; label: string }[] = [
   { code: "en", label: "EN" },
@@ -106,6 +107,7 @@ export default function Nav() {
                 </button>
               ))}
             </div>
+            <ThemeToggle />
             <button
               onClick={() => setOpen((v) => !v)}
               aria-expanded={open}
