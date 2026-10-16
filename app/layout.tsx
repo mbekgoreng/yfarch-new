@@ -25,11 +25,49 @@ const mono = IBM_Plex_Mono({
   display: "swap",
 });
 
+const SITE_URL = "https://www.yfarch.my.id";
+const SITE_TITLE = "YF ARCH — Architecture · Design · Construction";
+const SITE_DESC =
+  "YF ARCH is an architecture studio in East Java, Indonesia, designing quiet, light-filled tropical buildings. Architecture, interior, exterior, visualization, construction, design & build.";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.yfarch.my.id"),
-  title: "YF ARCH — Architecture · Design · Construction",
-  description:
-    "YF ARCH is an architecture studio in East Java, Indonesia, designing quiet, light-filled tropical buildings. Architecture, interior, exterior, visualization, construction, design & build.",
+  metadataBase: new URL(SITE_URL),
+  title: SITE_TITLE,
+  description: SITE_DESC,
+  alternates: { canonical: SITE_URL },
+  openGraph: {
+    type: "website",
+    locale: "id_ID",
+    siteName: "YF ARCH",
+    title: SITE_TITLE,
+    description: SITE_DESC,
+    url: SITE_URL,
+    images: [
+      {
+        url: "/images/alex-house-ext-1-1920.webp",
+        width: 1920,
+        height: 1434,
+        alt: "YF ARCH — tropical modern residence in East Java, Indonesia",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE,
+    description: SITE_DESC,
+    images: ["/images/alex-house-ext-1-1920.webp"],
+  },
+  robots: { index: true, follow: true },
+};
+
+/* Fase 3: structured data — only verified facts, no invented stats. */
+const ORG_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "YF ARCH",
+  url: SITE_URL,
+  description: SITE_DESC,
+  areaServed: "East Java, Indonesia",
 };
 
 export const viewport: Viewport = {
@@ -44,6 +82,10 @@ export default function RootLayout({
   return (
     <html lang="id">
       <body className={`${sans.variable} ${mono.variable} ${serif.variable} antialiased`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_JSON_LD) }}
+        />
         <I18nProvider>
           <SmoothScroll />
           {children}

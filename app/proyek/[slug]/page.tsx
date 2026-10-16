@@ -18,13 +18,23 @@ export async function generateMetadata({
   const p = projects.find((x) => x.slug === slug);
   if (!p) return { title: "Project — YF ARCH" };
   const description = p.tagline ?? p.narrative.slice(0, 160);
+  const url = `https://www.yfarch.my.id/proyek/${p.slug}`;
+  const ogImage = `/images/${p.hero}-1920.webp`;
   return {
     title: `${p.name} — YF ARCH`,
     description,
+    alternates: { canonical: url },
     openGraph: {
       title: `${p.name} — YF ARCH`,
       description,
-      images: [`/images/${p.hero}-1920.webp`],
+      url,
+      images: [ogImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${p.name} — YF ARCH`,
+      description,
+      images: [ogImage],
     },
   };
 }
