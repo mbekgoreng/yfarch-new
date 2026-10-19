@@ -105,7 +105,10 @@ export default function Contact() {
         {/* footer strip */}
         <div className="t-mono flex flex-col gap-2 border-t border-paper/15 pt-4 text-paper/35 sm:flex-row sm:items-center sm:justify-between">
           <span>© 2026 YF ARCH — {site.location.toUpperCase()}</span>
-          <span>{site.coordinates}</span>
+          <span className="flex gap-6">
+            <a href="/journal" className="transition-colors hover:text-sand">JOURNAL</a>
+            <span>{site.coordinates}</span>
+          </span>
           <span>INSTAGRAM {site.instagram.toUpperCase()}</span>
         </div>
       </div>

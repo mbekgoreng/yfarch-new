@@ -77,6 +77,34 @@ export type Dict = {
     cta: { title: string; calc: string };
   };
 
+  journal: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    backToJournal: string;
+    readArticle: string;
+    minRead: string;
+    nextArticle: string;
+    featuredLabel: string;
+    filterLabel: string;
+    allLabel: string;
+    searchLabel: string;
+    searchPlaceholder: string;
+    noResults: string;
+    loadMore: string;
+    emptyTitle: string;
+    emptyBody: string;
+    ctaEyebrow: string;
+    ctaTitle: string;
+    ctaBody: string;
+    ctaPrimary: string;
+    ctaSecondary: string;
+    crumbHome: string;
+    crumbJournal: string;
+    tocLabel: string;
+    relatedLabel: string;
+  };
+
   process: {
     eyebrow: string;
     heading: string;
@@ -217,6 +245,7 @@ const en: Dict = {
     { label: "SERVICES & PRICING", href: "/harga" },
     { label: "STUDIO", href: "/#studio" },
     { label: "CONTACT", href: "/#contact" },
+    { label: "JOURNAL", href: "/journal" },
   ],
   navCta: "LET'S TALK",
   menu: { open: "MENU", close: "CLOSE", studio: "STUDIO", email: "EMAIL", whatsapp: "WHATSAPP", localTime: "LOCAL TIME" },
@@ -285,6 +314,34 @@ const en: Dict = {
     transparent: "TRANSPARENT · NO HIDDEN FEES",
     rabLine: "+ RAB / RENCANA ANGGARAN BIAYA — ",
     cta: { title: "VIEW PRICING PAGE", calc: "CALCULATE →" },
+  },
+
+  journal: {
+    eyebrow: "JOURNAL",
+    title: "Journal",
+    subtitle: "Practical essays on tropical design, construction documents, and the honest cost of good architecture.",
+    backToJournal: "\u2190 ALL ARTICLES",
+    readArticle: "READ",
+    minRead: "min read",
+    nextArticle: "NEXT ARTICLE",
+    featuredLabel: "FEATURED",
+    filterLabel: "Filter by category",
+    allLabel: "ALL",
+    searchLabel: "Search articles",
+    searchPlaceholder: "Search articles\u2026",
+    noResults: "No articles match your search.",
+    loadMore: "LOAD MORE",
+    emptyTitle: "The Journal is being prepared.",
+    emptyBody: "New essays on architecture, space, material, and process will appear here soon.",
+    ctaEyebrow: "YF ARCH",
+    ctaTitle: "Punya rencana proyek? **Start a Conversation.**",
+    ctaBody: "The first consultation is free \u2014 a conversation about your site, your brief and your budget. No obligation.",
+    ctaPrimary: "START A CONVERSATION",
+    ctaSecondary: "VIEW PROJECTS",
+    crumbHome: "Home",
+    crumbJournal: "Journal",
+    tocLabel: "CONTENTS",
+    relatedLabel: "RELATED ARTICLES",
   },
 
   process: {
@@ -723,6 +780,7 @@ const id: Dict = {
     { label: "LAYANAN & HARGA", href: "/harga" },
     { label: "STUDIO", href: "/#studio" },
     { label: "KONTAK", href: "/#contact" },
+    { label: "JURNAL", href: "/journal" },
   ],
   navCta: "MARI BICARA",
   menu: { open: "MENU", close: "TUTUP", studio: "STUDIO", email: "EMAIL", whatsapp: "WHATSAPP", localTime: "WAKTU LOKAL" },
@@ -776,6 +834,34 @@ const id: Dict = {
     transparent: "TRANSPARAN · TANPA BIAYA TERSEMBUNYI",
     rabLine: "+ RAB / RENCANA ANGGARAN BIAYA — ",
     cta: { title: "LIHAT HALAMAN HARGA", calc: "HITUNG ESTIMASI →" },
+  },
+
+  journal: {
+    eyebrow: "JURNAL",
+    title: "Journal",
+    subtitle: "Esai praktis tentang desain tropis, gambar kerja, dan biaya jujur dari arsitektur yang baik.",
+    backToJournal: "\u2190 SEMUA ARTIKEL",
+    readArticle: "BACA",
+    minRead: "mnt baca",
+    nextArticle: "ARTIKEL BERIKUTNYA",
+    featuredLabel: "PILIHAN EDITOR",
+    filterLabel: "Filter berdasarkan kategori",
+    allLabel: "SEMUA",
+    searchLabel: "Cari artikel",
+    searchPlaceholder: "Cari artikel\u2026",
+    noResults: "Tidak ada artikel yang cocok dengan pencarian.",
+    loadMore: "MUAT LEBIH BANYAK",
+    emptyTitle: "Jurnal sedang disiapkan.",
+    emptyBody: "Esai-esai baru tentang arsitektur, ruang, material, dan proses akan hadir di sini.",
+    ctaEyebrow: "YF ARCH",
+    ctaTitle: "Punya rencana proyek? **Start a Conversation.**",
+    ctaBody: "Konsultasi pertama gratis \u2014 percakapan tentang lahan, kebutuhan, dan anggaran Anda. Tanpa kewajiban.",
+    ctaPrimary: "MULAI PERCAKAPAN",
+    ctaSecondary: "LIHAT PROYEK",
+    crumbHome: "Beranda",
+    crumbJournal: "Jurnal",
+    tocLabel: "DAFTAR ISI",
+    relatedLabel: "ARTIKEL TERKAIT",
   },
   process: {
     eyebrow: "04 — METODE",
@@ -1200,6 +1286,7 @@ const zh: Dict = {
     { label: "SERVICES & PRICING", href: "/harga" },
     { label: "STUDIO", href: "/#studio" },
     { label: "CONTACT", href: "/#contact" },
+    { label: "JOURNAL", href: "/journal" },
   ],
   navCta: "联系我们",
   menu: { open: "MENU", close: "CLOSE", studio: "STUDIO", email: "EMAIL", whatsapp: "WHATSAPP", localTime: "LOCAL TIME" },
@@ -1252,6 +1339,34 @@ const zh: Dict = {
     transparent: "透明 · 无隐藏费用",
     rabLine: "+ RAB / 预算计划 — ",
     cta: { title: "查看价格页面", calc: "计算估算 →" },
+  },
+
+  journal: {
+    eyebrow: "\u671f\u520a",
+    title: "Journal",
+    subtitle: "\u5173\u4e8e\u70ed\u5e26\u8bbe\u8ba1\u3001\u65bd\u5de5\u56fe\u7eb8\u4e0e\u4f18\u8d28\u5efa\u7b51\u771f\u5b9e\u6210\u672c\u7684\u5b9e\u7528\u77ed\u6587\u3002",
+    backToJournal: "\u2190 \u5168\u90e8\u6587\u7ae0",
+    readArticle: "\u9605\u8bfb",
+    minRead: "\u5206\u949f\u9605\u8bfb",
+    nextArticle: "\u4e0b\u4e00\u7bc7\u6587\u7ae0",
+    featuredLabel: "\u7f16\u8f91\u63a8\u8350",
+    filterLabel: "\u6309\u5206\u7c7b\u7b5b\u9009",
+    allLabel: "\u5168\u90e8",
+    searchLabel: "\u641c\u7d22\u6587\u7ae0",
+    searchPlaceholder: "\u641c\u7d22\u6587\u7ae0\u2026",
+    noResults: "\u6ca1\u6709\u7b26\u5408\u641c\u7d22\u7684\u6587\u7ae0\u3002",
+    loadMore: "\u52a0\u8f7d\u66f4\u591a",
+    emptyTitle: "\u671f\u520a\u6b63\u5728\u7b79\u5907\u4e2d\u3002",
+    emptyBody: "\u5173\u4e8e\u5efa\u7b51\u3001\u7a7a\u95f4\u3001\u6750\u6599\u4e0e\u5efa\u9020\u8fc7\u7a0b\u7684\u65b0\u6587\u7ae0\u5373\u5c06\u53d1\u5e03\u3002",
+    ctaEyebrow: "YF ARCH",
+    ctaTitle: "\u6709\u9879\u76ee\u8ba1\u5212\uff1f**Start a Conversation.**",
+    ctaBody: "\u9996\u6b21\u54a8\u8be2\u514d\u8d39\u2014\u2014\u804a\u804a\u60a8\u7684\u5730\u5757\u3001\u9700\u6c42\u4e0e\u9884\u7b97\u3002\u65e0\u4efb\u4f55\u4e49\u52a1\u3002",
+    ctaPrimary: "\u5f00\u59cb\u5bf9\u8bdd",
+    ctaSecondary: "\u67e5\u770b\u9879\u76ee",
+    crumbHome: "\u9996\u9875",
+    crumbJournal: "\u671f\u520a",
+    tocLabel: "\u76ee\u5f55",
+    relatedLabel: "\u76f8\u5173\u6587\u7ae0",
   },
   process: { eyebrow: "04 — 方法", heading: "流程", sixMovements: "六个阶段 · 从首张草图到交付" },
   studio: {
