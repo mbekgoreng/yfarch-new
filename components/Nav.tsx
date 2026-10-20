@@ -15,12 +15,13 @@ export default function Nav() {
   const { lang, setLang, t } = useI18n();
   const [open, setOpen] = useState(false);
   const [time, setTime] = useState("");
-  /* Over the dark hero film the bar is transparent and the mark relies on
-     mix-blend-difference to read as white. Past the film the page is light
-     paper, so the same mark turns dark and collided with headlines for ~half
-     the page (measured: 49% desktop / 65% mobile of all scroll positions).
-     A solid paper bar from that point on gives the chrome its own readable
-     zone. Pages whose top is already light (/harga) are solid from the start. */
+  /* Over the dark hero film the bar is transparent with a soft dark gradient
+     scrim at the top so the mark stays readable over bright frames, fading
+     to nothing at the bar's lower edge. Past the film the page is light
+     paper: a paper gradient (near-opaque through the text zone, fading to
+     fully transparent at the bottom edge) keeps the chrome readable without
+     a hard solid block. Pages whose top is already light (/harga) use the
+     paper gradient from the start. */
   const [solid, setSolid] = useState(false);
 
   useEffect(() => {
@@ -64,10 +65,10 @@ export default function Nav() {
     <>
       {/* bar */}
       <header
-        className={`pointer-events-none fixed inset-x-0 top-0 z-50 border-b transition-colors duration-500 ${
+        className={`pointer-events-none fixed inset-x-0 top-0 z-50 transition-[background] duration-500 ${
           solid
-            ? "border-line bg-paper/95 backdrop-blur-md"
-            : "border-transparent bg-transparent"
+            ? "bg-[linear-gradient(to_bottom,rgba(242,239,232,0.97)_0%,rgba(242,239,232,0.93)_42%,rgba(242,239,232,0.6)_76%,rgba(242,239,232,0)_100%)]"
+            : "bg-[linear-gradient(to_bottom,rgba(12,11,9,0.4)_0%,rgba(12,11,9,0.18)_52%,rgba(12,11,9,0)_100%)]"
         }`}
       >
         <div className="flex items-center justify-between px-6 py-5 md:px-10 md:py-7">
