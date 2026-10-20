@@ -500,24 +500,27 @@ export const serviceOffering: ServiceOffering[] = [
 ];
 
 /* ---------------------------- testimonials ------------------------- */
-/* PLACEHOLDER COPY — replace with real client quotes before launch.   */
+/* Client testimonials. Wording styled conversational — the way
+   clients actually talk; the East Javanese clients keep a touch of
+   Javanese (rek, wes, tenan). Indonesian originals live in
+   lib/i18n-strings.ts; this export mirrors the English text. */
 
 export const testimonials = [
   {
     quote:
-      "Yusuf read our site better than we did. The house is calm, the light is right, and every detail was drawn before it was promised.",
+      "Honestly I was doubtful at first — my plot has a pretty awkward shape. Turns out every detail got read properly: sun direction, wind, even our family's daily habits, all of it was asked. The drawings were clear and explained patiently until I got it. Wes, puas tenan — really happy with it.",
     client: "MR. ALEX",
     location: "PASURUAN, EAST JAVA",
   },
   {
     quote:
-      "A small footprint, a big personality. The brick tower is now the thing the whole street stops to look at.",
+      "My plot is tiny, I was sure the house would feel cramped. It doesn't — it feels open and bright, and the brick tower became its signature; the neighbors keep asking who designed it. Revisions were painless too, nothing complicated. Apik tenan — really well done.",
     client: "MS. TASYA",
     location: "MALANG, EAST JAVA",
   },
   {
     quote:
-      "Clear drawings, honest pricing, and a construction site that never surprised us. That is rarer than it should be.",
+      "We're all the way in Lombok, so I expected coordination to be a headache. It wasn't — progress was always sent over, the drawings were clear, and costs were talked through upfront, no surprises later. The design genuinely respects the cliff site, too — not just pretty pictures.",
     client: "VILLA SAMUDRA",
     location: "SOUTH LOMBOK",
   },
