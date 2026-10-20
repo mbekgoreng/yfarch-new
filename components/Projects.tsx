@@ -1,10 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { projects, projectImages, type Project } from "@/lib/data";
+import { projects, type Project } from "@/lib/data";
 import { useI18n } from "@/lib/i18n";
 import Reveal from "./Reveal";
-import FilmStrip from "./FilmStrip";
 import Img from "./Img";
 import DayNight from "./DayNight";
 import { useAspect } from "@/lib/useAspect";
@@ -12,10 +11,11 @@ import { useAspect } from "@/lib/useAspect";
 /* ------------------------------------------------------------------ */
 /*  SELECTED PROJECTS — the editorial browse system.                   */
 /*                                                                     */
-/*  Two modes, one toggle:                                             */
-/*    FEATURED — one project dominates (~70% of the visual area) as a  */
-/*               drifting film strip, with its metadata beside it.     */
-/*    INDEX    — every project as an asymmetric magazine spread.       */
+/*  One fixed layout (no mode toggle):                                 */
+/*    FEATURED GRID — the two newest projects as large editorial       */
+/*               cards, staggered like a magazine spread.              */
+/*    INDEX LIST  — the remaining projects as neat ruled rows with     */
+/*               thumbnail, title and right-aligned metadata.          */
 /*                                                                     */
 /*  Then a full-bleed cinematic FEATURED PROJECT plate.                */
 /* ------------------------------------------------------------------ */
@@ -35,180 +35,119 @@ function daynightProps(p: Project) {
   return p.daynight ?? null;
 }
 
-/* Compact stacked metadata — area / location / year, then the services. */
-function ProjectMeta({ p }: { p: Project }) {
-  return (
-    <div className="t-mono space-y-1.5 text-ink/55">
-      <div className="text-ink/75">{p.area.toUpperCase()}</div>
-      <div>{p.location.toUpperCase()}</div>
-      <div>{p.year}</div>
-      {p.services && (
-        <ul className="mt-6 space-y-1 text-ink/45">
-          {p.services.map((s) => (
-            <li key={s}>{s}</li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-}
+/* --------------------------- FEATURED GRID -------------------------- */
 
-/* ----------------------------- FEATURED ---------------------------- */
-
-function FeaturedView({
-  index,
-  setIndex,
-  portrait,
+function FeaturedCard({
+  p,
+  className = "",
+  delay = 0,
 }: {
-  index: number;
-  setIndex: (i: number) => void;
-  portrait: boolean;
+  p: Project;
+  className?: string;
+  delay?: number;
 }) {
-  const { t } = useI18n();
-  const p = projects[index];
-  const images = projectImages(p);
-
   return (
-    <div>
-      <div className={`grid gap-8 ${portrait ? "" : "md:grid-cols-12 md:gap-10 md:items-end"}`}>
-        {/* metadata — ~30% */}
-        <div className={portrait ? "" : "md:col-span-4"}>
-          <Reveal>
-            <div className="t-mono flex items-center gap-3 text-ink/45">
-              <SignalDot />
-              {p.index} — {t.projects.featuredPlate}
-            </div>
-          </Reveal>
-          <Reveal delay={80}>
-            <h3 className="t-display mt-6 text-[clamp(2.4rem,7vw,5.4rem)] md:leading-[0.9]">
-              {p.name}
-            </h3>
-          </Reveal>
-          <Reveal delay={140}>
-            <div className="mt-7">
-              <ProjectMeta p={p} />
-            </div>
-          </Reveal>
-          <Reveal delay={200}>
-            <a
-              href={`/proyek/${p.slug}`}
-              data-project-cursor
-              className="t-mono mt-9 inline-flex items-center gap-3 border-b border-ink/25 pb-2 text-ink/70 transition-colors duration-500 hover:border-ink hover:text-ink"
-            >
-              {t.projects.viewProject} <span aria-hidden="true">→</span>
-            </a>
-          </Reveal>
-        </div>
-
-        {/* visual — 10+ projects: a single breathing day/night hero drives the
-            project (motion is per-project, not per-image). Below the gate it
-            stays the drifting film strip. min-w-0 so the max-content strip
-            never forces the grid item — and the page — to overflow */}
-        <div className={`min-w-0 ${portrait ? "mt-4" : "md:col-span-8"}`}>
+    <Reveal variant="mask" delay={delay} className={className}>
+      <a href={`/proyek/${p.slug}`} data-project-cursor className="group block">
+        <div className="img-frame relative overflow-hidden">
           {daynightProps(p) ? (
-            <div className="img-frame overflow-hidden">
-              <DayNight
-                day={p.daynight!.day}
-                night={p.daynight!.night}
-                alt={`${p.name} — ${p.category}, ${p.location}`}
-                sizes="(min-width: 1024px) 60vw, 90vw"
-                className="h-[46vh] w-full md:h-[58vh]"
-              />
-            </div>
-          ) : (
-            <FilmStrip
-              images={images}
+            <DayNight
+              day={p.daynight!.day}
+              night={p.daynight!.night}
               alt={`${p.name} — ${p.category}, ${p.location}`}
-              index={p.index}
+              sizes="(min-width: 768px) 58vw, 100vw"
+              className="aspect-[4/3] w-full"
+            />
+          ) : (
+            <Img
+              src={p.hero}
+              alt={`${p.name} — ${p.category}, ${p.location}`}
+              sizes="(min-width: 768px) 58vw, 100vw"
+              className="aspect-[4/3] w-full object-cover transition-transform duration-[1400ms] ease-lux group-hover:scale-[1.04]"
             />
           )}
         </div>
-      </div>
-
-      {/* project selector — a red rule marks the active one */}
-      <div className="mt-10 flex flex-wrap items-center gap-7 md:mt-14 md:gap-9">
-        {projects.map((proj, i) => (
-          <button
-            key={proj.slug}
-            onClick={() => setIndex(i)}
-            aria-current={i === index ? "true" : undefined}
-            aria-label={`Show ${proj.name}`}
-            className={`t-mono relative pb-1.5 transition-colors duration-500 ${
-              i === index ? "text-ink" : "text-ink/35 hover:text-ink/65"
-            }`}
+        <div className="mt-5 flex items-baseline justify-between gap-4 border-t border-ink/15 pt-4">
+          <div className="flex items-baseline gap-4">
+            <span className="t-mono text-ink/40">{p.index}</span>
+            <h3 className="t-display text-[clamp(1.4rem,2.2vw,2rem)] leading-none">
+              {p.name}
+            </h3>
+          </div>
+          <span
+            aria-hidden="true"
+            className="t-mono text-ink/40 transition-all duration-500 group-hover:translate-x-1 group-hover:text-ink"
           >
-            {proj.index}
-            <span
-              className={`absolute inset-x-0 bottom-0 h-px origin-left bg-signal transition-transform duration-500 ${
-                i === index ? "scale-x-100" : "scale-x-0"
-              }`}
-              aria-hidden="true"
-            />
-          </button>
-        ))}
-      </div>
+            →
+          </span>
+        </div>
+        <p className="t-mono mt-2 pl-9 text-[11px] uppercase tracking-[0.14em] text-ink/50">
+          {p.location} — {p.year} — {p.area}
+        </p>
+      </a>
+    </Reveal>
+  );
+}
+
+function FeaturedGrid() {
+  const [first, second] = projects;
+  return (
+    <div className="grid gap-12 md:grid-cols-12 md:gap-x-6 md:gap-y-16">
+      <FeaturedCard p={first} className="md:col-span-7" />
+      <FeaturedCard p={second} className="md:col-span-5 md:mt-24" delay={90} />
     </div>
   );
 }
 
-/* ------------------------------- INDEX ----------------------------- */
+/* ----------------------------- INDEX LIST --------------------------- */
 
-/* Asymmetric magazine spread — varied widths, offsets and (mild) ratios.
-   All frames stay landscape so wide renders are never heavily cropped. */
-const INDEX_LAYOUT = [
-  { span: "md:col-span-8", ratio: "aspect-[16/10]", mt: "" },
-  { span: "md:col-span-4", ratio: "aspect-[4/3]", mt: "md:mt-16" },
-  { span: "md:col-span-5", ratio: "aspect-[3/2]", mt: "" },
-  { span: "md:col-span-7", ratio: "aspect-[16/9]", mt: "md:mt-20" },
-  { span: "md:col-span-6 md:col-start-4", ratio: "aspect-[16/10]", mt: "" },
-];
-
-function IndexView() {
+function ProjectList() {
+  const rest = projects.slice(2);
+  if (rest.length === 0) return null;
   return (
-    <div className="grid gap-12 md:grid-cols-12 md:gap-8">
-      {projects.map((p, i) => {
-        const l = INDEX_LAYOUT[i % INDEX_LAYOUT.length];
-        return (
-          <Reveal
-            key={p.slug}
-            variant="mask"
-            as="figure"
-            delay={(i % 2) * 90}
-            className={`img-frame group ${l.span} ${l.mt}`}
+    <div className="mt-20 border-b border-ink/12 md:mt-28">
+      {rest.map((p, i) => (
+        <Reveal key={p.slug} delay={i * 60}>
+          <a
+            href={`/proyek/${p.slug}`}
+            data-project-cursor
+            className="group grid grid-cols-[1fr_auto] items-center gap-x-5 gap-y-4 border-t border-ink/12 py-6 md:grid-cols-[56px_340px_1fr_auto_40px] md:gap-x-8 md:py-7"
           >
-            <a href={`/proyek/${p.slug}`} data-project-cursor className="group block">
-              <div className="relative overflow-hidden">
-                {daynightProps(p) ? (
-                  <DayNight
-                    day={p.daynight!.day}
-                    night={p.daynight!.night}
-                    alt={`${p.name} — ${p.category}, ${p.location}`}
-                    sizes="(min-width: 768px) 60vw, 100vw"
-                    className={`${l.ratio} w-full`}
-                  />
-                ) : (
-                  <Img
-                    src={p.hero}
-                    alt={`${p.name} — ${p.category}, ${p.location}`}
-                    sizes="(min-width: 768px) 60vw, 100vw"
-                    className={`${l.ratio} w-full object-cover`}
-                  />
-                )}
-                <span className="proj-index t-mono pointer-events-none absolute left-4 top-4 text-paper/70">
-                  {p.index}
+            <span className="t-mono hidden text-ink/40 md:block">{p.index}</span>
+            <span className="img-frame relative col-span-2 block overflow-hidden md:col-span-1">
+              <Img
+                src={p.hero}
+                alt={`${p.name} — ${p.category}, ${p.location}`}
+                sizes="(min-width: 768px) 340px, 100vw"
+                className="aspect-[16/9] w-full object-cover transition-transform duration-[1400ms] ease-lux group-hover:scale-[1.05] md:aspect-[16/10]"
+              />
+            </span>
+            <span className="min-w-0">
+              <span className="flex items-baseline gap-3">
+                <span className="t-mono text-ink/40 md:hidden">{p.index}</span>
+                <span className="t-display block text-[clamp(1.5rem,3.4vw,2.9rem)] leading-none">
+                  {p.name}
                 </span>
-              </div>
-              <figcaption className="mt-4 flex items-baseline justify-between gap-4">
-                <span className="t-display text-[clamp(1.15rem,2.4vw,1.9rem)]">{p.name}</span>
-                <span className="t-mono shrink-0 text-ink/40">{p.year}</span>
-              </figcaption>
-              <div className="t-mono mt-2 text-ink/40">
-                {p.category.toUpperCase()} — {p.location.toUpperCase()}
-              </div>
-            </a>
-          </Reveal>
-        );
-      })}
+              </span>
+              <span className="t-mono mt-3 block text-[11px] uppercase tracking-[0.14em] text-ink/50">
+                {p.location}
+                <span className="md:hidden"> — {p.year}</span>
+              </span>
+            </span>
+            <span className="t-mono hidden text-right text-[11px] uppercase leading-5 tracking-[0.14em] text-ink/50 md:block">
+              {p.category}
+              <br />
+              {p.year} — {p.area}
+            </span>
+            <span
+              aria-hidden="true"
+              className="t-display text-2xl text-ink/35 transition-all duration-500 group-hover:translate-x-1 group-hover:text-ink"
+            >
+              →
+            </span>
+          </a>
+        </Reveal>
+      ))}
     </div>
   );
 }
@@ -295,8 +234,6 @@ function FeaturedPlate() {
 
 export default function Projects() {
   const { t } = useI18n();
-  const [mode, setMode] = useState<"featured" | "index">("featured");
-  const [index, setIndex] = useState(0);
   const aspect = useAspect();
   const portrait = aspect === "portrait";
 
@@ -379,37 +316,10 @@ export default function Projects() {
           </div>
         </div>
 
-        {/* ---------------- mode toggle ---------------- */}
-        <Reveal delay={180}>
-          <div className="mode-toggle t-mono mt-14 flex items-center gap-8 md:mt-20">
-            {(["featured", "index"] as const).map((m) => (
-              <button
-                key={m}
-                onClick={() => setMode(m)}
-                aria-pressed={mode === m}
-                className={`relative pb-1.5 transition-colors duration-500 ${
-                  mode === m ? "text-ink" : "text-ink/35 hover:text-ink/60"
-                }`}
-              >
-                {t.projects.toggle[m]}
-                <span
-                  className={`absolute inset-x-0 bottom-0 h-px origin-left bg-signal transition-transform duration-500 ${
-                    mode === m ? "scale-x-100" : "scale-x-0"
-                  }`}
-                  aria-hidden="true"
-                />
-              </button>
-            ))}
-          </div>
-        </Reveal>
-
-        {/* ---------------- browse system ---------------- */}
-        <div className="mt-12 md:mt-16">
-          {mode === "featured" ? (
-            <FeaturedView index={index} setIndex={setIndex} portrait={portrait} />
-          ) : (
-            <IndexView />
-          )}
+        {/* ---------------- browse system: grid + list ---------------- */}
+        <div className="mt-14 md:mt-20">
+          <FeaturedGrid />
+          <ProjectList />
         </div>
       </div>
 
