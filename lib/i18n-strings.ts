@@ -400,19 +400,19 @@ const en: Dict = {
     items: [
       {
         quote:
-          "Yusuf read our site better than we did. The house is calm, the light is right, and every detail was drawn before it was promised.",
+          "Honestly I was doubtful at first — my plot has a pretty awkward shape. Turns out every detail got read properly: sun direction, wind, even our family's daily habits, all of it was asked. The drawings were clear and explained patiently until I got it. Wes, puas tenan — really happy with it.",
         client: "MR. ALEX",
         location: "PASURUAN, EAST JAVA",
       },
       {
         quote:
-          "A small footprint, a big personality. The brick tower is now the thing the whole street stops to look at.",
+          "My plot is tiny, I was sure the house would feel cramped. It doesn't — it feels open and bright, and the brick tower became its signature; the neighbors keep asking who designed it. Revisions were painless too, nothing complicated. Apik tenan — really well done.",
         client: "MS. TASYA",
         location: "MALANG, EAST JAVA",
       },
       {
         quote:
-          "Clear drawings, honest pricing, and a construction site that never surprised us. That is rarer than it should be.",
+          "We're all the way in Lombok, so I expected coordination to be a headache. It wasn't — progress was always sent over, the drawings were clear, and costs were talked through upfront, no surprises later. The design genuinely respects the cliff site, too — not just pretty pictures.",
         client: "VILLA SAMUDRA",
         location: "SOUTH LOMBOK",
       },
@@ -915,17 +915,17 @@ const id: Dict = {
     next: "Testimoni berikutnya",
     items: [
       {
-        quote: "Yusuf membaca lahan kami lebih baik dari kami sendiri. Rumahnya tenang, cahayanya pas, dan setiap detail digambar sebelum dijanjikan.",
+        quote: "Awalnya sempat ragu, soalnya lahan saya bentuknya agak nggak karuan. Eh, ternyata dibaca detail banget rek — arah matahari, angin, sampai kebiasaan keluarga ditanyain semua. Gambarnya jelas, dijelasin pelan-pelan sampai paham. Wes, puas tenan.",
         client: "MR. ALEX",
         location: "PASURUAN, JAWA TIMUR",
       },
       {
-        quote: "Luas yang kecil, kepribadian yang besar. Menara bata kini menjadi hal yang membuat seluruh jalan berhenti memandang.",
+        quote: "Lahan saya kecil, sempat pesimis bakal sumpek. Ternyata bisa dibikin lega dan terang — menara batanya sekarang jadi ciri khas, tetangga sampai nanya-nanya siapa yang desain. Revisi juga enak, nggak ribet blas. Apik tenan!",
         client: "MS. TASYA",
         location: "MALANG, JAWA TIMUR",
       },
       {
-        quote: "Gambar yang jelas, harga yang jujur, dan proyek yang tak pernah mengejutkan kami. Hal itu lebih langka daripada yang seharusnya.",
+        quote: "Kami jauh di Lombok, awalnya mikir koordinasinya bakal susah. Ternyata enak — progres selalu dikirim, gambarnya jelas, biaya dibicarakan di depan, nggak ada kejutan di belakang. Desainnya juga beneran mikirin lahan tebingnya, bukan cuma bagus di gambar.",
         client: "VILLA SAMUDRA",
         location: "LOMBOK SELATAN",
       },
@@ -1416,17 +1416,17 @@ const zh: Dict = {
     next: "下一条评价",
     items: [
       {
-        quote: "尤素夫比我们更了解我们的场地。房子宁静、光线恰到好处，每个细节在承诺之前都已被绘制出来。",
+        quote: "一开始我还有点怀疑，我这块地形状有点不太规整。没想到他们看得特别细——太阳的方向、风向，连我们一家的生活习惯都问到了。图纸很清楚，还耐心地讲到我完全明白为止。真的特别满意。",
         client: "ALEX 先生",
         location: "帕苏鲁安 · 东爪哇",
       },
       {
-        quote: "小小的占地，大大的个性。那座砖塔如今成了整条街驻足观看的焦点。",
+        quote: "我的地很小，本来以为房子肯定会很挤。结果一点都不挤，又通透又亮堂，那个砖塔还成了我们家的标志，邻居们都来问是谁设计的。改图也很顺，一点都不折腾。做得真的很好。",
         client: "TASYA 女士",
         location: "玛琅 · 东爪哇",
       },
       {
-        quote: "图纸清晰、价格诚实、工地从不让我们意外。这比想象中更难得。",
+        quote: "我们在龙目岛，离得很远，一开始还担心沟通会很麻烦。结果完全不会——进度每次都及时发过来，图纸清楚，费用一开始就说好了，后面没有任何意外。而且设计是真的为悬崖地形考虑的，不只是图画得好看。",
         client: "VILLA SAMUDRA",
         location: "南龙目",
       },
