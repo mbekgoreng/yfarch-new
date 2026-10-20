@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Harga — YF ARCH | Desain yang Jelas. Harga yang Transparan.",
   description:
     "Paket layanan desain YF ARCH — gambar teknis, gambar kerja, interior, exterior, dan RAB. Harga transparan per m², kalkulator estimasi, dan konsultasi gratis.",
+  alternates: { canonical: "/harga" },
 };
 
 export default function HargaPage() {
