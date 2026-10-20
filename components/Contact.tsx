@@ -102,6 +102,23 @@ export default function Contact() {
           ))}
         </div>
 
+        {/* local service areas — internal links to the local pages */}
+        <nav
+          aria-label="Area layanan"
+          className="t-mono flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-paper/15 pt-4 text-paper/45"
+        >
+          <span className="text-paper/30">AREA LAYANAN</span>
+          <a href="/jasa-arsitek-probolinggo" className="transition-colors hover:text-paper">
+            JASA ARSITEK PROBOLINGGO
+          </a>
+          <a href="/jasa-arsitek-bromo" className="transition-colors hover:text-paper">
+            JASA ARSITEK BROMO
+          </a>
+          <a href="/jasa-arsitek-lumajang" className="transition-colors hover:text-paper">
+            JASA ARSITEK LUMAJANG
+          </a>
+        </nav>
+
         {/* footer strip */}
         <div className="t-mono flex flex-col gap-2 border-t border-paper/15 pt-4 text-paper/35 sm:flex-row sm:items-center sm:justify-between">
           <span>© 2026 YF ARCH — {site.location.toUpperCase()}</span>
