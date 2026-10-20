@@ -15,30 +15,12 @@ export default function Nav() {
   const { lang, setLang, t } = useI18n();
   const [open, setOpen] = useState(false);
   const [time, setTime] = useState("");
-  /* Over the dark hero film the bar is transparent with a soft dark gradient
-     scrim at the top so the mark stays readable over bright frames, fading
-     to nothing at the bar's lower edge. Past the film the page is light
-     paper: a paper gradient (near-opaque through the text zone, fading to
-     fully transparent at the bottom edge) keeps the chrome readable without
-     a hard solid block. Pages whose top is already light (/harga) use the
-     paper gradient from the start. */
-  const [solid, setSolid] = useState(false);
-
-  useEffect(() => {
-    const hero = document.querySelector(".walk-track");
-    if (!hero) {
-      setSolid(true);
-      return;
-    }
-    const onScroll = () => setSolid(hero.getBoundingClientRect().bottom <= 0);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
+  /* The bar itself is fully transparent. A short black gradient scrim sits
+     at the very top and fades out within the top third of the bar — enough
+     shade for the gold mark over bright frames, invisible over dark
+     sections, and no light fog band over the page. The chrome text relies
+     on mix-blend-difference, so it reads dark on light pages and light on
+     dark ones without any state switching. */
 
   useEffect(() => {
     document.documentElement.style.overflow = open ? "hidden" : "";
@@ -64,13 +46,7 @@ export default function Nav() {
   return (
     <>
       {/* bar */}
-      <header
-        className={`pointer-events-none fixed inset-x-0 top-0 z-50 transition-[background] duration-500 ${
-          solid
-            ? "bg-[linear-gradient(to_bottom,rgba(242,239,232,0.97)_0%,rgba(242,239,232,0.93)_42%,rgba(242,239,232,0.6)_76%,rgba(242,239,232,0)_100%)]"
-            : "bg-[linear-gradient(to_bottom,rgba(12,11,9,0.4)_0%,rgba(12,11,9,0.18)_52%,rgba(12,11,9,0)_100%)]"
-        }`}
-      >
+      <header className="pointer-events-none fixed inset-x-0 top-0 z-50 bg-[linear-gradient(to_bottom,rgba(8,8,7,0.55)_0%,rgba(8,8,7,0.26)_16%,rgba(8,8,7,0)_34%)]">
         <div className="flex items-center justify-between px-6 py-5 md:px-10 md:py-7">
           <a
             href="/"
