@@ -81,6 +81,15 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="id">
+      <head>
+        {/* Theme Duo: set data-theme before paint to avoid a flash of the wrong theme */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){try{var m=/[?&]theme=(elegant|calm)/.exec(location.search);var t=m?m[1]:(localStorage.getItem('yfarch-theme')||'elegant');document.documentElement.dataset.theme=t;}catch(e){document.documentElement.dataset.theme='elegant';}})();",
+          }}
+        />
+      </head>
       <body className={`${sans.variable} ${mono.variable} ${serif.variable} antialiased`}>
         <script
           type="application/ld+json"
