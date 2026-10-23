@@ -28,7 +28,7 @@ const mono = IBM_Plex_Mono({
 const SITE_URL = "https://www.yfarch.my.id";
 const SITE_TITLE = "YF ARCH — Jasa Arsitek & Desain Rumah Tropis di Probolinggo, Jawa Timur";
 const SITE_DESC =
-  "YF ARCH is an architecture studio based in Probolinggo, East Java, Indonesia, designing quiet, light-filled tropical homes, villas and commercial buildings. Architecture, interior, working drawings, 3D visualization, construction, design & build.";
+  "YF ARCH is an architecture studio based in Probolinggo, East Java, designing quiet, light-filled tropical homes, villas and commercial buildings.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

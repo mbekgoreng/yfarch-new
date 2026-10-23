@@ -48,7 +48,7 @@ export const localPages: LocalPage[] = [
     city: "Probolinggo",
     seoTitle: "Jasa Arsitek Probolinggo — Desain Rumah, Villa & Bangunan Usaha | YF ARCH",
     seoDescription:
-      "YF ARCH adalah studio arsitek yang berbasis di Probolinggo, Jawa Timur. Desain rumah tinggal, homestay, cafe, dan bangunan usaha — konsultasi pertama gratis, harga transparan per m², gambar kerja dan RAB tersedia.",
+      "YF ARCH adalah studio arsitek berbasis di Probolinggo, Jawa Timur. Desain rumah, homestay, cafe, dan bangunan usaha — konsultasi pertama gratis, harga per m².",
     eyebrow: "Jasa Arsitek — Probolinggo",
     h1: "Jasa Arsitek di Probolinggo untuk Rumah, Villa & Bangunan Usaha",
     intro: [
@@ -143,7 +143,7 @@ export const localPages: LocalPage[] = [
     city: "Kawasan Bromo",
     seoTitle: "Jasa Arsitek Bromo — Desain Villa, Homestay & Cafe | YF ARCH",
     seoDescription:
-      "Perencanaan villa, homestay, guest house, dan cafe di kawasan Bromo (Sukapura, Ngadisari, Cemoro Lawang, Tosari) oleh YF ARCH, studio arsitek berbasis Probolinggo. Desain yang membaca kontur, iklim pegunungan, view, dan operasional penginapan.",
+      "Villa, homestay, guest house, dan cafe di kawasan Bromo (Sukapura, Ngadisari, Cemoro Lawang, Tosari) oleh YF ARCH, studio arsitek berbasis Probolinggo.",
     eyebrow: "Jasa Arsitek — Kawasan Bromo",
     h1: "Jasa Arsitek Villa & Homestay di Kawasan Bromo",
     intro: [
@@ -242,7 +242,7 @@ export const localPages: LocalPage[] = [
     city: "Lumajang",
     seoTitle: "Jasa Arsitek Lumajang — Desain Rumah, Homestay & Bangunan Usaha | YF ARCH",
     seoDescription:
-      "YF ARCH melayani desain rumah tinggal, homestay, dan bangunan usaha di Lumajang, Jawa Timur — dari studio kami di Probolinggo. Konsultasi pertama gratis, gambar kerja dan RAB tersedia, harga transparan per m².",
+      "Desain rumah tinggal, homestay, dan bangunan usaha di Lumajang, Jawa Timur oleh YF ARCH — konsultasi pertama gratis, harga transparan per m².",
     eyebrow: "Jasa Arsitek — Lumajang",
     h1: "Jasa Arsitek di Lumajang untuk Rumah Tinggal & Usaha",
     intro: [

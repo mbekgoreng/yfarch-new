@@ -317,7 +317,7 @@ export default function Film() {
       <section aria-label="YF ARCH — introduction">
         <div className="flex min-h-screen flex-col items-center justify-center bg-ink px-6 text-center">
           <h1 className="sr-only">YF ARCH</h1>
-          <img src="/images/logo.png" alt="YF ARCHITECT" className="h-32 w-auto" />
+          <img src="/images/logo.webp" alt="YF ARCHITECT" className="h-32 w-auto" />
           <p className="t-mono mt-8 text-paper/55">{site.tagline}</p>
         </div>
         {scenes.map((sc) => (
@@ -455,7 +455,7 @@ export default function Film() {
         >
           <h1 className="sr-only">YF ARCH — Architecture · Design · Construction</h1>
           <img
-            src="/images/logo.png"
+            src="/images/logo.webp"
             alt="YF ARCHITECT"
             className="h-32 w-auto md:h-48"
           />

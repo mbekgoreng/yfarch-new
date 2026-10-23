@@ -8,7 +8,7 @@ import Studio from "@/components/Studio";
 import Profile from "@/components/Profile";
 import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
-import Assistant from "@/components/Assistant";
+import AssistantLazy from "@/components/AssistantLazy";
 
 export default function Home() {
   return (
@@ -23,7 +23,7 @@ export default function Home() {
       <Profile />
       <Testimonials />
       <Contact />
-      <Assistant />
+      <AssistantLazy />
     </main>
   );
 }

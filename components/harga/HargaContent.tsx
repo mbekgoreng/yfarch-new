@@ -440,9 +440,10 @@ function Calculator({
         <div className="space-y-12 lg:col-span-3">
           {/* 01 luas */}
           <Reveal>
-            <div className="t-mono mb-5 text-paper/40">{pr.calcInput1}</div>
+            <label htmlFor="calc-area" className="t-mono mb-5 block text-paper/40">{pr.calcInput1}</label>
             <div className="flex items-baseline gap-4 border-b border-paper/20 pb-4">
               <input
+                id="calc-area"
                 type="number"
                 min={10}
                 max={10000}
@@ -748,7 +749,7 @@ function FinalCta() {
       {/* footer strip */}
       <div className="t-mono relative z-10 flex flex-col gap-2 border-t border-paper/15 px-6 py-5 text-paper/35 sm:flex-row sm:items-center sm:justify-between md:px-10">
         <span className="flex items-center gap-3">
-          <img src="/images/logo.png" alt="" className="h-7 w-auto" />
+          <img src="/images/logo.webp" alt="YF ARCHITECT" className="h-7 w-auto" />
           © 2026 YF ARCH — {site.location.toUpperCase()}
         </span>
         <span>{site.coordinates}</span>

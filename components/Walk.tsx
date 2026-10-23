@@ -394,7 +394,7 @@ export default function Walk() {
         {/* loading veil */}
         {!ready && (
           <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-ink">
-            <img src="/images/logo.png" alt="" className="h-32 w-auto md:h-48" />
+            <img src="/images/logo.webp" alt="YF ARCHITECT" className="h-32 w-auto md:h-48" />
             <span className="t-mono mt-12 text-paper/30">{t.walk.loading}</span>
           </div>
         )}

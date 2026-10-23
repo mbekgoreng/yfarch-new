@@ -271,7 +271,9 @@ export default function Assistant() {
           }}
           className="flex items-center gap-3 border-t border-paper/10 px-5 py-3.5"
         >
+          <label htmlFor="yf-assistant-input" className="sr-only">{u.openLabel}</label>
           <input
+            id="yf-assistant-input"
             ref={inputRef}
             value={input}
             onChange={(e) => setInput(e.target.value)}

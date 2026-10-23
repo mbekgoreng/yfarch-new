@@ -234,8 +234,7 @@ export default function ProjectDetail({ project: p }: { project: Project }) {
         <div className="ease-lux absolute inset-0 transition-transform duration-[1200ms] group-hover:scale-[1.04]">
           <Img
             src={next.hero}
-            alt=""
-            aria-hidden="true"
+            alt={`${next.name} — ${next.category}, ${next.location}`}
             sizes="100vw"
             className="h-full w-full object-cover"
           />

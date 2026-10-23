@@ -74,7 +74,7 @@ export default function Contact() {
       <div className="relative z-10 shrink-0 px-6 pb-6 md:px-10">
         <Reveal>
           <img
-            src="/images/logo.png"
+            src="/images/logo.webp"
             alt={c.logoAlt}
             loading="lazy"
             className="mb-6 h-12 w-auto md:h-14"

@@ -56,7 +56,7 @@ export default function Nav() {
             aria-label="YF ARCH — beranda"
           >
             <img
-              src="/images/logo.png"
+              src="/images/logo.webp"
               alt="YF ARCHITECT"
               className="h-9 w-auto md:h-11 [filter:drop-shadow(0_1px_6px_rgba(0,0,0,0.45))]"
             />
@@ -140,7 +140,7 @@ export default function Nav() {
           </ul>
           <div>
             <img
-              src="/images/logo.png"
+              src="/images/logo.webp"
               alt="YF ARCHITECT"
               className="menu-meta mb-10 h-16 w-auto md:h-20"
             />
