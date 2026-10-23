@@ -16,7 +16,7 @@ export default defineArticle({
   featuredImage: "tasya-house-ext-1",
   featuredImageAlt:
     "Rumah mungil modern dua lantai di lahan terbatas dengan fasad bersih dan bukaan kaca besar",
-  status: "draft",
+  status: "published",
   blocks: [
     p("Lahan 5×10 meter — 50 meter persegi — adalah realitas banyak keluarga di kota-kota Indonesia. Kabar baiknya: dengan desain yang tepat, 50 m² dapat menampung rumah dua lantai yang nyaman untuk keluarga kecil, lengkap dengan ruang tamu, dapur, dua hingga tiga kamar tidur, dan area servis."),
     p("Kuncinya bukan menambah luas, melainkan menghilangkan pemborosan: koridor mati, ruang yang hanya dipakai sesekali, dan dinding yang menghalangi cahaya."),
