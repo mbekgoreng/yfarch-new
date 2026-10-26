@@ -9,15 +9,12 @@ import Link from "next/link";
 import { serviceOffering } from "@/lib/data";
 import { packages, rab, rp } from "@/lib/pricing";
 import { useI18n } from "@/lib/i18n";
-import { usePromo } from "@/lib/usePromo";
 import Reveal from "./Reveal";
 import Img from "./Img";
 
 export default function Services() {
   const { t } = useI18n();
   const [active, setActive] = useState(0);
-  const promo = usePromo();
-  const showPromo = promo.mounted && promo.active;
   const svc = serviceOffering[active];
 
   return (
@@ -42,12 +39,6 @@ export default function Services() {
             <Reveal delay={120}>
               <p className="t-statement text-[1.02rem] leading-relaxed text-paper/60 md:text-[1.12rem]">
                 {t.services.copy}
-                {showPromo && (
-                  <span className="text-sand">
-                    {" "}
-                    {t.services.promoNote}
-                  </span>
-                )}
               </p>
             </Reveal>
           </div>
@@ -134,18 +125,7 @@ export default function Services() {
                   <span className="t-mono text-paper/35">{p.title}</span>
                 </span>
                 <span className="t-mono shrink-0 text-right text-paper/75">
-                  {showPromo ? (
-                    <>
-                      <span className="mr-2 hidden text-paper/30 line-through sm:inline">
-                        {rp(p.normal)}
-                      </span>
-                      {rp(p.promo)} <span className="text-paper/35">/ m²</span>
-                    </>
-                  ) : (
-                    <>
-                      {rp(p.normal)} <span className="text-paper/35">/ m²</span>
-                    </>
-                  )}
+                  {rp(p.normal)} <span className="text-paper/35">/ m²</span>
                 </span>
                 <span
                   className="t-mono hidden shrink-0 text-paper/30 transition-transform duration-300 group-hover:translate-x-1 md:inline"

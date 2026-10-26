@@ -2,7 +2,7 @@
 
 /* ------------------------------------------------------------------ */
 /*  HARGA — pricing experience                                         */
-/*  Hero · promo diskon 30% (countdown 60 menit) · pricing cards ·    */
+/*  Hero · pricing cards ·    */
 /*  RAB · calculator · WhatsApp handoff · comparison · final CTA       */
 /* ------------------------------------------------------------------ */
 
@@ -18,7 +18,6 @@ import {
   type Pkg,
 } from "@/lib/pricing";
 import { useI18n } from "@/lib/i18n";
-import { usePromo, fmtCountdown } from "@/lib/usePromo";
 import { site } from "@/lib/data";
 import Reveal from "@/components/Reveal";
 
@@ -82,96 +81,13 @@ function Hero() {
   );
 }
 
-/* ============================ PROMO BANNER ========================== */
-
-function PromoBanner() {
-  const { t } = useI18n();
-  const pr = t.price;
-  const promo = usePromo();
-  const [h, m, s] = fmtCountdown(promo.remainMs);
-
-  return (
-    <section className="bg-ink text-paper">
-      <div className="grid gap-10 px-6 py-14 md:grid-cols-2 md:items-center md:px-10 md:py-20">
-        <div>
-          <Reveal>
-            <div className="t-mono mb-5 flex items-center gap-3 text-brass">
-              <span className="pulse-dot block h-1.5 w-1.5 rounded-full bg-brass" />
-              {pr.promoLabel}
-            </div>
-          </Reveal>
-          <Reveal delay={80}>
-            <h2 className="t-display text-[clamp(1.8rem,4.5vw,3.6rem)]">
-              {promo.mounted && !promo.active ? (
-                <>{pr.normalApplies}</>
-              ) : (
-                <>
-                  {pr.promoHeadline.split("\n")[0]}
-                  <br />
-                  <span className="t-serif italic tracking-normal text-sand">
-                    {pr.promoHeadline.split("\n")[1] ?? pr.promoHeadline}
-                  </span>
-                </>
-              )}
-            </h2>
-          </Reveal>
-          <Reveal delay={150}>
-            <p className="t-statement mt-5 max-w-md text-[1rem] text-paper/55">
-              {promo.mounted && !promo.active ? pr.promoEnded : pr.promoDesc}
-            </p>
-          </Reveal>
-        </div>
-
-        <Reveal delay={120} className="md:justify-self-end">
-          {!promo.mounted ? (
-            <div className="t-mono text-paper/40">{pr.promoLoading}</div>
-          ) : promo.active ? (
-            <div>
-              <div className="t-mono mb-4 text-paper/40">{pr.promoEndsIn}</div>
-              <div
-                className="flex items-baseline gap-3 font-light tabular-nums"
-                role="timer"
-                aria-live="polite"
-                aria-label={`${pr.promoEndsIn} ${h} ${pr.hour} ${m} ${pr.minute} ${s} ${pr.second}`}
-              >
-                {[h, m, s].map((v, i) => (
-                  <span key={i} className="flex items-baseline gap-3">
-                    {i > 0 && <span className="text-[2rem] text-paper/30 md:text-[3rem]">:</span>}
-                    <span className="border border-paper/15 px-4 py-3 text-[2.6rem] tracking-tight md:px-6 md:py-4 md:text-[4rem]">
-                      {v}
-                    </span>
-                  </span>
-                ))}
-              </div>
-              <div className="t-mono mt-4 flex justify-between text-paper/30">
-                <span>{pr.hour}</span>
-                <span>{pr.minute}</span>
-                <span>{pr.second}</span>
-              </div>
-            </div>
-          ) : (
-            <div className="border border-paper/15 px-10 py-8 text-center">
-              <div className="t-display text-[clamp(1.6rem,3.5vw,2.6rem)] text-paper/80">
-                {pr.promoEnded}
-              </div>
-              <div className="t-mono mt-3 text-paper/40">00 : 00 : 00</div>
-            </div>
-          )}
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
 /* ============================ PRICING CARDS ========================= */
 
 function PriceTag({
   pkg,
-  showPromo,
   dark = false,
 }: {
   pkg: Pkg;
-  showPromo: boolean;
   dark?: boolean;
 }) {
   const { t } = useI18n();
@@ -180,16 +96,10 @@ function PriceTag({
     <div>
       <div className="flex flex-wrap items-baseline gap-x-3">
         <span className="text-[2.6rem] font-light tracking-tight md:text-[3.2rem]">
-          {rp(showPromo ? pkg.promo : pkg.normal)}
+          {rp(pkg.normal)}
         </span>
         <span className={`t-mono ${dark ? "text-paper/40" : "text-ink/40"}`}>{pr.perM2}</span>
       </div>
-      {showPromo && (
-        <div className={`t-mono mt-1.5 ${dark ? "text-paper/35" : "text-ink/35"}`}>
-          {pr.normal}{" "}
-          <span className="line-through">{rp(pkg.normal)} / m²</span>
-        </div>
-      )}
     </div>
   );
 }
@@ -197,8 +107,6 @@ function PriceTag({
 function Cards({ onPick }: { onPick: (id: string) => void }) {
   const { t } = useI18n();
   const pr = t.price;
-  const promo = usePromo();
-  const showPromo = promo.mounted && promo.active;
 
   return (
     <section className="bg-paper px-6 py-24 md:px-10 md:py-36">
@@ -236,7 +144,7 @@ function Cards({ onPick }: { onPick: (id: string) => void }) {
               >
                 {/* badge — discount badges (DISKON 30%) only show while the
                     promotion is active; identity ribbons always show */}
-                {pt.badge && (showPromo || !pt.promoBadge) && (
+                {pt.badge && !pt.promoBadge && (
                   <span
                     className={`t-mono absolute -top-3 left-8 px-3 py-1.5 ${
                       focal
@@ -262,7 +170,7 @@ function Cards({ onPick }: { onPick: (id: string) => void }) {
 
                 <div className={`my-8 h-px w-full ${focal ? "bg-paper/15" : "bg-ink/10"}`} />
 
-                <PriceTag pkg={p} showPromo={showPromo} dark={focal} />
+                <PriceTag pkg={p} dark={focal} />
 
                 <ul
                   className={`mt-8 grow space-y-2.5 text-[0.85rem] font-light ${
@@ -387,15 +295,13 @@ function Calculator({
   rabOn: boolean;
   setRabOn: (b: boolean) => void;
 }) {
-  const promo = usePromo();
-  const showPromo = promo.mounted && promo.active;
   const [custom, setCustom] = useState(false);
   const { t } = useI18n();
   const pr = t.price;
 
   const pkg = packages.find((p) => p.id === pkgId)!;
   const pt = pr.packages[packages.findIndex((p) => p.id === pkgId)] ?? pr.packages[0];
-  const unit = activePrice(pkg, showPromo);
+  const unit = activePrice(pkg, false);
   const design = area * unit;
   const rabCost = rabOn ? area * rab.price : 0;
   const total = design + rabCost;
@@ -403,9 +309,9 @@ function Calculator({
   const wa = useMemo(
     () =>
       waUrl(
-        buildWaMessage({ area, pkg, rabOn, promoActive: showPromo })
+        buildWaMessage({ area, pkg, rabOn, promoActive: false })
       ),
-    [area, pkg, rabOn, showPromo]
+    [area, pkg, rabOn]
   );
 
   const reset = () => {
@@ -508,7 +414,7 @@ function Calculator({
                       pkgId === p.id ? "text-ink/55" : "text-paper/40"
                     }`}
                   >
-                    {rp(activePrice(p, showPromo))}/m²
+                    {rp(activePrice(p, false))}/m²
                   </div>
                 </button>
               ))}
@@ -550,7 +456,7 @@ function Calculator({
           <div className="border border-paper/20 bg-paper p-8 text-ink md:p-10">
             <div className="t-mono flex justify-between text-ink/40">
               <span>{pr.estLabel}</span>
-              <span>{showPromo ? pr.promoTag : pr.normalTag}</span>
+              <span>{pr.normalTag}</span>
             </div>
 
             <dl className="mt-8 space-y-0">
@@ -778,7 +684,6 @@ export default function HargaContent() {
   return (
     <>
       <Hero />
-      <PromoBanner />
       <Cards onPick={pick} />
       <RabSection onAddRab={addRab} />
       <Calculator

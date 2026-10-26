@@ -58,7 +58,7 @@ export default defineArticle({
       "Dapur di sisi barat-daya dengan jendela besar dan cooker hood — panas dan asap langsung terbuang.",
       "Material: plester putih, kayu bengkirai untuk kusen dan plafon teras, batu andesit hanya pada satu bidang fokal entrance.",
     ]),
-    p("Total biaya desain untuk proyek seperti ini — dengan gambar kerja lengkap dan visualisasi — umumnya hanya 3–5% dari nilai konstruksi. Bandingkan dengan biaya membongkar dak yang salah posisi: satu kesalahan struktur bisa menghabiskan lebih dari seluruh biaya jasa desain."),
+    p("Total biaya desain untuk proyek seperti ini — dengan gambar kerja lengkap dan visualisasi — biasanya hanya sepersekian kecil dari nilai konstruksi, tergantung lingkup gambar kerja dan visualisasi. Bandingkan dengan biaya membongkar dak yang salah posisi: satu kesalahan struktur bisa menghabiskan lebih dari seluruh biaya jasa desain."),
     h2("Ventilasi dan pencahayaan: detail yang menentukan"),
     p("Dua sistem pasif ini layak mendapat perhatian khusus karena paling sering gagal:"),
     list([

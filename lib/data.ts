@@ -292,13 +292,13 @@ export const projects: Project[] = [
     gallery: [
       {
         src: "film-02-light",
-        caption: "Entry corridor — morning, 07:40",
+        caption: "Entry corridor — morning, 07:40 (Atmosphere reference — not a photo of this project)",
         kind: "INTERIOR",
         wide: true,
       },
       {
         src: "film-04-material",
-        caption: "Junction of teak, basalt and lime plaster",
+        caption: "Junction of teak, basalt and lime plaster (Atmosphere reference — not a photo of this project)",
         kind: "DETAIL",
         wide: true,
       },
@@ -324,17 +324,17 @@ export const projects: Project[] = [
     elevation: "+38 M ASL",
     hero: "project-villa-samudra",
     narrative:
-      "A single low pavilion on a cliff above the Indian Ocean. One roof, eighteen meters of uninterrupted opening, and a pool whose edge disappears into the horizon. The architecture does as little as possible — the ocean does the rest.",
+      "A single low pavilion on a cliff above the Indian Ocean. One roof, one uninterrupted opening, and a pool whose edge disappears into the horizon. The architecture does as little as possible — the ocean does the rest.",
     gallery: [
       {
         src: "film-03-space",
-        caption: "Main volume — fully opened to the garden",
+        caption: "Main volume — fully opened to the garden (Atmosphere reference — not a photo of this project)",
         kind: "INTERIOR",
         wide: true,
       },
       {
         src: "film-05-connection",
-        caption: "Courtyard threshold — late afternoon",
+        caption: "Courtyard threshold — late afternoon (Atmosphere reference — not a photo of this project)",
         kind: "EXTERIOR",
         wide: true,
       },
@@ -363,13 +363,13 @@ export const projects: Project[] = [
     gallery: [
       {
         src: "film-06-dusk",
-        caption: "The pavilion as a lantern — blue hour",
+        caption: "The pavilion as a lantern — blue hour (Atmosphere reference — not a photo of this project)",
         kind: "EXTERIOR",
         wide: true,
       },
       {
         src: "film-01-form",
-        caption: "Study of the volume in the landscape",
+        caption: "Study of the volume in the landscape (Atmosphere reference — not a photo of this project)",
         kind: "CONTEXT",
         wide: true,
       },
@@ -524,15 +524,6 @@ export const testimonials = [
     client: "VILLA SAMUDRA",
     location: "SOUTH LOMBOK",
   },
-];
-
-/* ------------------------- studio statistics ----------------------- */
-/* PLACEHOLDER FIGURES — editable. Swap for real numbers when available. */
-
-export const stats = [
-  { value: "10+", label: "PROJECTS DELIVERED" },
-  { value: "03+", label: "YEARS IN PRACTICE" },
-  { value: "100%", label: "CLIENT SATISFACTION" },
 ];
 
 /* ------------------------- selected works intro -------------------- */

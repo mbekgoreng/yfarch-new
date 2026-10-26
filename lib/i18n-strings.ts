@@ -116,9 +116,6 @@ export type Dict = {
     statement: string[];
     description: string;
     facts: [string, string][];
-    stats: { value: string; label: string }[];
-    statYears: string;
-    statClients: string;
   };
 
   profile: {
@@ -361,13 +358,6 @@ const en: Dict = {
       ["PRACTICE", "SINCE 2026"],
       ["FIELD", "ARCHITECT · INTERIOR · BIM · WEB · UI/UX · AI"],
     ] as [string, string][],
-    stats: [
-      { value: "10+", label: "PROJECTS DELIVERED" },
-      { value: "03+", label: "YEARS IN PRACTICE" },
-      { value: "100%", label: "CLIENT SATISFACTION" },
-    ],
-    statYears: "YEARS IN PRACTICE",
-    statClients: "CLIENT SATISFACTION",
   },
 
   profile: {
@@ -879,13 +869,6 @@ const id: Dict = {
       ["PRAKTIK", "SEJAK 2026"],
       ["BIDANG", "ARSITEK · INTERIOR · BIM · WEB · UI/UX · AI"],
     ] as [string, string][],
-    stats: [
-      { value: "10+", label: "PROYEK SELESAI" },
-      { value: "03+", label: "TAHUN BERKARYA" },
-      { value: "100%", label: "KEPUASAN KLIEN" },
-    ],
-    statYears: "TAHUN BERKARYA",
-    statClients: "KEPUASAN KLIEN",
   },
   profile: {
     eyebrow: "06 — PRINCIPAL",
@@ -1380,13 +1363,6 @@ const zh: Dict = {
       ["实践", "2026 年至今"],
       ["领域", "建筑 · 室内 · BIM · 网页 · UI/UX · AI"],
     ] as [string, string][],
-    stats: [
-      { value: "10+", label: "完成项目" },
-      { value: "03+", label: "从业年限" },
-      { value: "100%", label: "客户满意度" },
-    ],
-    statYears: "从业年限",
-    statClients: "客户满意度",
   },
   profile: {
     eyebrow: "06 — 主理人",

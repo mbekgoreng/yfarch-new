@@ -9,7 +9,6 @@ import Reveal from "./Reveal";
 /*                                                                     */
 /*  Desktop: full-bleed statement, then a two-beat grid — description  */
 /*  in the left column and facts as a right-aligned hairline list.     */
-/*  Stats close the section as a sparse number row.                    */
 /* ------------------------------------------------------------------ */
 
 function SignalDot() {
@@ -65,21 +64,6 @@ export default function Studio() {
           </Reveal>
         </div>
 
-        {/* studio statistics — quiet number row */}
-        <div className="mt-20 border-t border-ink/10 pt-10 md:mt-28">
-          <div className="grid gap-10 sm:grid-cols-3 md:gap-8">
-            {st.stats.map((s, i) => (
-              <Reveal key={s.label} delay={i * 90}>
-                <div className="sm:col-span-1">
-                  <div className="t-display text-[clamp(2.4rem,6vw,4.4rem)] leading-none">
-                    {s.value}
-                  </div>
-                  <div className="t-mono mt-4 text-ink/45">{s.label}</div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );

@@ -9,16 +9,14 @@
 
 import { useEffect, useRef, useState } from "react";
 import { projects, process, site, studio, profile } from "@/lib/data";
-import { packages, rab, rp, isPromoActive, type Pkg } from "@/lib/pricing";
+import { packages, rab, rp, type Pkg } from "@/lib/pricing";
 import { useI18n } from "@/lib/i18n";
 import type { Dict } from "@/lib/i18n-strings";
 
 type Msg = { role: "user" | "bot"; text: string };
 
-function priceLine(p: Pkg, promo: boolean) {
-  return promo
-    ? `• ${p.name} — ${p.title}: ${rp(p.promo)}/m² (normal ${rp(p.normal)}/m²)`
-    : `• ${p.name} — ${p.title}: ${rp(p.normal)}/m²`;
+function priceLine(p: Pkg) {
+  return `• ${p.name} — ${p.title}: ${rp(p.normal)}/m²`;
 }
 
 const fill = (s: string, m: Record<string, string>) =>
@@ -26,20 +24,16 @@ const fill = (s: string, m: Record<string, string>) =>
 
 function buildAnswers(t: Dict) {
   const a = t.assistant;
-  const promo = isPromoActive();
-  const head = promo ? "30% OFF:" : "OFFICIAL LIST:";
+  const head = "OFFICIAL LIST:";
 
   const priceSummary = `${head}\n\n${packages
-    .map((p) => priceLine(p, promo))
+    .map((p) => priceLine(p))
     .join("\n")}\n• RAB — Rencana Anggaran Biaya: ${rp(
     rab.price
   )}/m² (output ${rab.output})\n\n${site.pricingNoteId}\n\nGunakan kalkulator di halaman HARGA untuk estimasi instan.`;
 
   const pkgDetail = (p: Pkg): string => {
-    const promoA = isPromoActive();
-    const harga = promoA
-      ? `${rp(p.promo)}/m² — diskon 30%, berlaku 60 menit (normal ${rp(p.normal)}/m²)`
-      : `${rp(p.normal)}/m²`;
+    const harga = `${rp(p.normal)}/m²`;
     return `${p.name} — ${p.title}\nHarga: ${harga}\n\nCakupan:\n${p.features
       .map((f) => `• ${f}`)
       .join("\n")}\n• ${p.render}${p.note ? `\n\nCatatan: ${p.note}` : ""}\n\n${site.pricingNoteId}`;
