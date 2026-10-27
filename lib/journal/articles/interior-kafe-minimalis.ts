@@ -17,7 +17,7 @@ export default defineArticle({
   featuredImage: "journal-interior-kafe-minimalis",
   featuredImageAlt:
     "Ilustrasi editorial: interior kafe minimalis yang hangat dengan meja kayu, kursi ramping, dan lampu gantung",
-  status: "draft",
+  status: "published",
   blocks: [
     p("Artikel ini bersifat edukatif tentang prinsip interior kafe. Interior kafe minimalis terlihat sederhana — justru karena itulah ia sulit. Tidak ada ornamen untuk menyembunyikan kesalahan: setiap material terlihat, setiap sambungan terbaca, setiap cahaya terasa. Berikut cara merancangnya dengan benar."),
     h2("Material: pilih yang menua dengan anggun"),
@@ -72,7 +72,7 @@ export default defineArticle({
       "Toilet: standar hotel, bukan standar kos — ia menentukan persepsi kebersihan seluruh kafe.",
       "Penyimpanan: gudang kecil yang cukup untuk stok harian agar tidak menumpuk di area pelanggan.",
     ]),
-    p("Interior yang dirancang dengan prinsip ini tidak hanya fotogenik — ia bekerja keras mendukung operasional harian. Untuk kerangka yang lebih besar — konsep dan alur — baca juga [panduan desain kafe](/journal/desain-kafe-modern-konsep-alur-suasa)."),
+    p("Interior yang dirancang dengan prinsip ini tidak hanya fotogenik — ia bekerja keras mendukung operasional harian. Untuk kerangka yang lebih besar — konsep dan alur — baca juga [panduan desain kafe](/journal/desain-kafe-modern-konsep-alur-suasana)."),
     p("Merencanakan interior komersial? [Start a Conversation](https://wa.me/6282142424750) — konsultasi pertama gratis, tanpa kewajiban."),
   ],
 });
