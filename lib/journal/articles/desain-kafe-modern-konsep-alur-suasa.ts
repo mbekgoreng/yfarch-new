@@ -17,7 +17,7 @@ export default defineArticle({
   featuredImage: "journal-desain-kafe-modern-konsep-alur-suasa",
   featuredImageAlt:
     "Ilustrasi editorial: eksterior kafe modern yang hangat dengan teras dan pencahayaan temaram",
-  status: "draft",
+  status: "published",
   blocks: [
     p("Artikel ini bersifat edukatif tentang prinsip desain kafe. Banyak kafe gagal bukan karena kopinya — melainkan karena ruangnya tidak mendukung bisnisnya: antrean menumpuk di pintu, barista terjebak di antara meja, dan pelanggan tidak betah lebih dari satu cangkir. Desain kafe yang baik merancang tiga hal sekaligus: konsep, alur, dan suasana."),
     h2("Mulai dari konsep, bukan dari Pinterest"),
