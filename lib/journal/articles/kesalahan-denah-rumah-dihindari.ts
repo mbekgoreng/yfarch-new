@@ -15,7 +15,7 @@ export default defineArticle({
   publishedAt: "2026-10-22",
   featuredImage: "drawing-plan",
   featuredImageAlt: "Denah arsitektur rumah tinggal yang digambar dengan detail dan anotasi ukuran",
-  status: "draft",
+  status: "published",
   blocks: [
     p("Denah adalah keputusan termahal dalam sebuah rumah — dan paling sulit diperbaiki setelah dibangun. Dinding bisa dicat ulang, lantai bisa diganti, tetapi denah yang salah akan mengganggu setiap hari selama puluhan tahun. Berikut tujuh kesalahan yang paling sering kami temui, beserta cara memeriksanya."),
     h2("1. Sirkulasi buntu dan koridor gelap"),
