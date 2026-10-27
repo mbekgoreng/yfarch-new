@@ -16,7 +16,7 @@ export default defineArticle({
   featuredImage: "journal-paket-jasa-desain-arsitektur",
   featuredImageAlt:
     "Ilustrasi editorial: set dokumen gambar arsitektur yang tersusun rapi — denah, tampak, dan potongan",
-  status: "draft",
+  status: "published",
   blocks: [
     p("'Paket desain' adalah istilah yang dipakai hampir semua biro arsitek — dengan isi yang sangat berbeda-beda. Satu paket berisi lima lembar sketsa; paket lain berisi seratus lembar dokumen teknis. Artikel ini membedah apa saja yang seharusnya ada dalam paket jasa desain arsitektur yang profesional, agar Anda tahu persis apa yang dibeli."),
     h2("Lapisan 1: Desain konsep"),
