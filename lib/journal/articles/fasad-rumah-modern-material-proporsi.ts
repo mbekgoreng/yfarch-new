@@ -16,7 +16,7 @@ export default defineArticle({
   featuredImage: "alex-house-ext-2",
   featuredImageAlt:
     "Fasad rumah modern dua lantai dengan komposisi massa tegas, dinding putih dan aksen kayu gelap",
-  status: "draft",
+  status: "published",
   blocks: [
     p("Fasad adalah wajah rumah — bagian pertama yang dilihat dan yang paling lama diingat. Namun fasad modern yang baik jarang lahir dari keinginan 'terlihat mewah'. Ia lahir dari disiplin: komposisi massa yang jelas, proporsi bukaan yang tepat, dan material yang dipilih dengan hemat."),
     h2("Mulai dari massa, bukan dari dekorasi"),
