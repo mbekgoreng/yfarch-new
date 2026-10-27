@@ -16,7 +16,7 @@ export default defineArticle({
   featuredImage: "project-paviliun-teduh",
   featuredImageAlt:
     "Paviliun tropis dengan atap lebar ber-overstek dalam menaungi teras kayu yang teduh",
-  status: "draft",
+  status: "published",
   blocks: [
     p("Indonesia tidak punya musim dingin — hanya musim panas dan musim hujan yang sama-sama lembap. Itu berarti strategi desain rumah di sini fundamentally berbeda dari referensi arsitektur empat musim yang membanjiri internet. Rumah tropis yang baik dibangun di atas tiga strategi pasif: cahaya, ventilasi, dan naungan."),
     h2("Cahaya: ambil terangnya, buang panasnya"),
