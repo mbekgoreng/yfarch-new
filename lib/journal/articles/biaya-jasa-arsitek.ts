@@ -16,7 +16,7 @@ export default defineArticle({
   featuredImage: "journal-biaya-jasa-arsitek",
   featuredImageAlt:
     "Ilustrasi editorial: meja kerja arsitek dengan gambar denah, kalkulator, dan dokumen anggaran",
-  status: "draft",
+  status: "published",
   blocks: [
     p("Pertanyaan paling sering kami terima bukanlah tentang gaya arsitektur — melainkan: berapa biayanya? Kewajaran pertanyaan itu berbanding lurus dengan kaburnya jawaban yang beredar di pasaran. Artikel ini menjernihkan tiga hal: bagaimana biaya jasa arsitek dihitung, apa saja yang Anda dapatkan, dan bagaimana membandingkan penawaran secara adil."),
     h2("Tiga model perhitungan yang umum dipakai"),
