@@ -17,7 +17,7 @@ export default defineArticle({
   featuredImage: "journal-renovasi-ruko-hal-perlu-dianalisis",
   featuredImageAlt:
     "Ilustrasi editorial: deretan ruko tua dengan satu unit yang sedang direnovasi, scaffolding di fasad",
-  status: "draft",
+  status: "published",
   blocks: [
     p("Artikel ini bersifat edukatif. Ruko adalah tipologi bangunan paling 'ditempa' di Indonesia: dibangun cepat, dipakai berganti-ganti fungsi, direnovasi berkali-kali tanpa dokumentasi. Merenvovasinya tanpa analisis memadai adalah undangan untuk masalah — berikut delapan hal yang wajib diperiksa sebelum desain dimulai."),
     h2("1. Struktur eksisting: apa yang benar-benar menahan bangunan"),
@@ -35,7 +35,7 @@ export default defineArticle({
     h2("7. Dampak ke tetangga dan lingkungan"),
     p("Renovasi ruko tidak terjadi dalam ruang hampa: getaran pembongkaran merambat ke unit sebelah, debu mengganggu bisnis tetangga, dan parkir material menyita jalan. Komunikasikan rencana ke tetangga kiri-kanan, atur jam kerja, dan siapkan pengaman debu. Konflik tetangga dapat menghentikan proyek lebih efektif daripada masalah teknis apa pun."),
     h2("8. Anggaran dengan kontingensi yang jujur"),
-    p("Renovasi selalu menyimpan kejutan — struktur tersembunyi, instalasi lama yang harus diganti total, atau temuan saat pembongkaran. Anggaran renovasi ruko yang sehat mencantumkan kontingensi 15–20% secara eksplisit, bukan berharap tidak ada kejutan. [RAB yang disusun dari gambar](/journal/rab-bangunan-fungsi-komponen) adalah alat terbaik untuk mengendalikan ini."),
+    p("Renovasi selalu menyimpan kejutan — struktur tersembunyi, instalasi lama yang harus diganti total, atau temuan saat pembongkaran. Anggaran renovasi ruko yang sehat mencantumkan kontingensi 15–20% secara eksplisit, bukan berharap tidak ada kejutan. RAB yang disusun dari gambar adalah alat terbaik untuk mengendalikan ini."),
     quote("Renovasi yang baik adalah 70% investigasi, 30% eksekusi."),
     h2("Estimasi durasi dan tahapan (ilustrasi)"),
     p("Sebagai ilustrasi umum untuk renovasi ruko 4×12 m dua lantai menjadi kafe:"),
