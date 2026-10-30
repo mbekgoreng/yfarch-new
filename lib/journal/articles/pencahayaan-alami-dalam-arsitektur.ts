@@ -16,7 +16,7 @@ export default defineArticle({
   featuredImage: "film-02-light",
   featuredImageAlt:
     "Cahaya alami menembus interior melalui bukaan tinggi, membentuk pola terang di lantai dan dinding",
-  status: "draft",
+  status: "published",
   blocks: [
     p("Arsitek besar sepanjang sejarah pada dasarnya adalah pemahat cahaya. Sebelum listrik ditemukan, seluruh arsitektur adalah tentang bagaimana memasukkan cahaya ke dalam ruang — dan keterampilan itu tetap menjadi pembeda utama antara ruang yang 'biasa' dan ruang yang berkesan."),
     h2("Kualitas cahaya lebih penting dari kuantitas"),
