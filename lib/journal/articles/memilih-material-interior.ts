@@ -16,7 +16,7 @@ export default defineArticle({
   featuredImage: "alex-house-kitchen-1",
   featuredImageAlt:
     "Interior dapur dengan kombinasi material: marmer abu-abu, kabinet kayu, dan aksen kuningan",
-  status: "draft",
+  status: "published",
   blocks: [
     p("Memilih material interior sering dimulai dari pertanyaan 'bagus yang mana?' — padahal pertanyaan yang benar adalah 'cocok untuk apa?'. Material yang sempurna untuk kamar tidur bisa menjadi bencana di dapur. Artikel ini memberi kerangka memilih material dari tiga sisi: fungsi, daya tahan, dan perawatan."),
     h2("Tiga pertanyaan sebelum memilih"),
@@ -71,7 +71,7 @@ export default defineArticle({
     quote("Material terbaik bukan yang termahal — melainkan yang paling tepat untuk cara Anda hidup."),
     h2("Siklus perawatan: biaya yang tidak terlihat"),
     p("Setiap material punya 'jadwal perawatan': kayu solid butuh coating ulang tiap beberapa tahun, marmer butuh sealing, cat eksterior butuh pengecatan ulang. Tanyakan jadwal ini sebelum membeli — material yang indah tetapi tidak pernah dirawat akan terlihat lebih buruk daripada material sederhana yang terawat."),
-    p("Pemilihan material adalah bagian dari [proses desain yang terstruktur](/journal/proses-desain-arsitektur-brief-gambar-kerja) — diputuskan di atas kertas, bukan di toko bangunan saat konstruksi sudah berjalan."),
+    p("Pemilihan material adalah bagian dari proses desain yang terstruktur — diputuskan di atas kertas, bukan di toko bangunan saat konstruksi sudah berjalan."),
     p("Punya rencana proyek? [Start a Conversation](https://wa.me/6282142424750) — konsultasi pertama gratis, tanpa kewajiban."),
   ],
 });
