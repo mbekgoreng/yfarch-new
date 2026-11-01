@@ -159,7 +159,8 @@ export const packages: Pkg[] = [
 /* ------------------------------- RAB ------------------------------- */
 
 export const rab = {
-  price: 15_000, // Rp / m²
+  price: 15_000, // Rp / m² (normal)
+  promo: 12_750, // Rp / m² (15% off)
   output: "Excel + PDF",
   features: [
     "Rekap pekerjaan",
@@ -258,7 +259,7 @@ export function buildWaMessage(opts: {
   const { area, pkg, rabOn, promoActive } = opts;
   const unit = activePrice(pkg, promoActive);
   const design = area * unit;
-  const rabCost = rabOn ? area * rab.price : 0;
+  const rabCost = rabOn ? area * rab.promo : 0;
   const total = design + rabCost;
   const lines = [
     "Halo, saya ingin konsultasi desain.",

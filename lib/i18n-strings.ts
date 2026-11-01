@@ -218,6 +218,7 @@ export type Dict = {
     normalTag: string;
     ribbonLabel: string;
     saveTag: string;
+    rabPromoTag: string;
     rows: { luas: string; pkg: string; desain: string; rab: string; total: string };
     disclaim: string;
     ctaConsult: string;
@@ -747,6 +748,7 @@ const en: Dict = {
     normalTag: "NORMAL PRICE",
     ribbonLabel: "30% OFF",
     saveTag: "YOU SAVE",
+    rabPromoTag: "15% OFF",
     rows: { luas: "AREA", pkg: "PACKAGE", desain: "DESIGN", rab: "RAB", total: "TOTAL ESTIMATE" },
     disclaim:
       "Prices are estimates based on the selected area and services. Final work scope can be adjusted to your project.",
@@ -1248,6 +1250,7 @@ const id: Dict = {
     normalTag: "HARGA NORMAL",
     ribbonLabel: "DISKON 30%",
     saveTag: "HEMAT",
+    rabPromoTag: "DISKON 15%",
     rows: { luas: "LUAS", pkg: "PAKET", desain: "DESAIN", rab: "RAB", total: "TOTAL ESTIMASI" },
     disclaim:
       "Harga merupakan estimasi berdasarkan luas dan layanan yang dipilih. Detail akhir pekerjaan dapat disesuaikan berdasarkan kebutuhan proyek.",
@@ -1744,6 +1747,7 @@ const zh: Dict = {
     normalTag: "原价",
     ribbonLabel: "立减 30%",
     saveTag: "节省",
+    rabPromoTag: "立减 15%",
     rows: { luas: "面积", pkg: "套餐", desain: "设计", rab: "RAB", total: "估算总额" },
     disclaim: "价格基于所选面积与服务估算，最终工作范围可根据项目需求调整。",
     ctaConsult: "咨询项目",

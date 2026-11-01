@@ -256,8 +256,13 @@ function RabSection({ onAddRab }: { onAddRab: () => void }) {
             </p>
           </Reveal>
           <Reveal delay={160}>
-            <div className="mt-10 flex items-baseline gap-3">
-              <span className="text-[3.2rem] font-light tracking-tight md:text-[3.8rem]">{rp(rab.price)}</span>
+            <div className="t-mono mt-10 flex flex-wrap items-center gap-x-2 gap-y-2 text-ink/45">
+              <span>{pr.normalTag}</span>
+              <s className="decoration-brass decoration-2">{rp(rab.price)}</s>
+              <span className="bg-brass px-2 py-0.5 font-bold text-ink">{pr.rabPromoTag}</span>
+            </div>
+            <div className="mt-1 flex items-baseline gap-3">
+              <span className="text-[3.2rem] font-light tracking-tight md:text-[3.8rem]">{rp(rab.promo)}</span>
               <span className="t-mono text-ink/40">{pr.perM2}</span>
             </div>
             <div className="t-mono mt-3 text-ink/50">
@@ -317,7 +322,7 @@ function Calculator({
   const pt = pr.packages[packages.findIndex((p) => p.id === pkgId)] ?? pr.packages[0];
   const unit = activePrice(pkg, true);
   const design = area * unit;
-  const rabCost = rabOn ? area * rab.price : 0;
+  const rabCost = rabOn ? area * rab.promo : 0;
   const total = design + rabCost;
 
   const wa = useMemo(
@@ -458,7 +463,7 @@ function Calculator({
               <span className="t-mono text-paper/70">
                 {rabOn ? pr.calcRabOn : pr.calcRabOff}
                 {rabOn && (
-                  <span className="ml-4 text-brass">{pr.calcRabAdd} {rp(rab.price)}/m²</span>
+                  <span className="ml-4 text-brass">{pr.calcRabAdd} {rp(rab.promo)}/m²</span>
                 )}
               </span>
             </button>
@@ -496,7 +501,7 @@ function Calculator({
                   <dt>
                     <div className="t-mono text-ink/45">{pr.rows.rab}</div>
                     <div className="t-mono mt-1 !tracking-[0.1em] text-ink/30">
-                      {area || 0} × {rp(rab.price)}
+                      {area || 0} × {rp(rab.promo)}
                     </div>
                   </dt>
                   <dd className="text-[1.5rem] font-light">{rp(rabCost)}</dd>
@@ -511,7 +516,7 @@ function Calculator({
               <div className="flex items-baseline justify-between border-t border-ink/10 py-4">
                 <dt className="t-mono text-ink/45">{pr.saveTag}</dt>
                 <dd className="text-[1.25rem] font-light text-brass">
-                  {rp(area * (pkg.normal - pkg.promo))}
+                  {rp(area * (pkg.normal - pkg.promo) + (rabOn ? area * (rab.price - rab.promo) : 0))}
                 </dd>
               </div>
             </dl>

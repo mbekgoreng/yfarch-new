@@ -29,8 +29,8 @@ function buildAnswers(t: Dict) {
   const priceSummary = `${head}\n\n${packages
     .map((p) => priceLine(p))
     .join("\n")}\n• RAB — Rencana Anggaran Biaya: ${rp(
-    rab.price
-  )}/m² (output ${rab.output})\n\n${site.pricingNoteId}\n\nGunakan kalkulator di halaman HARGA untuk estimasi instan.`;
+    rab.promo
+  )}/m² (diskon 15% dari ${rp(rab.price)}, output ${rab.output})\n\n${site.pricingNoteId}\n\nGunakan kalkulator di halaman HARGA untuk estimasi instan.`;
 
   const pkgDetail = (p: Pkg): string => {
     const harga = `${rp(p.promo)}/m² (harga normal ${rp(p.normal)}/m² — sedang diskon 30%)`;
@@ -40,8 +40,8 @@ function buildAnswers(t: Dict) {
   };
 
   const rabAnswer = `RAB / Rencana Anggaran Biaya — layanan terpisah seharga ${rp(
-    rab.price
-  )}/m², output ${rab.output}.\n\nCakupan:\n${rab.features
+    rab.promo
+  )}/m² (diskon 15% dari harga normal ${rp(rab.price)}/m²), output ${rab.output}.\n\nCakupan:\n${rab.features
     .map((f) => `• ${f}`)
     .join("\n")}`;
 

@@ -142,7 +142,8 @@ export default function Services() {
             <div className="mt-6 border-t border-paper/12 pt-6">
               <span className="t-mono text-paper/45">
                 {t.services.rabLine.trim()}{" "}
-                {rp(rab.price)} / m² · OUTPUT {rab.output.toUpperCase()}
+                <s className="text-paper/30 decoration-brass decoration-2">{rp(rab.price)}</s>{" "}
+                {rp(rab.promo)} / m² · OUTPUT {rab.output.toUpperCase()}
               </span>
             </div>
           </Reveal>
