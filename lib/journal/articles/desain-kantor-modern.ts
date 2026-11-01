@@ -17,7 +17,7 @@ export default defineArticle({
   featuredImage: "journal-desain-kantor-modern",
   featuredImageAlt:
     "Ilustrasi editorial: interior kantor modern dengan area kerja terbuka, ruang meeting kaca, dan tanaman",
-  status: "draft",
+  status: "published",
   blocks: [
     p("Artikel ini bersifat edukatif tentang prinsip desain kantor. Kantor adalah mesin produktivitas — dan seperti mesin, ia bekerja baik jika dirancang mengikuti alurnya, bukan melawannya. Desain kantor modern yang berhasil menyeimbangkan tiga hal: alur kerja, kenyamanan manusia, dan identitas perusahaan."),
     h2("Mulai dari cara kerja, bukan dari gaya"),
