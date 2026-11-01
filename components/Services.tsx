@@ -125,7 +125,8 @@ export default function Services() {
                   <span className="t-mono text-paper/35">{p.title}</span>
                 </span>
                 <span className="t-mono shrink-0 text-right text-paper/75">
-                  {rp(p.normal)} <span className="text-paper/35">/ m²</span>
+                  <s className="mr-2 text-paper/35 decoration-brass decoration-2">{rp(p.normal)}</s>
+                  {rp(p.promo)} <span className="text-paper/35">/ m²</span>
                 </span>
                 <span
                   className="t-mono hidden shrink-0 text-paper/30 transition-transform duration-300 group-hover:translate-x-1 md:inline"

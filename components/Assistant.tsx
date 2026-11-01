@@ -16,7 +16,7 @@ import type { Dict } from "@/lib/i18n-strings";
 type Msg = { role: "user" | "bot"; text: string };
 
 function priceLine(p: Pkg) {
-  return `• ${p.name} — ${p.title}: ${rp(p.normal)}/m²`;
+  return `• ${p.name} — ${p.title}: ${rp(p.promo)}/m² (diskon 30% dari ${rp(p.normal)})`;
 }
 
 const fill = (s: string, m: Record<string, string>) =>
@@ -33,7 +33,7 @@ function buildAnswers(t: Dict) {
   )}/m² (output ${rab.output})\n\n${site.pricingNoteId}\n\nGunakan kalkulator di halaman HARGA untuk estimasi instan.`;
 
   const pkgDetail = (p: Pkg): string => {
-    const harga = `${rp(p.normal)}/m²`;
+    const harga = `${rp(p.promo)}/m² (harga normal ${rp(p.normal)}/m² — sedang diskon 30%)`;
     return `${p.name} — ${p.title}\nHarga: ${harga}\n\nCakupan:\n${p.features
       .map((f) => `• ${f}`)
       .join("\n")}\n• ${p.render}${p.note ? `\n\nCatatan: ${p.note}` : ""}\n\n${site.pricingNoteId}`;

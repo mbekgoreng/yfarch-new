@@ -94,9 +94,15 @@ function PriceTag({
   const pr = t.price;
   return (
     <div>
-      <div className="flex flex-wrap items-baseline gap-x-3">
+      <div
+        className={`t-mono flex flex-wrap items-baseline gap-x-2 ${dark ? "text-paper/40" : "text-ink/45"}`}
+      >
+        <span>{pr.normalTag}</span>
+        <s className="decoration-brass decoration-2">{rp(pkg.normal)}</s>
+      </div>
+      <div className="mt-1 flex flex-wrap items-baseline gap-x-3">
         <span className="text-[2.6rem] font-light tracking-tight md:text-[3.2rem]">
-          {rp(pkg.normal)}
+          {rp(pkg.promo)}
         </span>
         <span className={`t-mono ${dark ? "text-paper/40" : "text-ink/40"}`}>{pr.perM2}</span>
       </div>
@@ -142,8 +148,9 @@ function Cards({ onPick }: { onPick: (id: string) => void }) {
                       : "border-ink/15 bg-paper"
                 }`}
               >
-                {/* badge — discount badges (DISKON 30%) only show while the
-                    promotion is active; identity ribbons always show */}
+                {/* badge — identity ribbons (PALING POPULER, PRO, …) always
+                    show; the 30% discount itself is carried by the promo
+                    ribbon below, so per-package discount badges stay off */}
                 {pt.badge && !pt.promoBadge && (
                   <span
                     className={`t-mono absolute -top-3 left-8 px-3 py-1.5 ${
@@ -158,11 +165,18 @@ function Cards({ onPick }: { onPick: (id: string) => void }) {
                   </span>
                 )}
 
+                {/* promo ribbon — permanent 30% discount on every package;
+                    the card index number is dropped because the ribbon
+                    occupies the top-right corner */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute right-0 top-0 h-[150px] w-[150px] overflow-hidden sm:h-[180px] sm:w-[180px]"
+                >
+                  <div className="promo-ribbon-band">{pr.ribbonLabel}</div>
+                </div>
+
                 <div className="flex items-baseline justify-between">
                   <h3 className="t-display text-[2rem] md:text-[2.2rem]">{pt.name}</h3>
-                  <span className={`t-mono ${focal ? "text-paper/30" : "text-ink/30"}`}>
-                    0{i + 1}
-                  </span>
                 </div>
                 <p className={`t-mono mt-2 ${focal ? "text-paper/50" : "text-ink/50"}`}>
                   {pt.title}
@@ -301,7 +315,7 @@ function Calculator({
 
   const pkg = packages.find((p) => p.id === pkgId)!;
   const pt = pr.packages[packages.findIndex((p) => p.id === pkgId)] ?? pr.packages[0];
-  const unit = activePrice(pkg, false);
+  const unit = activePrice(pkg, true);
   const design = area * unit;
   const rabCost = rabOn ? area * rab.price : 0;
   const total = design + rabCost;
@@ -309,7 +323,7 @@ function Calculator({
   const wa = useMemo(
     () =>
       waUrl(
-        buildWaMessage({ area, pkg, rabOn, promoActive: false })
+        buildWaMessage({ area, pkg, rabOn, promoActive: true })
       ),
     [area, pkg, rabOn]
   );
@@ -414,7 +428,7 @@ function Calculator({
                       pkgId === p.id ? "text-ink/55" : "text-paper/40"
                     }`}
                   >
-                    {rp(activePrice(p, false))}/m²
+                    {rp(activePrice(p, true))}/m²
                   </div>
                 </button>
               ))}
@@ -456,7 +470,7 @@ function Calculator({
           <div className="border border-paper/20 bg-paper p-8 text-ink md:p-10">
             <div className="t-mono flex justify-between text-ink/40">
               <span>{pr.estLabel}</span>
-              <span>{pr.normalTag}</span>
+              <span>{pr.promoTag}</span>
             </div>
 
             <dl className="mt-8 space-y-0">
@@ -492,6 +506,12 @@ function Calculator({
                 <dt className="t-mono text-ink/60">{pr.rows.total}</dt>
                 <dd className="text-[2.6rem] font-normal tracking-tight md:text-[3rem]">
                   {rp(total)}
+                </dd>
+              </div>
+              <div className="flex items-baseline justify-between border-t border-ink/10 py-4">
+                <dt className="t-mono text-ink/45">{pr.saveTag}</dt>
+                <dd className="text-[1.25rem] font-light text-brass">
+                  {rp(area * (pkg.normal - pkg.promo))}
                 </dd>
               </div>
             </dl>
