@@ -16,7 +16,7 @@ export default defineArticle({
   featuredImage: "journal-proses-desain-arsitektur-brief-gambar-kerja",
   featuredImageAlt:
     "Ilustrasi editorial: tahapan proses desain arsitek — sketsa konsep, model, hingga gambar kerja di atas meja",
-  status: "draft",
+  status: "published",
   blocks: [
     p("Banyak klien terkejut mengetahui bahwa 'desain' memakan waktu berminggu-minggu. Mereka membayangkan arsitek menggambar rumah dalam sekali duduk. Kenyataannya, desain arsitektur yang profesional adalah proses lima tahap — dan memahami tahapannya membantu Anda menjadi klien yang baik, yang pada akhirnya menghasilkan desain yang lebih baik."),
     h2("Tahap 1: Brief dan konsultasi awal"),
@@ -29,9 +29,9 @@ export default defineArticle({
     h2("Tahap 2: Konsep desain"),
     p("Arsitek menerjemahkan brief menjadi 2–3 alternatif gubahan: massa bangunan, zonasi, dan karakter. Presentasi konsep bukan tentang memilih 'yang paling bagus gambarnya', melainkan mendiskusikan mana yang paling tepat menjawab kebutuhan. Tahap ini adalah saat termurah untuk berubah pikiran — manfaatkan sepenuhnya."),
     h2("Tahap 3: Pengembangan desain (design development)"),
-    p("Konsep terpilih dikembangkan menjadi denah final, tampak, potongan, dan pilihan material. Detail mulai mengeras: tinggi plafon, jenis kusen, pola lantai. Pada akhir tahap ini, Anda seharusnya bisa membayangkan hidup di dalamnya — jika belum, mintalah [visualisasi 3D](/journal/model-3d-ke-bangunan-nyata) sebelum lanjut."),
+    p("Konsep terpilih dikembangkan menjadi denah final, tampak, potongan, dan pilihan material. Detail mulai mengeras: tinggi plafon, jenis kusen, pola lantai. Pada akhir tahap ini, Anda seharusnya bisa membayangkan hidup di dalamnya — jika belum, mintalah visualisasi 3D sebelum lanjut."),
     h2("Tahap 4: Gambar kerja"),
-    p("Desain diterjemahkan menjadi dokumen teknis presisi: denah berukuran, detail struktur, MEP, dan spesifikasi material. Gambar kerja adalah produk yang sesungguhnya dari jasa arsitek — dokumen inilah yang dibawa ke lapangan dan menjadi dasar [RAB](/journal/rab-bangunan-fungsi-komponen). Kualitas gambar kerja menentukan kualitas bangunan."),
+    p("Desain diterjemahkan menjadi dokumen teknis presisi: denah berukuran, detail struktur, MEP, dan spesifikasi material. Gambar kerja adalah produk yang sesungguhnya dari jasa arsitek — dokumen inilah yang dibawa ke lapangan dan menjadi dasar RAB. Kualitas gambar kerja menentukan kualitas bangunan."),
     h2("Tahap 5: Pendampingan konstruksi"),
     p("Selama pembangunan, arsitek menjawab pertanyaan lapangan, meninjau kesesuaian dengan gambar, dan menyetujui penyesuaian yang tak terhindarkan. Tahap ini sering diremehkan, padahal di sinilah desain 'dijaga' agar tidak menyimpang."),
     table(
