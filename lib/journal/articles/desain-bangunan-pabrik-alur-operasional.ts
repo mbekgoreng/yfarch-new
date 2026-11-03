@@ -17,7 +17,7 @@ export default defineArticle({
   featuredImage: "journal-desain-bangunan-pabrik-alur-operasional",
   featuredImageAlt:
     "Ilustrasi editorial: bangunan pabrik modern dengan area loading dock dan sirkulasi kendaraan yang teratur",
-  status: "draft",
+  status: "published",
   blocks: [
     p("Artikel ini bersifat edukatif tentang prinsip perancangan fasilitas industri. Bangunan pabrik yang buruk merugikan setiap hari: forklift berputar sia-sia, material menumpuk di koridor, pekerja berjalan berkilo-kilometer per shift. Semuanya berakar pada satu kesalahan: bangunan dirancang dulu, alur operasional dipikirkan belakangan."),
     h2("Prinsip utama: inside-out, bukan outside-in"),
