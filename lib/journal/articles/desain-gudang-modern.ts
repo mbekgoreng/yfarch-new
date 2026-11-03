@@ -17,7 +17,7 @@ export default defineArticle({
   featuredImage: "journal-desain-gudang-modern",
   featuredImageAlt:
     "Ilustrasi editorial: interior gudang modern dengan rak tinggi, lorong forklift yang lebar dan teratur",
-  status: "draft",
+  status: "published",
   blocks: [
     p("Artikel ini bersifat edukatif tentang prinsip perancangan gudang. Gudang yang dirancang asal-asalan membuang uang setiap hari: forklift menunggu karena lorong sempit, barang rusak karena penumpukan salah, dan sepertiga volume bangunan tidak terpakai karena ketinggian tidak direncanakan. Berikut prinsip-prinsipnya."),
     h2("Mulai dari sistem penyimpanan, bukan dari bangunan"),
