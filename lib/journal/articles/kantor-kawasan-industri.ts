@@ -17,7 +17,7 @@ export default defineArticle({
   featuredImage: "journal-kantor-kawasan-industri",
   featuredImageAlt:
     "Ilustrasi editorial: gedung kantor modern di kawasan industri dengan fasad kaca dan area hijau di depan",
-  status: "draft",
+  status: "published",
   blocks: [
     p("Artikel ini bersifat edukatif. Kantor di kawasan industri sering diperlakukan sebagai 'sisa' — ditempel di sudut pabrik tanpa konsep. Padahal ia punya tiga peran kritis: pusat administrasi operasional, wajah perusahaan bagi klien dan auditor, dan alat retensi talenta. Berikut cara merancangnya dengan benar."),
     h2("Posisi: dekat tetapi terpisah"),
