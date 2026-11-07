@@ -17,7 +17,7 @@ export default defineArticle({
   featuredImage: "journal-checklist-perencanaan-bangunan-industri",
   featuredImageAlt:
     "Ilustrasi editorial: pandangan udara kawasan industri dengan beberapa bangunan pabrik dan gudang yang tertata",
-  status: "draft",
+  status: "published",
   blocks: [
     p("Artikel ini bersifat edukatif. Merencanakan bangunan industri — pabrik, gudang, atau fasilitas produksi — berbeda dari bangunan komersial biasa: taruhannya operasional harian selama puluhan tahun, dan kesalahannya terkunci dalam beton. Gunakan checklist ini sebelum memulai."),
     h2("1. Definisi operasional yang presisi"),
@@ -50,7 +50,7 @@ export default defineArticle({
     h2("9. Fase konstruksi vs operasional"),
     p("Jika dibangun bertahap atau di samping fasilitas yang berjalan: bagaimana material masuk tanpa mengganggu operasi? Bagaimana debu dan getaran dikendalikan? Rencana phasing konstruksi adalah bagian dari desain, bukan urusan kontraktor belakangan."),
     h2("10. Anggaran berbasis data"),
-    p("Estimasi industrial tidak bisa memakai 'harga per m² rumah' — spesifikasinya fundamentally berbeda (struktur berat, utilitas khusus, proteksi kebakaran). [RAB berbasis gambar](/journal/rab-bangunan-fungsi-komponen) dengan referensi proyek sejenis adalah satu-satunya dasar yang dapat dipertanggungjawabkan."),
+    p("Estimasi industrial tidak bisa memakai 'harga per m² rumah' — spesifikasinya fundamentally berbeda (struktur berat, utilitas khusus, proteksi kebakaran). RAB berbasis gambar dengan referensi proyek sejenis adalah satu-satunya dasar yang dapat dipertanggungjawabkan."),
     h2("Template brief industrial satu halaman (ilustrasi)"),
     p("Sebagai ilustrasi, brief awal yang cukup untuk memulai diskusi desain:"),
     list([
