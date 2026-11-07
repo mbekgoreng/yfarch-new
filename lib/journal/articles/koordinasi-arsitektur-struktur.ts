@@ -16,7 +16,7 @@ export default defineArticle({
   featuredImage: "journal-koordinasi-arsitektur-struktur",
   featuredImageAlt:
     "Ilustrasi editorial: detail struktur beton bertulang — kolom dan balok dalam proses konstruksi",
-  status: "draft",
+  status: "published",
   blocks: [
     p("Ada pemandangan yang terlalu sering terlihat di rumah-rumah Indonesia: kolom beton muncul di tengah ruang keluarga, balok melintang rendah di atas pintu, atau tangga yang 'menabrak' struktur. Semua itu bukan nasib — melainkan gejala dari satu penyakit proses: arsitektur dirancang dulu, struktur 'dicocokkan' belakangan."),
     h2("Dua disiplin, satu bangunan"),
