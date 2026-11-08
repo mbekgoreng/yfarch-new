@@ -16,7 +16,7 @@ export default defineArticle({
   featuredImage: "journal-rab-bangunan-fungsi-komponen",
   featuredImageAlt:
     "Ilustrasi editorial: dokumen RAB dengan tabel volume dan harga satuan di atas gambar kerja",
-  status: "draft",
+  status: "published",
   blocks: [
     p("RAB — Rencana Anggaran Biaya — adalah dokumen yang paling sering diminta dan paling jarang dipahami. Banyak yang mengira RAB sekadar 'total harga bangun rumah'. Padahal RAB yang benar adalah instrumen kendali: ia memberi tahu ke mana setiap rupiah pergi, menjadi dasar negosiasi dengan kontraktor, dan acuan pembayaran termin."),
     h2("Fungsi RAB dalam proyek"),
@@ -68,7 +68,7 @@ export default defineArticle({
     quote("RAB yang baik tidak menjamin proyek murah — ia menjamin tidak ada kejutan."),
     h2("Keterbatasan yang perlu dipahami"),
     p("RAB adalah estimasi pada satu titik waktu: harga material berfluktuasi, dan kondisi lapangan (terutama tanah) dapat menyimpang dari asumsi. RAB yang profesional mencantumkan asumsi-asumsinya secara eksplisit dan menyisakan kontingensi 5–10% untuk hal tak terduga. Yang berbahaya bukan RAB yang meleset sedikit — melainkan proyek yang berjalan tanpa RAB sama sekali."),
-    p("RAB yang akurat lahir dari [gambar kerja yang lengkap](/journal/perbedaan-gambar-kerja-visualisasi-3d) dan [proses desain yang tertib](/journal/proses-desain-arsitektur-brief-gambar-kerja). Untuk estimasi awal sebelum RAB formal, Anda bisa mencoba [kalkulator di halaman Layanan & Harga](/harga)."),
+    p("RAB yang akurat lahir dari gambar kerja yang lengkap dan [proses desain yang tertib](/journal/proses-desain-arsitektur-brief-gambar-kerja). Untuk estimasi awal sebelum RAB formal, Anda bisa mencoba [kalkulator di halaman Layanan & Harga](/harga)."),
     p("Punya rencana proyek? [Start a Conversation](https://wa.me/6282142424750) — konsultasi pertama gratis, tanpa kewajiban."),
   ],
 });
