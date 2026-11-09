@@ -16,7 +16,7 @@ export default defineArticle({
   featuredImage: "journal-perbedaan-gambar-kerja-visualisasi-3d",
   featuredImageAlt:
     "Ilustrasi editorial: transisi dari sketsa konsep ke gambar kerja teknis hingga visualisasi 3D fotorealistik",
-  status: "draft",
+  status: "published",
   blocks: [
     p("'Saya sudah punya gambar' — kalimat yang maknanya bisa sangat berbeda tergantung gambar apa yang dimaksud. Dalam praktik arsitektur ada tiga jenis dokumen visual yang sering tertukar: gambar konsep, gambar kerja, dan visualisasi 3D. Memahami perbedaannya menghemat uang dan mencegah salah paham."),
     h2("Gambar konsep: bahasa ide"),
