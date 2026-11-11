@@ -16,7 +16,7 @@ export default defineArticle({
   featuredImage: "alex-house-living",
   featuredImageAlt:
     "Interior ruang keluarga minimalis dengan plafon kayu, furnitur ramping, dan cahaya alami yang lembut",
-  status: "draft",
+  status: "published",
   blocks: [
     p("Kesalahpahaman paling umum tentang rumah minimalis: cat semuanya putih, kurangi furnitur, selesai. Hasilnya adalah ruang yang steril dan dingin — 'minimalis' yang melelahkan. Rumah minimalis modern yang berhasil justru kaya: kaya tekstur, kaya cahaya, kaya detail. Kekayaannya hanya disusun dengan disiplin."),
     h2("Minimalisme adalah disiplin komposisi"),
