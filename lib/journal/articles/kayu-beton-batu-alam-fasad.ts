@@ -16,7 +16,7 @@ export default defineArticle({
   featuredImage: "tasya-house-detail",
   featuredImageAlt:
     "Detail fasad dengan kombinasi material kayu, beton ekspos, dan batu alam yang tersusun seimbang",
-  status: "draft",
+  status: "published",
   blocks: [
     p("Kayu, beton, dan batu alam adalah trio material paling populer dalam arsitektur kontemporer Indonesia — dan trio yang paling sering gagal dikombinasikan. Ketiganya punya karakter kuat; tanpa disiplin, fasad berakhir seperti katalog toko material. Berikut cara membuatnya bekerja sebagai satu komposisi."),
     h2("Kenali karakter masing-masing"),
