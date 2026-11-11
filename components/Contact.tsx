@@ -117,6 +117,12 @@ export default function Contact() {
           <a href="/jasa-arsitek-lumajang" className="transition-colors hover:text-paper">
             JASA ARSITEK LUMAJANG
           </a>
+          <a href="/jasa-arsitek-pasuruan" className="transition-colors hover:text-paper">
+            JASA ARSITEK PASURUAN
+          </a>
+          <a href="/jasa-arsitek-malang" className="transition-colors hover:text-paper">
+            JASA ARSITEK MALANG
+          </a>
         </nav>
 
         {/* footer strip */}

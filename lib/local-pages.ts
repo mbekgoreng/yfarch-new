@@ -330,6 +330,196 @@ export const localPages: LocalPage[] = [
     areaNote:
       "Lumajang adalah area layanan yang dijangkau dari studio YF ARCH di Probolinggo — bukan lokasi kantor. Konsultasi awal selalu dapat dimulai dari jarak jauh; kunjungan lapangan dijadwalkan sesuai kesepakatan.",
   },
+
+  /* ============================== PASURUAN ============================== */
+  {
+    slug: "jasa-arsitek-pasuruan",
+    city: "Pasuruan",
+    seoTitle: "Jasa Arsitek Pasuruan — Desain Rumah, Villa & Bangunan Usaha | YF ARCH",
+    seoDescription:
+      "Desain rumah, villa, kos, dan bangunan usaha di Kota & Kabupaten Pasuruan oleh YF ARCH — sudah mengerjakan proyek di Pasuruan. Konsultasi pertama gratis.",
+    eyebrow: "Jasa Arsitek — Pasuruan",
+    h1: "Jasa Arsitek di Pasuruan untuk Rumah, Villa & Bangunan Usaha",
+    intro: [
+      "Pasuruan adalah dua wilayah sekaligus: Kota Pasuruan yang pesisir dan pelabuhan, serta Kabupaten Pasuruan yang membentang dari kawasan industri di Gempol dan Rembang sampai kawasan sejuk Prigen–Tretes dan gerbang Bromo di Tosari. Kebutuhan bangunannya beragam — dan YF ARCH sudah mengerjakan karya di sini: Mr. Alex House, rumah keluarga 280 m² di Kabupaten Pasuruan (desain & visualisasi, 2026).",
+      "YF ARCH melayani proyek di Pasuruan dari studio kami di Probolinggo, wilayah tetangga yang berbatasan langsung. Konsultasi awal berjalan melalui WhatsApp dan video call; kunjungan lapangan untuk survei dan pengukuran dijadwalkan sesuai kesepakatan.",
+    ],
+    heroImage: "alex-house-ext-2",
+    heroAlt: "Tampak masuk dan carport rumah tropis dua lantai dengan garis atap berlapis dan pencahayaan hangat — Mr. Alex House, karya desain YF ARCH di Kabupaten Pasuruan",
+    heroCaption: "Mr. Alex House — Kabupaten Pasuruan, Jawa Timur. Karya desain & visualisasi YF ARCH (2026).",
+    services: [
+      {
+        title: "Desain Rumah Tinggal",
+        body: "Rumah keluarga satu dan dua lantai — dari kawasan perumahan di Pandaan dan Bangil sampai lahan keluarga di lingkungan yang lebih tenang. Dirancang dari cara hidup keluarga Anda, dengan denah yang jujur terhadap lahan dan siap tumbuh bila anggaran datang bertahap.",
+      },
+      {
+        title: "Villa & Rumah Peristirahatan",
+        body: "Prigen–Tretes adalah kawasan peristirahatan klasik Jawa Timur, dan Tosari adalah gerbang utara menuju Bromo. Kami merancang villa privat dan villa sewa yang membaca kontur, view, dan iklim sejuk pegunungan — bukan rumah kota yang dipindahkan ke lereng.",
+      },
+      {
+        title: "Kos, Mess & Hunian Kawasan Industri",
+        body: "Kawasan industri seperti PIER di Rembang dan koridor Gempol menciptakan kebutuhan hunian yang layak bagi pekerja dan manajemen. Kami merancang kos dan mess yang efisien dioperasikan, aman, dan tetap manusiawi untuk ditinggali — bukan barak yang diberi cat baru.",
+      },
+      {
+        title: "Gambar Kerja, 3D & RAB",
+        body: "Sudah punya konsep atau denah awal? Kami lanjutkan menjadi visualisasi 3D, gambar kerja lengkap, dan RAB agar Anda bisa menawar harga pelaksanaan dengan dokumen, bukan perkiraan lisan.",
+      },
+    ],
+    projectTypes: [
+      "Rumah tinggal baru",
+      "Villa & rumah peristirahatan",
+      "Kos & mess karyawan",
+      "Ruko & bangunan usaha",
+      "Gudang & bangunan pendukung industri",
+      "Homestay gerbang Bromo (Tosari)",
+      "Renovasi & rumah tumbuh",
+      "Gambar kerja & RAB",
+    ],
+    challengesTitle: "Konteks Pasuruan yang Kami Rancang Dengan Serius",
+    challenges: [
+      {
+        title: "Pesisir yang panas dan udara garam",
+        body: "Kota Pasuruan dan kawasan pelabuhannya panas, terik, dan membawa udara garam. Jawabannya bukan AC yang lebih besar, melainkan naungan yang dihitung, ventilasi silang yang benar-benar mengalir, serta pilihan material dan finishing yang tidak cepat menua oleh udara laut.",
+      },
+      {
+        title: "Hunian industri menuntut efisiensi yang manusiawi",
+        body: "Kos dan mess di sekitar kawasan industri gagal dengan cara yang sama: unit dipadatkan tanpa memikirkan cahaya, sirkulasi penghuni, keamanan, dan ruang bersama. Efisiensi yang benar justru dihitung dari operasionalnya — bukan dari jumlah kamar maksimum di atas kertas.",
+      },
+      {
+        title: "Lereng Prigen–Tretes dan Tosari bukan lahan datar",
+        body: "Di kawasan pegunungan, kontur menentukan posisi bangunan, biaya pekerjaan tanah dan dinding penahan, serta drainase. Kelembapan yang tinggi juga menuntut detail material yang berbeda. Karena itu desain yang bertanggung jawab dimulai dari survei tapak — bukan dari gambar fasad.",
+      },
+      {
+        title: "Bangunan usaha di koridor utama harus terbaca",
+        body: "Di sepanjang jalur Surabaya–Probolinggo dan jalan-jalan utama kabupaten, ruko dan bangunan usaha hidup dari keterbacaan: fasad yang jelas dari kendaraan bergerak, parkir yang tidak memakan jalan, dan akses servis yang tidak mengganggu pelanggan. Ketiganya diselesaikan di gambar, bukan setelah buka.",
+      },
+    ],
+    deliverables: DELIVERABLES,
+    portfolioSlugs: ["mr-alex-house", "paviliun-teduh"],
+    portfolioNote:
+      "Karya pertama adalah proyek studio di Kabupaten Pasuruan itu sendiri, ditampilkan dengan status aslinya sebagai desain & visualisasi. Karya kedua adalah studi paviliun peristirahatan — relevan untuk konteks villa dan rumah peristirahatan pegunungan Pasuruan.",
+    faqs: [
+      {
+        q: "Apakah YF ARCH sudah pernah mengerjakan proyek di Pasuruan?",
+        a: "Sudah. Mr. Alex House — rumah keluarga 280 m² di Kabupaten Pasuruan — adalah karya desain & visualisasi kami (2026) dan dapat dilihat lengkap di halaman proyek. Status setiap karya selalu kami tulis apa adanya, termasuk yang masih berupa desain.",
+      },
+      {
+        q: "Di mana kantor YF ARCH, dan apakah bisa survei ke Pasuruan?",
+        a: "Studio kami berbasis di Probolinggo, wilayah yang berbatasan langsung dengan Pasuruan. Survei dan pengukuran dijadwalkan setelah konsultasi awal — mencakup Kota Pasuruan, Bangil, Pandaan, Prigen, Gempol, dan wilayah kabupaten lainnya sesuai kesepakatan.",
+      },
+      {
+        q: "Saya ingin membangun villa di Tretes. Apa yang perlu diperhatikan lebih dulu?",
+        a: "Tiga hal: kontur dan akses lahan, status serta batas lahan, dan bagaimana bangunan akan dipakai — ditinggali sendiri atau disewakan. Ketiganya menentukan desain jauh sebelum bentuk bangunan dibicarakan. Mulailah dari konsultasi dan survei tapak.",
+      },
+      {
+        q: "Bisakah merancang kos atau mess untuk karyawan perusahaan?",
+        a: "Bisa. Brief-nya dimulai dari jumlah dan profil penghuni, pola aktivitas harian, fasilitas bersama yang dibutuhkan, serta standar keamanan dan parkir. Dari situ kami susun unit dan sirkulasi yang efisien untuk dioperasikan, bukan sekadar padat.",
+      },
+      {
+        q: "Berapa biaya jasa arsitek di YF ARCH?",
+        a: "Biaya dihitung per m² luas bangunan atau area desain, mengikuti paket yang dipilih, dan dikonfirmasi dalam proposal tertulis setelah konsultasi pertama — tidak ada angka lisan yang mengambang. Rincian paket dapat dilihat di halaman Harga.",
+      },
+    ],
+    waMessage:
+      "Halo YFArch, saya ingin berkonsultasi tentang rencana bangunan di Pasuruan. Mohon informasi mengenai proses dan kebutuhan awalnya.",
+    areaNote:
+      "Pasuruan adalah area layanan yang dijangkau dari studio YF ARCH di Probolinggo — bukan lokasi kantor. Cakupan meliputi Kota Pasuruan dan Kabupaten Pasuruan (Bangil, Pandaan, Prigen–Tretes, Gempol, Tosari, dan sekitarnya); kunjungan lapangan dijadwalkan sesuai kesepakatan.",
+  },
+
+  /* =============================== MALANG =============================== */
+  {
+    slug: "jasa-arsitek-malang",
+    city: "Malang",
+    seoTitle: "Jasa Arsitek Malang — Desain Rumah, Kos & Villa | YF ARCH",
+    seoDescription:
+      "Desain rumah lahan sempit, rumah kos, villa, dan cafe di Malang oleh YF ARCH — sudah mengerjakan proyek di Malang. Konsultasi pertama gratis, harga per m².",
+    eyebrow: "Jasa Arsitek — Malang",
+    h1: "Jasa Arsitek di Malang untuk Rumah, Kos & Villa",
+    intro: [
+      "Malang adalah kota dataran tinggi yang sejuk — kota pendidikan dengan kebutuhan bangunan yang khas: rumah keluarga di lahan kota yang makin sempit, rumah kos yang mengikuti denyut kampus, serta villa dan cafe yang tumbuh bersama wisata Malang Raya. YF ARCH sudah mengerjakan karya di sini: Ms. Tasya House, rumah 145 m² di lahan terbatas yang menara bata eksposnya kini menjadi ciri khas lingkungannya (desain & visualisasi, 2026).",
+      "YF ARCH melayani Malang dari studio kami di Probolinggo. Konsultasi dan proses desain berjalan jarak jauh melalui WhatsApp, video call, dan dokumen digital; kunjungan lapangan dijadwalkan pada tahap survei dan pengukuran.",
+    ],
+    heroImage: "tasya-house-ext-1",
+    heroAlt: "Rumah dua lantai di Malang dengan menara sudut melengkung dari bata ekspos, jendela bundar, dan bukaan melengkung — Ms. Tasya House, karya desain YF ARCH",
+    heroCaption: "Ms. Tasya House — Malang, Jawa Timur. Karya desain & visualisasi YF ARCH (2026).",
+    services: [
+      {
+        title: "Desain Rumah Tinggal, Termasuk Lahan Sempit",
+        body: "Banyak lahan kota Malang berukuran terbatas dan rapat dengan tetangga. Kami merancang rumah yang tetap terang dan terasa lega di lahan seperti itu — cahaya dari atas dan samping, void, dan tata ruang tanpa sudut mati — seperti yang kami kerjakan pada Ms. Tasya House.",
+      },
+      {
+        title: "Rumah Kos & Hunian Sewa",
+        body: "Di kota pendidikan, kos yang dirancang baik adalah bisnis yang stabil. Kami merancangnya sebagai bangunan sekaligus instrumen usaha: jumlah unit yang realistis, kamar mandi yang tertata, sirkulasi dan keamanan penghuni, parkir motor, serta ruang pengelola.",
+      },
+      {
+        title: "Villa, Cafe & Bangunan Usaha",
+        body: "Untuk kawasan sejuk Malang Raya dan koridor wisatanya: villa keluarga, rumah peristirahatan, dan cafe yang dirancang dari pengalaman tamu dan kecepatan operasional — bukan hanya dari fasad yang fotogenik.",
+      },
+      {
+        title: "Renovasi & Gambar Kerja",
+        body: "Merombak rumah lama — termasuk rumah berkarakter kolonial di kawasan lama Malang — tanpa menghapus karakternya. Atau melanjutkan konsep yang sudah Anda punya menjadi visualisasi 3D, gambar kerja, dan RAB yang siap dieksekusi pelaksana.",
+      },
+    ],
+    projectTypes: [
+      "Rumah tinggal baru",
+      "Rumah di lahan sempit",
+      "Rumah kos & kontrakan",
+      "Villa & rumah peristirahatan",
+      "Cafe & restoran",
+      "Renovasi rumah lama",
+      "Homestay",
+      "Gambar kerja & RAB",
+    ],
+    challengesTitle: "Konteks Malang yang Menentukan Desainnya",
+    challenges: [
+      {
+        title: "Lahan sempit dan tetangga rapat",
+        body: "Masalah utama rumah kota Malang bukan luas, melainkan cahaya dan privasi: dinding menempel tetangga, bukaan samping terbatas. Solusinya dirancang sejak denah — void dan cahaya atas, orientasi bukaan yang menjaga privasi, dan fasad yang memberi karakter tanpa membuka isi rumah ke jalan. Menara bata pada Ms. Tasya House lahir dari pembacaan seperti ini.",
+      },
+      {
+        title: "Iklim sejuk dataran tinggi — berkah yang perlu dikelola",
+        body: "Di ketinggian sekitar 440 meter, udara Malang memungkinkan bukaan besar dan ventilasi alami yang sungguh bekerja. Tetapi musim hujan membawa lembap dan tampias: detail atap, talang, dan pilihan material harus menjawabnya agar bangunan tidak cepat berjamur dan kusam.",
+      },
+      {
+        title: "Kos mahasiswa dinilai dari hal-hal praktis",
+        body: "Penghuni kos memilih dengan kaki: kamar yang tidak pengap, kamar mandi yang layak, parkir motor yang aman, ruang cuci dan jemur, serta akustik antar kamar yang masuk akal. Hal-hal yang terdengar sepele ini menentukan okupansi — dan semuanya diputuskan di gambar, bukan setelah bangunan jadi.",
+      },
+      {
+        title: "Karakter lama Malang jangan dihapus",
+        body: "Kawasan lama seperti Ijen menyimpan rumah-rumah berkarakter kolonial yang menjadi identitas kota. Renovasi yang baik mempertahankan proporsi dan material aslinya sambil memperbaiki fungsi di dalamnya. Untuk bangunan yang berada di kawasan cagar budaya, ketentuan setempat perlu diverifikasi sebelum fasad diubah.",
+      },
+    ],
+    deliverables: DELIVERABLES,
+    portfolioSlugs: ["ms-tasya-house", "rumah-cahaya"],
+    portfolioNote:
+      "Karya pertama adalah proyek studio di Malang itu sendiri — rumah lahan terbatas yang menjadi bukti pendekatan kami untuk lahan kota. Karya kedua adalah studi rumah lereng di Jawa Timur, relevan untuk konteks dataran tinggi Malang.",
+    faqs: [
+      {
+        q: "Apakah YF ARCH sudah pernah mengerjakan proyek di Malang?",
+        a: "Sudah. Ms. Tasya House — rumah tinggal 145 m² di Malang — adalah karya desain & visualisasi kami (2026) dan dapat dilihat lengkap di halaman proyek. Status setiap karya selalu kami tulis apa adanya, termasuk yang masih berupa desain.",
+      },
+      {
+        q: "Lahan saya sempit. Masih bisakah mendapat rumah yang terasa lega?",
+        a: "Bisa — kelegaan lebih ditentukan oleh cahaya, ketinggian ruang, dan tata sirkulasi daripada oleh luas semata. Pada Ms. Tasya House, lahan yang terbatas dijawab dengan penataan massa dan bukaan yang terencana. Ceritakan ukuran lahan Anda pada konsultasi pertama, dan kami tunjukkan kemungkinan-kemungkinannya.",
+      },
+      {
+        q: "Saya ingin membangun kos dekat kampus. Mulai dari mana?",
+        a: "Dari brief usahanya: target penghuni, jumlah unit yang realistis terhadap luas lahan, dan peruntukan lahan yang perlu diverifikasi ke ketentuan setempat. Setelah fondasi itu jelas, desain menyusun unit, sirkulasi, dan fasilitas bersama agar kos mudah dioperasikan dan menarik bagi penghuni.",
+      },
+      {
+        q: "Bagaimana prosesnya berjalan bila studio YF ARCH berada di Probolinggo?",
+        a: "Konsultasi dan proses desain berjalan melalui WhatsApp, video call, dan dokumen digital yang terstruktur — Anda menerima progres dan gambar secara berkala. Kunjungan lapangan untuk survei dan pengukuran dijadwalkan sesuai kesepakatan pada tahap awal proyek.",
+      },
+      {
+        q: "Berapa biaya jasa arsitek untuk rumah atau kos di Malang?",
+        a: "Mengikuti struktur paket studio: dihitung per m² area desain dan dikonfirmasi dalam proposal tertulis setelah konsultasi pertama. Silakan lihat halaman Harga untuk paket-paketnya, lalu konsultasikan kebutuhan Anda — konsultasi pertama gratis.",
+      },
+    ],
+    waMessage:
+      "Halo YFArch, saya ingin berkonsultasi tentang rencana bangunan di Malang. Mohon informasi mengenai proses dan kebutuhan awalnya.",
+    areaNote:
+      "Malang adalah area layanan yang dijangkau dari studio YF ARCH di Probolinggo — bukan lokasi kantor. Cakupan meliputi Kota Malang, Kota Batu, dan wilayah Kabupaten Malang seperti Singosari, Lawang, Dau, dan Kepanjen; kunjungan lapangan dijadwalkan sesuai kesepakatan.",
+  },
 ];
 
 export function getLocalPage(slug: string): LocalPage | undefined {
