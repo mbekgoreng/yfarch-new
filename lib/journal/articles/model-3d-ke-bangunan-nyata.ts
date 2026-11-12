@@ -16,7 +16,7 @@ export default defineArticle({
   featuredImage: "film-01-form",
   featuredImageAlt:
     "Visualisasi 3D massa bangunan modern dengan studi bentuk dan cahaya",
-  status: "draft",
+  status: "published",
   blocks: [
     p("Visualisasi 3D telah mengubah cara klien membeli desain: bukan lagi membayangkan dari garis, melainkan melihat 'fotonya' sebelum dibangun. Namun ada jurang antara piksel dan beton. Artikel ini tentang cara menyeberanginya dengan selamat."),
     h2("Apa yang bisa dipercaya dari render"),
